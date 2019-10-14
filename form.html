@@ -1,0 +1,426 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/form.css">
+  <title>Volunteer Signup</title>
+</head>
+<body>
+
+<!-- simple header taken from IDayDream.org -->
+<div class="container">
+  <header class ="align-content-center"> <div><strong><a href="https://idaydream.org/"><img height="100" width="300" src="http://idaydream.org/wp-content/uploads/2017/05/Logo2-300x138.png" alt="www.idaydream.org"></a></strong><a id="advanced_menu_toggle" href="#" aria-hidden="true" data-av_icon="" data-av_iconfont="entypo-fontello"></a></div></div>
+</div>
+<div class="header_bg"></div>
+<!-- end header -->
+</header>
+</div>
+
+<div class="jumbotron text-center">
+  <h1 class="display-4"> Volunteer Form</h1>
+</div>
+
+
+<div class="container align-items-center">
+
+  <form action="confirmation.html">
+    <fieldset class="form-group">
+      <legend>General Information</legend>
+
+      <!--<div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="First Name">
+      </div>
+      <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+      </div>-->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="First Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+        </div>
+      </div>
+      <!--
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" id="email" placeholder="Email">
+              </div>
+              <div class="form-group">
+                  <label for="homePhone">Home Phone</label>
+                  <input type="text" class="form-control" id="homePhone" placeholder="Home Phone">
+              </div>
+      -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="homePhone">Home Phone</label>
+          <input type="tel" class="form-control" id="homePhone" placeholder="Home Phone">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="streetAddress">Street Address</label>
+        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
+      </div>
+      <!--
+              <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" id="city" placeholder="City">
+              </div>
+              <div class="form-group">
+                  <label for="state">State</label>
+                  <input type="text" class="form-control" id="state" placeholder="State">
+              </div>
+              <div class="form-group">
+                  <label for="zip">Zipcode</label>
+                  <input type="text" class="form-control" id="zip" placeholder="Zipcode">
+              </div>
+      -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="state">State</label>
+          <select id="state" class="form-control">
+            <option selected>Washington</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="zipcode">Zip</label>
+          <input type="text" class="form-control" id="zipcode">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="t-shirt-size">T-Shirt Size</label>
+          <select class="form-control" id="t-shirt-size">
+            <option value="none">Select a Size</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="extra-large">Extra Large</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <legend>Availability</legend>
+      <p class="form-group">Please select the following that best describes your available volunteer time(s)</p>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="availability" id="weekend-4" value="weekend-4">
+        <label class="form-check-label" for="weekend-4">
+          Weekend Workshop (4-Hour)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="availability" id="weekend-8" value="weekend-8">
+        <label class="form-check-label" for="weekend-8">
+          Weekend Workshop (8-Hour)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="availability" id="weekday" value="weekday">
+        <label class="form-check-label" for="weekday">
+          Weekday Workshop
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="availability" id="one-week" value="one-week">
+        <label class="form-check-label" for="one-week">
+          One-Week Summer Camp
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="availability" id="ongoing" value="ongoing">
+        <label class="form-check-label" for="ongoing">
+          Ongoing, Weekday Commitment
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <legend>Roles/Interest</legend>
+      <p class="form-group">Are there any specific roles you wish to fill?</p>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="roles" id="events" value="events">
+        <label class="form-check-label" for="events">
+          Events (College Tours, Community Service)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="roles" id="fundraising" value="fundraising">
+        <label class="form-check-label" for="fundraising">
+          Fundraising
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="roles" id="newsletter" value="newsletter">
+        <label class="form-check-label" for="newsletter">
+          Newsletter Production (Monthly)
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="roles" id="coordination" value="coordination">
+        <label class="form-check-label" for="coordination">
+          Volunteer Coordination
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="roles" id="mentoring" value="mentoring">
+        <label class="form-check-label" for="mentoring">
+          Mentoring
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input form-check-inline" type="checkbox" name="roles" id="other-interest" value="other-interest">
+        <label class="form-check-label form-check-inline" for="other-interest">
+          Other
+        </label>
+      </div>
+      <div id =other-text-roles class="form-check-inline">
+        <div class="form-group col-md-6">
+          <label for="other-text"></label>
+          <input type="text" class="form-control" id="other-text" placeholder="Other selected. Please explain">
+        </div>
+      </div>
+      <div id = "motivation" class="form-group text-left"> <!-- comment div -->
+        <p></p>
+        <label for="motivation">Why are you motivated to volunteer with us?</label>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <textarea class="form-control" id="motivation-text" placeholder="" name = "motivation" rows="3" cols="20"></textarea>
+          </div> <!-- col -->
+        </div> <!-- row-->
+      </div> <!-- comment div -->
+
+
+    </fieldset>
+
+    <fieldset class="form-group">
+      <!--    Experience Set of Form         -->
+      <legend>Experience</legend>
+      <!--        Skills Interest-->
+      <div class="form-group form-check form-check-inline">
+        <label for="skills-interest">Special Skills or Interests?</label>
+      </div>
+
+      <div class="form-group form-check form-check-inline">
+        <label class="form-check-label" for="skills-interest-cb">
+          <input class="form-check-input" type="checkbox" name="roles" id="skills-interest-cb"
+                 value="yes">YES</label>
+      </div>
+      <div id = "skills-interest-comment" class="form-row">
+        <div class="form-group col-6">
+          <textarea class="form-control" id="skills-interest" placeholder="Please Explain" rows="3" cols="20"></textarea>
+        </div>
+      </div>
+
+      <!--                Youth Experience-->
+      <div class="clearfix">
+        <div class="form-group form-check form-check-inline">
+          <label for="youth-exp">Youth Volunteer Experience?</label>
+        </div>
+
+        <div class="form-group form-check form-check-inline">
+          <label class="form-check-label" for="youth-exp-cb">
+            <input class="form-check-input" type="checkbox" name="roles" id="youth-exp-cb" value="yes">YES</label>
+        </div>
+      </div>
+      <div id="youth-exp-comment" class="form-row">
+        <div class="form-group col-6">
+          <textarea class="form-control" id="youth-exp" placeholder="Please Explain" rows="3" cols="20"></textarea>
+        </div>
+      </div>
+      <!--                Non-Youth Experience-->
+      <div class="clearfix">
+        <div class="form-group form-check form-check-inline">
+          <label for="youth-exp">Non-Youth Volunteer Experience?</label>
+        </div>
+
+        <div class="form-group form-check form-check-inline">
+          <label class="form-check-label" for="non-youth-exp-cb">
+            <input class="form-check-input" type="checkbox" name="roles" id="non-youth-exp-cb"
+                   value="yes">YES</label>
+        </div>
+      </div>
+      <div id = "non-youth-exp-comment" class="row">
+        <div class="form-group col-6">
+          <textarea class="form-control" id="non-youth-exp" placeholder="Please Explain" rows="3" cols="20"></textarea>
+        </div>
+      </div>
+    </fieldset>
+    <!--references-->
+    <fieldset class="form-group">
+      <legend>References</legend>
+      <!--        name-->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="ref-name">Full Name</label>
+          <input type="text" class="form-control" id="ref-name" placeholder="Full Name">
+        </div>
+        <!--            ohone number-->
+        <div class="form-group col-md-6">
+          <label for="ref-phone">Phone Number</label>
+          <input type="tel" class="form-control" id="ref-phone" placeholder="Phone Number">
+        </div>
+      </div>
+      <!--email-->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="ref-email">Email</label>
+          <input type="email" class="form-control" id="ref-email" placeholder="Email">
+        </div>
+        <!--            relationship-->
+        <div class="form-group col-md-6">
+          <label for="ref-relationship">Relationship</label>
+          <input type="tel" class="form-control" id="ref-relationship" placeholder="Relationship">
+        </div>
+      </div>
+      <div class ="form-group">
+        <p>(Question for Brandy Day) Would you like buttons to show another reference addition, or always have three references on screen to fill out?</p>
+      </div>
+
+
+    </fieldset>
+    <fieldset class="form-group">
+      <legend>Finishing Up</legend>
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="hear-about-us">How Did You Hear About Us?</label>
+          <select class="form-control" id="hear-about-us">
+            <option value="none">Please Select</option>
+            <option value="word">Word of Mouth/Friend/Colleague</option>
+            <option value="wed">Web/Social Media</option>
+            <option value="print">Print (Flyer/Poster/Brochure</option>
+            <option value="corporate">Corporate Sponsor</option>
+            <option value="other">Other</option>
+
+          </select>
+        </div>
+      </div>
+      <div class = "form-row">
+        <div class="form-group col-md-6 ">
+          <div class="form-check form-check-inline">  <!-- mailing list checkbox -->
+            <input class="form-check-input" type="checkbox" value="yes-mailingList" id="mailingList" name="mailingList">
+            <label class="form-check-label" for="mailingList">Please add me to your mailing list &nbsp;</label>
+
+          </div> <!-- mailing list checkbox -->
+        </div>
+      </div>
+
+      <fieldset class ="form-group">
+        <legend>Our Policy</legend>
+        <p>It is the policy of this organization to provide equal opportunities without regard to race, color, religion, national origin, gender, sexual preference, age, or disability.</p>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="policy" value="yes">
+            <label class="form-check-label" for="policy">I agree to the policy</label>
+          </div>
+        </div>
+
+      </fieldset>
+      <fieldset class ="form-group">
+        <legend>Agreement</legend>
+        <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="policy" id="bg-check-yes" value="yes">
+            <label class="form-check-label" for="bg-check-yes">YES</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="policy" id="bg-check-no" value="no">
+            <label class="form-check-label" for="bg-check-no">NO</label>
+          </div>
+          <p class="form-check-inline">I submit to a possible background check </p>
+          <!--        not sure if you want the yes/no before or after text??-->
+        </div>
+      </fieldset>
+    </fieldset>
+    <button id="submit" type="submit" class="btn btn-primary">
+      Submit
+    </button>
+
+  </form>
+
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src ="js/form.js"></script>
+
+
+</body>
+</html>

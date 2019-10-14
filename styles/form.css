@@ -1,0 +1,30 @@
+/*fieldset {
+    !*border: 1px solid black;
+    padding: 1em;*!
+    width: 75%;
+    align-items: center;
+}*/
+
+/*
+fieldset {
+    border: 1px solid darkgreen;
+    padding: 1em;
+    width: 85%;
+}
+*/
+
+#skills-interest-comment{
+    display: none;
+}
+
+#youth-exp-comment{
+    display: none;
+}
+
+#non-youth-exp-comment{
+    display:none;
+}
+
+#other-text-roles{
+    display:none;
+}
