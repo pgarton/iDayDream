@@ -10,18 +10,28 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" href="styles/form.css">
+  <link rel="stylesheet" href="styles/validate.css">
   <title>Volunteer Signup</title>
 </head>
 <body>
 
-<!-- simple header taken from IDayDream.org -->
-<div class="row text-center">
-  <header id="logo">
-    <strong><a href="https://idaydream.org/">
-    <img height="100" width="300" src="http://idaydream.org/wp-content/uploads/2017/05/Logo2-300x138.png" alt="www.idaydream.org">
-    </a></strong><a id="advanced_menu_toggle" href="#" aria-hidden="true" data-av_icon="" data-av_iconfont="entypo-fontello"></a>
-  </header>
-</div>
+<!-- simple header taken from IDayDream.org -->  <!-- Elijah Edit -->
+<header id="header" class="show-on-scroll" data-offset-el=".index-section" data-offset-behavior="bottom" role="banner">
+  <div class="header-inner">
+    <div id="logoWrapper" class="wrapper" data-content-field="site-title">
+
+      <h1 id="logoImage"><a href="/"><img src="//static1.squarespace.com/static/5dabc823c0e45245a9c250cd/t/5dacd1ebfe152f3a7aa1de79/1571616451040/?format=1500w" alt="iD.A.Y. Dream"></a></h1>
+
+    </div><!--
+          --><div class="mobile-nav-toggle"><div class="top-bar"></div><div class="middle-bar"></div><div class="bottom-bar"></div></div><div class="mobile-nav-toggle fixed-nav-toggle"><div class="top-bar"></div><div class="middle-bar"></div><div class="bottom-bar"></div></div><!--
+
+
+
+    <!-- style below blocks out the mobile nav toggle only when nav is loaded -->
+    <style>.mobile-nav-toggle-label { display: inline-block !important; }</style>
+  </div>
+  </div>
+</header>
 
 <div class="jumbotron text-center">
   <h1 class="display-4"> Volunteer Form</h1>
@@ -30,7 +40,7 @@
 
 <div class="container align-items-center">
 
-  <form action="confirmation.html">
+  <form action="confirmation.html" id="volunteerForm">  <!--Elijah Edit: Added id to form -->
     <fieldset class="form-group">
       <legend>General Information</legend>
 
@@ -65,7 +75,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="homePhone">Home Phone</label>
-          <input type="tel" class="form-control" id="homePhone" placeholder="Home Phone">
+          <input type="tel" class="form-control" id="homePhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="XXX-XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
         </div>
         <div class="form-group col-md-6">
           <label for="email">Email</label>
@@ -97,8 +107,7 @@
         </div>
         <div class="form-group col-md-4">
           <label for="state">State</label>
-          <select id="state" class="form-control">
-            <option selected>Washington</option>
+          <select id="state" class="form-control">  <!-- Elijah Edit: Fixed the state dropdown to have a value for Washington-->
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -146,7 +155,7 @@
             <option value="UT">Utah</option>
             <option value="VT">Vermont</option>
             <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
+            <option value="WA" selected>Washington</option>
             <option value="WV">West Virginia</option>
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
@@ -254,7 +263,7 @@
       </div>
       <div id = "motivation" class="form-group text-left"> <!-- comment div -->
         <p></p>
-        <label for="motivation">Why are you motivated to volunteer with us?</label>
+        <label for="motivation-text">Why are you motivated to volunteer with us?</label>
         <div class="form-row">
           <div class="form-group col-6">
             <textarea class="form-control" id="motivation-text" placeholder="" name = "motivation" rows="3" cols="20"></textarea>
@@ -405,7 +414,7 @@
         </div>
       </fieldset>
     </fieldset>
-    <button id="submit" type="submit" class="btn btn-primary">
+    <button id="submit" type="submit" class="btn btn-primary" id="finalButton"> <!-- Elijah Edit: added Id to the submit button-->
       Submit
     </button>
 
@@ -420,6 +429,7 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src ="js/form.js"></script>
+<script src ="js/validate.js"></script>
 
 
 </body>
