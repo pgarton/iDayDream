@@ -2,7 +2,7 @@ var $skillsInterestComment = $("#skills-interest-comment");
 var $youthExpComment = $("#youth-exp-comment");
 var $nonYouthExpComment = $("#non-youth-exp-comment");
 var $otherTextRoles = $("#other-text-roles");
-
+var $otherHearAboutUs = $("#other-hear-about-us");
 $("#skills-interest-cb").change(function(){
     if($(this).is(":checked")) {
        $skillsInterestComment.css("display","block");
@@ -46,6 +46,15 @@ $("#other-interest").change(function(){
    }
    else
        $otherTextRoles.css("display","none");
+});
+
+//adding checkbox to How did you hear about us, when "other" option is selected
+$("#hear-about-us").change(function(){
+   if ($(this).val() === "other"){
+       $otherHearAboutUs.css("display","block");
+   }
+   else
+       $otherHearAboutUs.css("display","none");
 });
 
 
