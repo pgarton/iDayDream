@@ -7,30 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
+  <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5dabc823c0e45245a9c250cd/1571544129492-S9RDI79OWVWOWVJEJG7E/ke17ZwdGBToddI8pDm48kJycfsYb1urLU93EpFqOTQmoCXeSvxnTEQmG4uwOsdIceAoHiyRoc52GMN5_2H8Wp7zww8OjRrqjaM7_0x6HDLp42EP6IAa5vAmscK3sHI4MkNL5tmfZ3otlI9yi1IzH2Q/favicon.ico">
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="styles/bootstrap.min.css">
   <link rel="stylesheet" href="styles/form.css">
   <link rel="stylesheet" href="styles/validate.css">
-  <title>Volunteer Signup</title>
+  <title>Volunteer — iD.A.Y. Dream</title>
 </head>
 <body>
 
 <!-- simple header taken from IDayDream.org -->  <!-- Elijah Edit -->
-<header id="header" class="show-on-scroll" data-offset-el=".index-section" data-offset-behavior="bottom" role="banner">
-  <div class="header-inner">
-    <div id="logoWrapper" class="wrapper" data-content-field="site-title">
+<header id="header">
 
-      <h1 id="logoImage"><a href="/"><img src="//static1.squarespace.com/static/5dabc823c0e45245a9c250cd/t/5dacd1ebfe152f3a7aa1de79/1571616451040/?format=1500w" alt="iD.A.Y. Dream"></a></h1>
-
-    </div><!--
-          --><div class="mobile-nav-toggle"><div class="top-bar"></div><div class="middle-bar"></div><div class="bottom-bar"></div></div><div class="mobile-nav-toggle fixed-nav-toggle"><div class="top-bar"></div><div class="middle-bar"></div><div class="bottom-bar"></div></div><!--
-
-
-
-    <!-- style below blocks out the mobile nav toggle only when nav is loaded -->
-    <style>.mobile-nav-toggle-label { display: inline-block !important; }</style>
-  </div>
-  </div>
 </header>
 
 <div class="jumbotron text-center">
@@ -44,14 +33,6 @@
     <fieldset class="form-group">
       <legend>General Information</legend>
 
-      <!--<div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" class="form-control" id="firstName" placeholder="First Name">
-      </div>
-      <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-      </div>-->
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="firstName">First Name</label>
@@ -62,16 +43,8 @@
           <input type="text" class="form-control" id="lastName" placeholder="Last Name">
         </div>
       </div>
-      <!--
-              <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="text" class="form-control" id="email" placeholder="Email">
-              </div>
-              <div class="form-group">
-                  <label for="homePhone">Home Phone</label>
-                  <input type="text" class="form-control" id="homePhone" placeholder="Home Phone">
-              </div>
-      -->
+
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="homePhone">Home Phone</label>
@@ -86,20 +59,7 @@
         <label for="streetAddress">Street Address</label>
         <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
       </div>
-      <!--
-              <div class="form-group">
-                  <label for="city">City</label>
-                  <input type="text" class="form-control" id="city" placeholder="City">
-              </div>
-              <div class="form-group">
-                  <label for="state">State</label>
-                  <input type="text" class="form-control" id="state" placeholder="State">
-              </div>
-              <div class="form-group">
-                  <label for="zip">Zipcode</label>
-                  <input type="text" class="form-control" id="zip" placeholder="Zipcode">
-              </div>
-      -->
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="city">City</label>
@@ -336,7 +296,7 @@
           <label for="ref-name">Full Name</label>
           <input type="text" class="form-control" id="ref-name" placeholder="Full Name">
         </div>
-        <!--            ohone number-->
+        <!--            phone number-->
         <div class="form-group col-md-6">
           <label for="ref-phone">Phone Number</label>
           <input type="tel" class="form-control" id="ref-phone" placeholder="Phone Number">
@@ -358,7 +318,6 @@
         <p>(Question for Brandy Day) Would you like buttons to show another reference addition, or always have three references on screen to fill out?</p>
       </div>
 
-
     </fieldset>
     <fieldset class="form-group">
       <legend>Finishing Up</legend>
@@ -376,21 +335,24 @@
           <div id ="other-hear-about-us" class="form-check-inline">
             <div class="form-group">
               <label for="other-hear-about-us-text"></label>
-              <textarea type="text" class="form-control" id="other-hear-about-us-text" placeholder="Other selected. Please explain" rows="3" cols="20"></textarea>
+              <textarea class="form-control" id="other-hear-about-us-text" placeholder="Other selected. Please explain" rows="3" cols="20"></textarea>
             </div>
           </div>
 
         </div>
       </div>
-      <div class = "form-row">
-        <div class="form-group col-md-6 ">
-          <div class="form-check form-check-inline">  <!-- mailing list checkbox -->
-            <input class="form-check-input" type="checkbox" value="yes-mailingList" id="mailingList" name="mailingList">
-            <label class="form-check-label" for="mailingList">Please add me to your mailing list &nbsp;</label>
-
-          </div> <!-- mailing list checkbox -->
+      <label>Add to mailing list?</label>
+      <div class = "form-row" id="mail">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="mailingList" id="yesMailingList" value="yes" checked>
+          <label class="form-check-label" for="yesMailingList">YES</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="mailingList" id="noMailingList" value="no">
+          <label class="form-check-label" for="noMailingList">NO</label>
         </div>
       </div>
+    </fieldset>
 
       <fieldset class ="form-group">
         <legend>Our Policy</legend>
@@ -419,8 +381,7 @@
           <!--        not sure if you want the yes/no before or after text??-->
         </div>
       </fieldset>
-    </fieldset>
-    <button id="submit" type="submit" class="btn btn-primary" id="finalButton"> <!-- Elijah Edit: added Id to the submit button-->
+    <button id="submit" type="submit" class="btn btn-primary">
       Submit
     </button>
 
