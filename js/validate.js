@@ -93,7 +93,6 @@ function validateEmail() {
         $email.removeClass("invalid");
     } else {
         $email.addClass("invalid");
-
         isValid = false;
 
     }
