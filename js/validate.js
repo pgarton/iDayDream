@@ -90,12 +90,12 @@ function validatePhone(){
 function validateEmail() {
     let $email = $("#email");
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.val())) {
+        $email.removeClass("invalid");
+    } else {
         $email.addClass("invalid");
 
         isValid = false;
-    } else {
 
-        $email.removeClass("invalid");
     }
 }
 
