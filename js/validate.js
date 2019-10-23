@@ -9,7 +9,7 @@ Mailing list sign up (yes or no) is required, and yes is checked by default
  */
 
 // background Check
-
+$("#submit").hide();
 $("#bg-check-no").on("click", function() {
     alert("Background Check Decline notification:" +
         " Because of our values as on organization and out of the safety of the youth" +
@@ -50,9 +50,8 @@ function validate() {
     validateEmail();
     validateTshirt();
     validateMotivation();
-    //validateMailingList
 
-    //validateBackground
+
 
 
 
@@ -120,3 +119,4 @@ function validateMotivation(){
         $item.removeClass("invalid");
     }
 }
+
