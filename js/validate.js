@@ -8,12 +8,30 @@ Why are you motivated to volunteer with us? is required
 Mailing list sign up (yes or no) is required, and yes is checked by default
  */
 
+// background Check
+
+$("#bg-check-no").on("click", function() {
+    alert("Background Check Decline notification:" +
+        " Because of our values as on organization and out of the safety of the youth" +
+        " we serve it is a requirement that a background check must be submitted.You have chosen to decline." +
+        " Thank you for your consideration in volunteering with iD.A.Y.dream, at this time we are unable to move forward with your" +
+        " submission.Please do visit us again!")
+    $("#submit").hide();
+});
+
+$("#bg-check-yes").on("click", function() {
+    $("#submit").show();
+});
+
+
 // validating dynamically
 $("#firstName").on("keyup", validateFirstName);
 $("#lastName").on("keyup", validateLastName);
+$("#motivation-text").on("keyup", validateMotivation)
 
-//$("#email").on("keyup", validateEmail);
+$("#email").on("keyup", validateEmail);
 $("#t-shirt-size").on("click", validateTshirt);
+
 
 
 
@@ -27,12 +45,14 @@ function validate() {
     isValid = true;
     validateFirstName();
     validateLastName();
-    validatePhone();
+    //validatePhone();
 
-    //validateEmail();
+    validateEmail();
     validateTshirt();
-    //validateMotivation
+    validateMotivation();
     //validateMailingList
+
+    //validateBackground
 
 
 
@@ -64,7 +84,7 @@ function validateLastName(){
 }
 
 function validatePhone(){
-    let $num = $("#homePhone").val();
+    let $num = $("#homePhone");
 
 }
 
@@ -72,8 +92,10 @@ function validateEmail() {
     let $email = $("#email");
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.val())) {
         $email.addClass("invalid");
+
         isValid = false;
     } else {
+
         $email.removeClass("invalid");
     }
 }
@@ -87,4 +109,14 @@ function validateTshirt(){
         $size.removeClass("invalid");
     }
 
+}
+
+function validateMotivation(){
+    let $item = $("#motivation-text");
+    if (!$item.val()){
+        $item.addClass("invalid");
+        isValid = false;
+    } else {
+        $item.removeClass("invalid");
+    }
 }
