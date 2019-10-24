@@ -1,0 +1,152 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <!--
+  Youth Welcome Form
+  Original Author:    Paul Garton
+  Last Modified by:   Paul Garton
+  Creation Date:      10/23/2019
+  Last Modified Date: 10/23/2019
+  Filename:           welcome.html
+  -->
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5dabc823c0e45245a9c250cd/1571544129492-S9RDI79OWVWOWVJEJG7E/ke17ZwdGBToddI8pDm48kJycfsYb1urLU93EpFqOTQmoCXeSvxnTEQmG4uwOsdIceAoHiyRoc52GMN5_2H8Wp7zww8OjRrqjaM7_0x6HDLp42EP6IAa5vAmscK3sHI4MkNL5tmfZ3otlI9yi1IzH2Q/favicon.ico">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/form.css">
+  <link rel="stylesheet" href="styles/validate.css">
+  <title>Welcome — iD.A.Y. Dream</title>
+</head>
+<body>
+
+<!-- simple header taken from IDayDream.org -->  <!-- Elijah Edit -->
+<header id="header">
+
+</header>
+
+<div class="jumbotron text-center">
+  <h1 class="display-4">Youth Welcome Form</h1>
+</div>
+
+
+<div class="container align-items-center">
+
+  <form action="confirmation.html" id="volunteerForm">
+    <fieldset class="form-group">
+      <legend>Tell us about yourself</legend>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName">
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="homePhone">Home Phone</label>
+          <input type="tel" class="form-control" id="homePhone" maxlength="30"
+                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="XXX-XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" maxlength="40">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="graduatingYear">Graduating Year</label>
+          <select id="graduatingYear" class="form-control">
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label></label>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="college">College of Interest</label>
+          <input type="text" class="form-control" id="college">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="aspirations">Career Aspirations</label>
+          <input type="text" class="form-control" id="aspirations">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="snacks">Favorite Food/Snacks</label>
+          <input type="text" class="form-control" id="snacks">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="birthdate">Birthdate</label>
+          <input type="text" class="form-control" id="birthdate">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="gender">Gender</label>
+          <select id="gender" class="form-control">
+            <option value="M">M</option>
+            <option value="F">F</option>
+            <option value="Other">Other</option>
+            <option value="Prefer not to Say">Prefer not to Say</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="ethnicity">Ethnicity</label>
+          <select id="ethnicity" class="form-control">
+            <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
+            <option value="Asian or Asian American">Asian or Asian American</option>
+            <option value="Black or African American">Black or African American</option>
+            <option value="Hispanic or Latino/a">Hispanic or Latino/a</option>
+            <option value="Middle Eastern or MENA">Middle Eastern or MENA</option>
+            <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiin or Other Pacific Islander</option>
+            <option value="Southeast Asian">Southeast Asian</option>
+            <option value="White non-Hispanic">White non-Hispanic</option>
+            <option value="BI/Multiracial">BI/Multiracial</option>
+            <option value="Declined to State">Declined to State</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+
+    <button id="submit" type="submit" class="btn btn-primary">
+      Submit
+    </button>
+
+  </form>
+
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src ="js/form.js"></script>
+<script src ="js/validate.js"></script>
+
+
+</body>
+</html>
