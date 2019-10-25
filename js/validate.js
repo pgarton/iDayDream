@@ -28,7 +28,7 @@ $("#bg-check-yes").on("click", function() {
 $("#firstName").on("keyup", validateFirstName);
 $("#lastName").on("keyup", validateLastName);
 $("#motivation-text").on("keyup", validateMotivation)
-
+$("#homePhone").on("keyup", validatePhone);
 $("#email").on("keyup", validateEmail);
 $("#t-shirt-size").on("click", validateTshirt);
 
@@ -45,7 +45,7 @@ function validate() {
     isValid = true;
     validateFirstName();
     validateLastName();
-    //validatePhone();
+    validatePhone();
 
     validateEmail();
     validateTshirt();
@@ -84,6 +84,19 @@ function validateLastName(){
 
 function validatePhone(){
     let $num = $("#homePhone");
+    let $numVal = $num.val();
+    // remove basic phone characters
+    $numVal = $numVal.replace(/-/g, "")
+    $numVal = $numVal.replace(/\(/g, "")
+    $numVal = $numVal.replace(/\)/g,"");
+    $numVal = $numVal.replace(/_/g, "");
+    console.log($numVal.length);
+    if($numVal.length != 10){
+        $num.addClass("invalid");
+        isValid = false;
+    } else {
+        $num.removeClass("invalid");
+    }
 
 }
 
