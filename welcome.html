@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,28 +36,30 @@
 
 <div class="container align-items-center">
 
-  <form action="confirmation.html" id="volunteerForm">
+  <form action="welcomeConfirmation.html" id="welcomeForm">
     <fieldset class="form-group">
       <legend>Tell us about yourself</legend>
-
+      <!-- Form Field: First Name -->
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="firstName">First Name</label>
           <input type="text" class="form-control" id="firstName">
         </div>
+        <!-- Form Field: Last Name -->
         <div class="form-group col-md-6">
           <label for="lastName">Last Name</label>
           <input type="text" class="form-control" id="lastName">
         </div>
       </div>
 
-
       <div class="form-row">
         <div class="form-group col-md-6">
+          <!-- Form Field: Home Phone -->
           <label for="homePhone">Home Phone</label>
           <input type="tel" class="form-control" id="homePhone" maxlength="30"
                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="XXX-XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
         </div>
+        <!-- Form Field: Email -->
         <div class="form-group col-md-6">
           <label for="email">Email</label>
           <input type="email" class="form-control" id="email" maxlength="40">
@@ -67,6 +68,7 @@
 
       <div class="form-row">
         <div class="form-group col-md-3">
+          <!-- Form Field: Graduating Year -->
           <label for="graduatingYear">Graduating Year</label>
           <select id="graduatingYear" class="form-control">
             <option value="2020">2020</option>
@@ -83,6 +85,7 @@
           <label></label>
         </div>
         <div class="form-group col-md-6">
+          <!-- Form Field: College of Interest -->
           <label for="college">College of Interest</label>
           <input type="text" class="form-control" id="college">
         </div>
@@ -90,9 +93,11 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="aspirations">Career Aspirations</label>
+          <!-- Form Field: Aspirations -->
           <input type="text" class="form-control" id="aspirations">
         </div>
         <div class="form-group col-md-6">
+          <!-- Form Field: Snacks -->
           <label for="snacks">Favorite Food/Snacks</label>
           <input type="text" class="form-control" id="snacks">
         </div>
@@ -100,9 +105,11 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="birthdate">Birthdate</label>
-          <input type="text" class="form-control" id="birthdate">
+          <!-- Form Field: Birthdate -->
+          <input type="text" class="form-control" id="birthdate" placeholder="MM/DD/YYYY">
         </div>
         <div class="form-group col-md-4">
+          <!-- Form Field: Gender -->
           <label for="gender">Gender</label>
           <select id="gender" class="form-control">
             <option value="M">M</option>
@@ -113,6 +120,7 @@
         </div>
         <div class="form-group col-md-4">
           <label for="ethnicity">Ethnicity</label>
+          <!-- Form Field: Ethnicity -->
           <select id="ethnicity" class="form-control">
             <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
             <option value="Asian or Asian American">Asian or Asian American</option>
