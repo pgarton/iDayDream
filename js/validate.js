@@ -30,6 +30,7 @@ $("#lastName").on("keyup", validateLastName);
 $("#motivation-text").on("keyup", validateMotivation)
 $("#homePhone").on("keyup", validatePhone);
 $("#email").on("keyup", validateEmail);
+$("#streetAddress").on("keyup", validateAddress);
 $("#t-shirt-size").on("click", validateTshirt);
 
 
@@ -48,6 +49,8 @@ function validate() {
     validatePhone();
 
     validateEmail();
+    validateAddress();
+
     validateTshirt();
     validateMotivation();
 
@@ -132,3 +135,12 @@ function validateMotivation(){
     }
 }
 
+function validateAddress(){
+    let $address = $("#streetAddress");
+    if (!$address.val()){
+        $address.addClass("invalid");
+        isValid = false;
+    } else {
+        $address.removeClass("invalid");
+    }
+}
