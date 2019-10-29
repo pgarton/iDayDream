@@ -26,6 +26,8 @@
   <h1 class="display-4"> Volunteer Form</h1>
 </div>
 
+<!--Removing Placeholders DS-->
+
 
 <div class="container align-items-center">
 
@@ -36,11 +38,11 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="firstName">First Name *</label>
-          <input type="text" class="form-control" id="firstName" placeholder="First Name">
+          <input type="text" class="form-control" id="firstName" placeholder="">
         </div>
         <div class="form-group col-md-6">
           <label for="lastName">Last Name *</label>
-          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+          <input type="text" class="form-control" id="lastName" placeholder="">
         </div>
       </div>
 
@@ -48,16 +50,16 @@
       <div class="form-row">
         <div class="form-group col-md-6">
         <label for="homePhone">Home Phone *</label>
-        <input type="tel" class="form-control" id="homePhone">
+        <input type="tel" class="form-control" id="homePhone" placeholder="xxx-xxx-xxxx">
       </div>
         <div class="form-group col-md-6">
           <label for="email">Email *</label>
-          <input type="email" class="form-control" id="email" placeholder="Email">
+          <input type="email" class="form-control" id="email" placeholder="">
         </div>
       </div>
       <div class="form-group">
         <label for="streetAddress">Street Address *</label>
-        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
+        <input type="text" class="form-control" id="streetAddress" placeholder="">
       </div>
 
       <div class="form-row">
@@ -245,7 +247,7 @@
       <div class="form-group form-check form-check-inline">
         <label class="form-check-label" for="skills-interest-cb">
           <input class="form-check-input" type="checkbox" name="roles" id="skills-interest-cb"
-                 value="yes">YES</label>
+                 value="yes"></label>
       </div>
       <div id = "skills-interest-comment" class="form-row">
         <div class="form-group col-6">
@@ -261,7 +263,7 @@
 
         <div class="form-group form-check form-check-inline">
           <label class="form-check-label" for="youth-exp-cb">
-            <input class="form-check-input" type="checkbox" name="roles" id="youth-exp-cb" value="yes">YES</label>
+            <input class="form-check-input" type="checkbox" name="roles" id="youth-exp-cb" value="yes"></label>
         </div>
       </div>
       <div id="youth-exp-comment" class="form-row">
@@ -278,7 +280,7 @@
         <div class="form-group form-check form-check-inline">
           <label class="form-check-label" for="non-youth-exp-cb">
             <input class="form-check-input" type="checkbox" name="roles" id="non-youth-exp-cb"
-                   value="yes">YES</label>
+                   value="yes"></label>
         </div>
       </div>
       <div id = "non-youth-exp-comment" class="row">
@@ -287,37 +289,100 @@
         </div>
       </div>
     </fieldset>
-    <!--references-->
-    <fieldset class="form-group">
-      <legend>References</legend>
-      <!--        name-->
-      <div class="form-row">
+
+      <!--Reference 1-->
+      <fieldset class = "form-group">
+        <legend>Reference 1 of 3</legend>
+        <!--        name-->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="ref1-name">Full Name *</label>
+            <input type="text" class="form-control" id="ref1-name" placeholder="">
+          </div>
+          <!--            phone number-->
+          <div class="form-group col-md-6">
+            <label for="ref1-phone">Phone Number *</label>
+            <input type="tel" class="form-control" id="ref1-phone" placeholder="">
+          </div>
+        </div>
+        <!--email-->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="ref1-email">Email *</label>
+            <input type="email" class="form-control" id="ref1-email" placeholder="">
+          </div>
+          <!--            relationship-->
+          <div class="form-group col-md-6">
+            <label for="ref1-relationship">Relationship *</label>
+            <input type="tel" class="form-control" id="ref1-relationship" placeholder="">
+          </div>
+        </div>
+        <div class ="form-group">
+        </div>
+
+    <!--Reference 2-->
+      <legend>Reference 2 of 3</legend>
+        <!--        name-->
+        <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="ref-name">Full Name</label>
-          <input type="text" class="form-control" id="ref-name" placeholder="Full Name">
+          <label for="ref2-name">Full Name *</label>
+          <input type="text" class="form-control" id="ref2-name" placeholder="">
         </div>
         <!--            phone number-->
         <div class="form-group col-md-6">
-          <label for="ref-phone">Phone Number</label>
-          <input type="tel" class="form-control" id="ref-phone" placeholder="Phone Number">
+          <label for="ref2-phone">Phone Number *</label>
+          <input type="tel" class="form-control" id="ref2-phone" placeholder="">
         </div>
       </div>
       <!--email-->
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="ref-email">Email</label>
-          <input type="email" class="form-control" id="ref-email" placeholder="Email">
+          <label for="ref2-email">Email *</label>
+          <input type="email" class="form-control" id="ref2-email" placeholder="">
         </div>
         <!--            relationship-->
         <div class="form-group col-md-6">
-          <label for="ref-relationship">Relationship</label>
-          <input type="tel" class="form-control" id="ref-relationship" placeholder="Relationship">
+          <label for="ref2-relationship">Relationship *</label>
+          <input type="tel" class="form-control" id="ref2-relationship" placeholder="">
         </div>
       </div>
       <div class ="form-group">
       </div>
 
-    </fieldset>
+        <!--Reference 3-->
+        <legend>Reference 3 of 3</legend>
+        <!--        name-->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="ref3-name">Full Name *</label>
+            <input type="text" class="form-control" id="ref3-name" placeholder="">
+          </div>
+          <!--            phone number-->
+          <div class="form-group col-md-6">
+            <label for="ref3-phone">Phone Number *</label>
+            <input type="tel" class="form-control" id="ref3-phone" placeholder="">
+          </div>
+        </div>
+        <!--email-->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="ref3-email">Email *</label>
+            <input type="email" class="form-control" id="ref3-email" placeholder="">
+          </div>
+          <!--            relationship-->
+          <div class="form-group col-md-6">
+            <label for="ref3-relationship">Relationship *</label>
+            <input type="tel" class="form-control" id="ref3-relationship" placeholder="">
+          </div>
+        </div>
+        <div class ="form-group">
+        </div>
+
+
+      </fieldset>
+
+
+
     <fieldset class="form-group">
       <legend>Finishing Up</legend>
       <div class="form-row">
@@ -356,17 +421,16 @@
       <fieldset class ="form-group">
         <legend>Our Policy</legend>
         <p>It is the policy of this organization to provide equal opportunities without regard to race, color, religion, national origin, gender, sexual preference, age, or disability.</p>
+
+        <legend>Agreement</legend>
+        <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
         <div class="form-group">
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="policy" value="yes">
-            <label class="form-check-label" for="policy">I agree to the policy</label>
+            <label class="form-check-label" for="policy">I agree to the Policy and Agreement above</label>
           </div>
         </div>
 
-      </fieldset>
-      <fieldset class ="form-group">
-        <legend>Agreement</legend>
-        <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
         <div class="form-group">
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="policy" id="bg-check-yes" value="yes">
