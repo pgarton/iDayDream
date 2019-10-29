@@ -35,11 +35,11 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="firstName">First Name</label>
+          <label for="firstName">First Name *</label>
           <input type="text" class="form-control" id="firstName" placeholder="First Name">
         </div>
         <div class="form-group col-md-6">
-          <label for="lastName">Last Name</label>
+          <label for="lastName">Last Name *</label>
           <input type="text" class="form-control" id="lastName" placeholder="Last Name">
         </div>
       </div>
@@ -47,22 +47,22 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="homePhone">Home Phone</label>
-          <input type="tel" class="form-control" id="homePhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="XXX-XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
-        </div>
+        <label for="homePhone">Home Phone *</label>
+        <input type="tel" class="form-control" id="homePhone">
+      </div>
         <div class="form-group col-md-6">
-          <label for="email">Email</label>
+          <label for="email">Email *</label>
           <input type="email" class="form-control" id="email" placeholder="Email">
         </div>
       </div>
       <div class="form-group">
-        <label for="streetAddress">Street Address</label>
+        <label for="streetAddress">Street Address *</label>
         <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="city">City</label>
+          <label for="city">City </label>
           <input type="text" class="form-control" id="city">
         </div>
         <div class="form-group col-md-4">
@@ -128,7 +128,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-5">
-          <label for="t-shirt-size">T-Shirt Size</label>
+          <label for="t-shirt-size">T-Shirt Size (Adult Unisex) *</label>
           <select class="form-control" id="t-shirt-size">
             <option value="none">Select a Size</option>
             <option value="small">Small</option>
@@ -315,7 +315,6 @@
         </div>
       </div>
       <div class ="form-group">
-        <p>(Question for Brandy Day) Would you like buttons to show another reference addition, or always have three references on screen to fill out?</p>
       </div>
 
     </fieldset>
@@ -344,12 +343,12 @@
       <label>Add to mailing list?</label>
       <div class = "form-row" id="mail">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mailingList" id="yesMailingList" value="yes" checked>
-          <label class="form-check-label" for="yesMailingList">YES</label>
+          <input class="form-check-input" type="radio" name="mailingList" id="mailing-list-yes" value="yes" checked>
+          <label class="form-check-label" for="mailing-list-yes">YES</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mailingList" id="noMailingList" value="no">
-          <label class="form-check-label" for="noMailingList">NO</label>
+          <input class="form-check-input" type="radio" name="mailingList" id="mailing-list-no" value="no">
+          <label class="form-check-label" for="mailing-list-no">NO</label>
         </div>
       </div>
     </fieldset>

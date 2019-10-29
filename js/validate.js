@@ -8,12 +8,31 @@ Why are you motivated to volunteer with us? is required
 Mailing list sign up (yes or no) is required, and yes is checked by default
  */
 
+// background Check
+$("#submit").hide();
+$("#bg-check-no").on("click", function() {
+    alert("Background Check Decline notification:" +
+        " Because of our values as on organization and out of the safety of the youth" +
+        " we serve it is a requirement that a background check must be submitted.You have chosen to decline." +
+        " Thank you for your consideration in volunteering with iD.A.Y.dream, at this time we are unable to move forward with your" +
+        " submission.Please do visit us again!")
+    $("#submit").hide();
+});
+
+$("#bg-check-yes").on("click", function() {
+    $("#submit").show();
+});
+
+
 // validating dynamically
 $("#firstName").on("keyup", validateFirstName);
 $("#lastName").on("keyup", validateLastName);
-
-//$("#email").on("keyup", validateEmail);
+$("#motivation-text").on("keyup", validateMotivation)
+$("#homePhone").on("keyup", validatePhone);
+$("#email").on("keyup", validateEmail);
+$("#streetAddress").on("keyup", validateAddress);
 $("#t-shirt-size").on("click", validateTshirt);
+
 
 
 
@@ -29,10 +48,13 @@ function validate() {
     validateLastName();
     validatePhone();
 
-    //validateEmail();
+    validateEmail();
+    validateAddress();
+
     validateTshirt();
-    //validateMotivation
-    //validateMailingList
+    validateMotivation();
+
+
 
 
 
@@ -64,17 +86,31 @@ function validateLastName(){
 }
 
 function validatePhone(){
-    let $num = $("#homePhone").val();
+    let $num = $("#homePhone");
+    let $numVal = $num.val();
+    // remove basic phone characters
+    $numVal = $numVal.replace(/-/g, "")
+    $numVal = $numVal.replace(/\(/g, "")
+    $numVal = $numVal.replace(/\)/g,"");
+    $numVal = $numVal.replace(/_/g, "");
+    console.log($numVal.length);
+    if($numVal.length != 10){
+        $num.addClass("invalid");
+        isValid = false;
+    } else {
+        $num.removeClass("invalid");
+    }
 
 }
 
 function validateEmail() {
     let $email = $("#email");
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.val())) {
+        $email.removeClass("invalid");
+    } else {
         $email.addClass("invalid");
         isValid = false;
-    } else {
-        $email.removeClass("invalid");
+
     }
 }
 
@@ -87,4 +123,24 @@ function validateTshirt(){
         $size.removeClass("invalid");
     }
 
+}
+
+function validateMotivation(){
+    let $item = $("#motivation-text");
+    if (!$item.val()){
+        $item.addClass("invalid");
+        isValid = false;
+    } else {
+        $item.removeClass("invalid");
+    }
+}
+
+function validateAddress(){
+    let $address = $("#streetAddress");
+    if (!$address.val()){
+        $address.addClass("invalid");
+        isValid = false;
+    } else {
+        $address.removeClass("invalid");
+    }
 }
