@@ -6,21 +6,6 @@ var $otherHearAboutUs = $("#other-hear-about-us");
 var $weekendAvailability = $("#weekend-text-div");
 
 
-function formatPhone() {
-    console.log("validate phone");
-    // formats phone number
-    let str = $("#homePhone").val();
-    str = str.replace(/\D/g, "");
-
-    if (str.length < 4) {
-        // do nothing
-    } else if (str.length < 7) {
-        str = "(" + str.substring(0, 3) + ") " + str.substring(3, 6);
-    } else {
-        str = "(" + str.substring(0, 3) + ") " + str.substring(3, 6) + "-" + str.substring(6, 10);
-    }
-}
-
 
 $("#skills-interest-cb").change(function(){
     if($(this).is(":checked")) {

@@ -144,7 +144,6 @@ function validatePhone(){
     $numVal = $numVal.replace(/\(/g, "")
     $numVal = $numVal.replace(/\)/g,"");
     $numVal = $numVal.replace(/_/g, "");
-    console.log($numVal.length);
     if($numVal.length != 10){
         $num.addClass("invalid");
         isValid = false;
