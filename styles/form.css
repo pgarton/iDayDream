@@ -1,3 +1,20 @@
+@font-face { font-family: Questrial; src: url('Questrial-Regular.ttf'); }
+
+body {
+    font-family: Questrial sans-serif;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+#submit {
+    background-color: black;
+    border-color: black;
+    border-radius: 0;
+    text-transform: uppercase;
+}
+
 #skills-interest-comment{
     display: none;
 }
@@ -22,3 +39,9 @@
     display:none;
 }
 
+.jumbotron {
+    /* Ask if she has picture for background */
+    font: 14px Helvetica,Arial,sans-serif;
+    color: white;
+    background-color: #3a9fb6;
+}
