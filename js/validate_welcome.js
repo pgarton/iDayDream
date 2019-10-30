@@ -7,14 +7,16 @@ Welcome form online so that the organization can get to know me.
 
 //Dynamically Validating Form
 
-$("#firstName").on("keydown", validateFirstName);
+
+//commenting out dynamic validation found some issues
+/*$("#firstName").on("keydown", validateFirstName);
 $("#lastName").on("keydown", validateLastName);
 $("#homePhone").on("keydown", validatePhone);
 $("#email").on("keydown", validateEmail);
 $("#graduatingClass").on("click", validateGraduatingClass);
 $("#birthdate").on("keydown", validateBirthdate);
 $("#gender").on("click", validateGender);
-$("#ethnicity").on("click", validateEthnicity);
+$("#ethnicity").on("click", validateEthnicity);*/
 
 
 //validating the form on submission
