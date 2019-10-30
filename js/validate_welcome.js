@@ -1,4 +1,14 @@
 /*
+iDayDream student form validation
+Original Author:    Dallas Sloan
+Last Modified by:   Elijah Maret
+Creation Date:      10/25/2019
+Last Modified Date: 10/30/2019
+Filename:           validate_welcome.js
+*/
+
+
+/*
 As an iDayDream youth, I can complete a
 Welcome form online so that the organization can get to know me.
     Acceptance criteria:

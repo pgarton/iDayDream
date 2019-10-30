@@ -1,3 +1,13 @@
+
+/*
+iDayDream volunteer form validation
+Original Author:    Elijah Maret
+Last Modified by:   Elijah Maret
+Creation Date:      10/19/2019
+Last Modified Date: 10/30/2019
+Filename:           validate.js
+*/
+
 /*
 As a potential iDayDream volunteer, I can complete an application online so that I don’t have to fill out a paper application.Acceptance criteria:
 When required fields are missing then inline error messages should be displayed.
