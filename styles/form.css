@@ -15,6 +15,14 @@ h1 {
     text-transform: uppercase;
 }
 
+#submit_welcome {
+    background-color: black;
+    border-color: black;
+    border-radius: 0;
+    text-transform: uppercase;
+}
+
+
 #skills-interest-comment{
     display: none;
 }
@@ -45,3 +53,12 @@ h1 {
     color: white;
     background-color: #3a9fb6;
 }
+
+#weekend-text-div{
+    display: none;
+}
+
+.underline {
+    border-bottom: 1px solid #999;
+}
+

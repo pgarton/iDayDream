@@ -3,6 +3,8 @@ var $youthExpComment = $("#youth-exp-comment");
 var $nonYouthExpComment = $("#non-youth-exp-comment");
 var $otherTextRoles = $("#other-text-roles");
 var $otherHearAboutUs = $("#other-hear-about-us");
+var $weekendAvailability = $("#weekend-text-div");
+
 $("#skills-interest-cb").change(function(){
     if($(this).is(":checked")) {
        $skillsInterestComment.css("display","block");
@@ -55,6 +57,15 @@ $("#hear-about-us").change(function(){
    }
    else
        $otherHearAboutUs.css("display","none");
+});
+
+//adding textboxt for explanation if weekend is chosen
+$("#weekend-4").change(function(){
+   if ($(this).is(":checked")){
+       $weekendAvailability.css("display","block");
+   }
+   else
+       $weekendAvailability.css("display","none");
 });
 
 
