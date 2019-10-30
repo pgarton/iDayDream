@@ -42,12 +42,12 @@
       <!-- Form Field: First Name -->
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="firstName">First Name</label>
+          <label for="firstName">First Name *</label>
           <input type="text" class="form-control" id="firstName" name="firstName">
         </div>
         <!-- Form Field: Last Name -->
         <div class="form-group col-md-6">
-          <label for="lastName">Last Name</label>
+          <label for="lastName">Last Name *</label>
           <input type="text" class="form-control" id="lastName" name="lastName">
         </div>
       </div>
@@ -55,13 +55,13 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <!-- Form Field: Home Phone -->
-          <label for="homePhone">Home Phone</label>
+          <label for="homePhone">Home Phone *</label>
           <input type="tel" class="form-control" id="homePhone" name="homePhone" maxlength="30"
                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="XXX-XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
         </div>
         <!-- Form Field: Email -->
         <div class="form-group col-md-6">
-          <label for="email">Email</label>
+          <label for="email">Email *</label>
           <input type="email" class="form-control" id="email" name="email" maxlength="40">
         </div>
       </div>
@@ -69,8 +69,9 @@
       <div class="form-row">
         <div class="form-group col-md-3">
           <!-- Form Field: Graduating Year -->
-          <label for="graduatingClass">Graduating Class</label>
+          <label for="graduatingClass">Graduating Class *</label>
           <select id="graduatingClass" name="graduatingClass" class="form-control">
+            <option value="none" selected>Please Select</option>
             <option value="2020">2020</option>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
@@ -104,14 +105,15 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for="birthdate">Birthdate</label>
+          <label for="birthdate">Birthdate *</label>
           <!-- Form Field: Birthdate -->
           <input type="text" class="form-control" id="birthdate" name="birthdate" placeholder="MM/DD/YYYY">
         </div>
         <div class="form-group col-md-4">
           <!-- Form Field: Gender -->
-          <label for="gender">Gender</label>
+          <label for="gender">Gender *</label>
           <select id="gender" class="form-control" name="gender">
+            <option value="none">Please Select</option>
             <option value="M">M</option>
             <option value="F">F</option>
             <option value="Other">Other</option>
@@ -119,9 +121,10 @@
           </select>
         </div>
         <div class="form-group col-md-4">
-          <label for="ethnicity">Ethnicity</label>
+          <label for="ethnicity">Ethnicity *</label>
           <!-- Form Field: Ethnicity -->
           <select id="ethnicity" name="ethnicity" class="form-control">
+            <option value="none" selected>Please Select</option>
             <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
             <option value="Asian or Asian American">Asian or Asian American</option>
             <option value="Black or African American">Black or African American</option>
@@ -137,10 +140,11 @@
       </div>
     </fieldset>
 
-
-    <button id="submit" type="submit" class="btn btn-primary">
+    <div class = "pb-4"> <!--Adding div to add padding to bottom of button-->
+    <button id="submit_welcome" type="submit" class="btn btn-primary">
       Submit
     </button>
+    </div>
 
   </form>
 
@@ -153,6 +157,7 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src ="js/form.js"></script>
+<script src = "js/validate_welcome.js"></script>
 
 
 </body>

@@ -15,6 +15,14 @@ h1 {
     text-transform: uppercase;
 }
 
+#submit_welcome {
+    background-color: black;
+    border-color: black;
+    border-radius: 0;
+    text-transform: uppercase;
+}
+
+
 #skills-interest-comment{
     display: none;
 }
