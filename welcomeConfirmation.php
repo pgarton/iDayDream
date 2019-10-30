@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    iDayDream Youth Welcome Form Confirmation
-    Original Author:    Paul Garton
+    <!--
+    Welcome Form Confirmation
+    Client:             iDayDream
+    Original Author:    Paul Garton Dallas Sloan Elijah Maret
     Last Modified by:   Paul Garton
-    Creation Date:      10/28/2019
-    Last Modified Date: 10/28/2019
+    Creation Date:      10/20/2019
+    Last Modified Date: 10/30/2019
     Filename:           welcomeConfirmation.php
   -->
   <!-- Required meta tags -->
