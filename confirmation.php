@@ -17,7 +17,7 @@
 <h3>Thank you for completing this application form and for your interest in volunteering with us.</h3>
 <?php
 
-var_dump($_POST);
+// var_dump($_POST);
 
 // assign variables to POST array values
 $firstName = $_POST["firstName"];
@@ -51,6 +51,7 @@ $otherHearAboutUs = $_POST["otherHearAboutUs"];
 $mailingList = $_POST["mailingList"];
 $policyAccepted = $_POST["policy"];
 $bgCheck = $_POST["bgCheck"];
+$weekendHours = $_POST["weekendHours"];
 
 // echo submission back to client
 echo "<div>First Name: " . $firstName . "</div>";
@@ -67,6 +68,8 @@ foreach($_POST['availability'] as $selected) {
   echo "$selected"." ";
 }
 echo "</div>";
+echo "<div>Weekend Hours: " . $weekendHours . "</div>";
+
 
 echo "<div>Roles: ";
 foreach($_POST['roles'] as $selected) {
@@ -137,6 +140,7 @@ $email_body .= "Availability: ";
 foreach($_POST['availability'] as $selected) {
   $email_body .= $selected . " ";
 }
+$email_body .= "Weekend Hours: " . $weekendHours . "\r\n";
 $email_body .= "\r\n";
 $email_body .= "Roles: ";
 foreach($_POST['roles'] as $selected) {
