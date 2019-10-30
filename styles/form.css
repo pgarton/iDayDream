@@ -45,3 +45,12 @@ h1 {
     color: white;
     background-color: #3a9fb6;
 }
+
+#weekend-text-div{
+    display: none;
+}
+
+.underline {
+    border-bottom: 1px solid #999;
+}
+

@@ -21,7 +21,7 @@
 <header id="header">
 
 </header>
-
+<!--Jumbotron Header-->
 <div class="jumbotron text-center">
   <h1 class="display-4"> Register To Volunteer</h1>
 </div>
@@ -33,6 +33,7 @@
 
   <form action="confirmation.php" method="post" id="volunteerForm">  <!--Elijah Edit: Added id to form -->
     <fieldset class="form-group">
+      <!--General Information Section-->
       <legend>General Information</legend>
 
       <div class="form-row">
@@ -40,25 +41,31 @@
           <label for="firstName">First Name *</label>
           <input type="text" class="form-control" id="firstName" placeholder="" name="firstName">
         </div>
+
+        <!--Last Name of volunteer-->
         <div class="form-group col-md-6">
           <label for="lastName">Last Name *</label>
           <input type="text" class="form-control" id="lastName" name="lastName" placeholder="">
         </div>
       </div>
 
-
+      <!--Phone number of volunteer-->
       <div class="form-row">
         <div class="form-group col-md-6">
         <label for="homePhone">Home Phone *</label>
 
         <input type="tel" class="form-control" id="homePhone" name="homePhone" placeholder="xxx-xxx-xxxx">
-         
+
       </div>
+
+        <!--Email of volunteer-->
         <div class="form-group col-md-6">
           <label for="email">Email *</label>
           <input type="email" class="form-control" id="email" name="email" placeholder="">
         </div>
       </div>
+
+      <!--Address of volunteer-->
       <div class="form-group">
         <label for="streetAddress">Street Address *</label>
         <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="">
@@ -130,6 +137,8 @@
           <input type="text" class="form-control" id="zipcode" name="zipCode">
         </div>
       </div>
+
+      <!--T-shirt size-->
       <div class="form-row">
         <div class="form-group col-md-5">
           <label for="t-shirt-size">T-Shirt Size (Adult Unisex) *</label>
@@ -144,39 +153,69 @@
       </div>
     </fieldset>
 
+    <!--Availability Information-->
     <fieldset class="form-group">
       <legend>Availability</legend>
       <p class="form-group">Please select the following that best describes your available volunteer time(s)</p>
+
+      <!--Only two availability options Weekends or Summer Camp One week per User Story-->
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability[]" id="weekend-4" value="weekend-4">
+        <input class="form-check-input" type="checkbox" name="availability[]" id="weekend-4" value="weekend">
         <label class="form-check-label" for="weekend-4">
-          Weekend Workshop (4-Hour)
+          Weekends
         </label>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability[]" id="weekend-8" value="weekend-8">
-        <label class="form-check-label" for="weekend-8">
-          Weekend Workshop (8-Hour)
-        </label>
+      <!--Adding text box for user to enter specific times they are available-->
+      <div id ="weekend-text-div" class="form-check-inline">
+        <div class="form-group col-md-6">
+          <label for="weekend-text">Weekends Selected. Please enter specific times, if available</label>
+          <textarea class="form-control" id="weekend-text"
+                    placeholder="" rows="3" cols="20">Friday:
+Saturday:
+Sunday:</textarea> <!--the weird spacing is needed to show these accurately within the textbox.-->
+        </div>
       </div>
+
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability[]" id="weekday" value="weekday">
-        <label class="form-check-label" for="weekday">
-          Weekday Workshop
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability[]" id="one-week" value="one-week">
+        <input class="form-check-input" type="checkbox" name="availability[]" id="one-week" value="weekend-8">
         <label class="form-check-label" for="one-week">
-          One-Week Summer Camp
+          Summer Camp (One Week)
         </label>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability[]" id="ongoing" value="ongoing">
-        <label class="form-check-label" for="ongoing">
-          Ongoing, Weekday Commitment
-        </label>
-      </div>
+
+
+      <!--Commenting just in case we want to bring this back. Changing to two options only, weekend and summer per user story
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="availability" id="weekend-4" value="weekend-4">
+              <label class="form-check-label" for="weekend-4">
+                Weekend Workshop (4-Hour)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="availability" id="weekend-8" value="weekend-8">
+              <label class="form-check-label" for="weekend-8">
+                Weekend Workshop (8-Hour)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="availability" id="weekday" value="weekday">
+              <label class="form-check-label" for="weekday">
+                Weekday Workshop
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="availability" id="one-week" value="one-week">
+              <label class="form-check-label" for="one-week">
+                One-Week Summer Camp
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="availability" id="ongoing" value="ongoing">
+              <label class="form-check-label" for="ongoing">
+                Ongoing, Weekday Commitment
+              </label>
+            </div>
+      -->
     </fieldset>
 
     <fieldset class="form-group">
@@ -293,7 +332,7 @@
 
       <!--Reference 1-->
       <fieldset class = "form-group">
-        <legend>Reference 1 of 3</legend>
+        <legend class= "underline">Reference 1 of 3</legend>
         <!--        name-->
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -324,7 +363,7 @@
 
     <!--Reference 2-->
     <fieldset class = "form-group">
-      <legend>Reference 2 of 3</legend>
+      <legend class = "underline">Reference 2 of 3</legend>
         <!--        name-->
         <div class="form-row">
         <div class="form-group col-md-6">
@@ -355,7 +394,7 @@
     <!--Reference 3-->
     
       <fieldset class = "form-group">
-        <legend>Reference 3 of 3</legend>
+        <legend class="underline">Reference 3 of 3</legend>
         <!--        name-->
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -449,9 +488,11 @@
           <!--        not sure if you want the yes/no before or after text??-->
         </div>
       </fieldset>
-    <button id="submit" type="submit" class="btn btn-primary">
-      Submit
-    </button>
+    <div class = "container pb-4">
+      <button id="submit" type="submit" class="btn btn-primary">
+       Submit
+      </button>
+    </div>
 
   </form>
 
