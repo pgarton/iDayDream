@@ -117,6 +117,7 @@ function validateBirthdate(){
             isValid =  false;
         }
         $("#birthdate").removeClass("invalid");
+        return;
     }
     $("#birthdate").addClass("invalid");
     isValid =  false;
