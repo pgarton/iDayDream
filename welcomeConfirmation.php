@@ -15,7 +15,6 @@
 </head>
 <body>
   <h3>Thank you for completing this iDayDream welcome form.</h3>
-  <h3>The following information has been submitted:</h3>
 <?php
   // assign variables to POST array values
   $firstName = $_POST["firstName"];

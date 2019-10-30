@@ -31,18 +31,18 @@
 
 <div class="container align-items-center">
 
-  <form action="confirmation.html" id="volunteerForm">  <!--Elijah Edit: Added id to form -->
+  <form action="confirmation.php" method="post" id="volunteerForm">  <!--Elijah Edit: Added id to form -->
     <fieldset class="form-group">
       <legend>General Information</legend>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="firstName">First Name *</label>
-          <input type="text" class="form-control" id="firstName" placeholder="">
+          <input type="text" class="form-control" id="firstName" placeholder="" name="firstName">
         </div>
         <div class="form-group col-md-6">
           <label for="lastName">Last Name *</label>
-          <input type="text" class="form-control" id="lastName" placeholder="">
+          <input type="text" class="form-control" id="lastName" name="lastName" placeholder="">
         </div>
       </div>
 
@@ -50,26 +50,26 @@
       <div class="form-row">
         <div class="form-group col-md-6">
         <label for="homePhone">Home Phone *</label>
-        <input type="tel" class="form-control" id="homePhone" placeholder="xxx-xxx-xxxx">
+        <input type="tel" class="form-control" id="homePhone" name="homePhone" placeholder="xxx-xxx-xxxx">
       </div>
         <div class="form-group col-md-6">
           <label for="email">Email *</label>
-          <input type="email" class="form-control" id="email" placeholder="">
+          <input type="email" class="form-control" id="email" name="email" placeholder="">
         </div>
       </div>
       <div class="form-group">
         <label for="streetAddress">Street Address *</label>
-        <input type="text" class="form-control" id="streetAddress" placeholder="">
+        <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="">
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="city">City </label>
-          <input type="text" class="form-control" id="city">
+          <input type="text" class="form-control" id="city" name="city">
         </div>
         <div class="form-group col-md-4">
           <label for="state">State</label>
-          <select id="state" class="form-control">  <!-- Elijah Edit: Fixed the state dropdown to have a value for Washington-->
+          <select id="state" name="state" class="form-control">  <!-- Elijah Edit: Fixed the state dropdown to have a value for Washington-->
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -125,13 +125,13 @@
         </div>
         <div class="form-group col-md-2">
           <label for="zipcode">Zip</label>
-          <input type="text" class="form-control" id="zipcode">
+          <input type="text" class="form-control" id="zipcode" name="zipCode">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-5">
           <label for="t-shirt-size">T-Shirt Size (Adult Unisex) *</label>
-          <select class="form-control" id="t-shirt-size">
+          <select class="form-control" id="t-shirt-size" name="tShirtSize">
             <option value="none">Select a Size</option>
             <option value="small">Small</option>
             <option value="medium">Medium</option>
@@ -146,31 +146,31 @@
       <legend>Availability</legend>
       <p class="form-group">Please select the following that best describes your available volunteer time(s)</p>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability" id="weekend-4" value="weekend-4">
+        <input class="form-check-input" type="checkbox" name="availability[]" id="weekend-4" value="weekend-4">
         <label class="form-check-label" for="weekend-4">
           Weekend Workshop (4-Hour)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability" id="weekend-8" value="weekend-8">
+        <input class="form-check-input" type="checkbox" name="availability[]" id="weekend-8" value="weekend-8">
         <label class="form-check-label" for="weekend-8">
           Weekend Workshop (8-Hour)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability" id="weekday" value="weekday">
+        <input class="form-check-input" type="checkbox" name="availability[]" id="weekday" value="weekday">
         <label class="form-check-label" for="weekday">
           Weekday Workshop
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability" id="one-week" value="one-week">
+        <input class="form-check-input" type="checkbox" name="availability[]" id="one-week" value="one-week">
         <label class="form-check-label" for="one-week">
           One-Week Summer Camp
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="availability" id="ongoing" value="ongoing">
+        <input class="form-check-input" type="checkbox" name="availability[]" id="ongoing" value="ongoing">
         <label class="form-check-label" for="ongoing">
           Ongoing, Weekday Commitment
         </label>
@@ -182,37 +182,37 @@
       <p class="form-group">Are there any specific roles you wish to fill?</p>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles" id="events" value="events">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="events" value="events">
         <label class="form-check-label" for="events">
           Events (College Tours, Community Service)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles" id="fundraising" value="fundraising">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="fundraising" value="fundraising">
         <label class="form-check-label" for="fundraising">
           Fundraising
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles" id="newsletter" value="newsletter">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="newsletter" value="newsletter">
         <label class="form-check-label" for="newsletter">
           Newsletter Production (Monthly)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles" id="coordination" value="coordination">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="coordination" value="coordination">
         <label class="form-check-label" for="coordination">
           Volunteer Coordination
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles" id="mentoring" value="mentoring">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="mentoring" value="mentoring">
         <label class="form-check-label" for="mentoring">
           Mentoring
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input form-check-inline" type="checkbox" name="roles" id="other-interest" value="other-interest">
+        <input class="form-check-input form-check-inline" type="checkbox" name="roles[]" id="other-interest" value="other-interest">
         <label class="form-check-label form-check-inline" for="other-interest">
           Other
         </label>
@@ -220,7 +220,7 @@
       <div id =other-text-roles class="form-check-inline">
         <div class="form-group col-md-6">
           <label for="other-text"></label>
-          <input type="text" class="form-control" id="other-text" placeholder="Other selected. Please explain">
+          <input type="text" class="form-control" id="other-text" name="otherText" placeholder="Other selected. Please explain">
         </div>
       </div>
       <div id = "motivation" class="form-group text-left"> <!-- comment div -->
@@ -228,11 +228,10 @@
         <label for="motivation-text">Why are you motivated to volunteer with us?</label>
         <div class="form-row">
           <div class="form-group col-6">
-            <textarea class="form-control" id="motivation-text" placeholder="" name = "motivation" rows="3" cols="20"></textarea>
+            <textarea class="form-control" id="motivation-text" placeholder="" name ="motivation" rows="3" cols="20"></textarea>
           </div> <!-- col -->
         </div> <!-- row-->
       </div> <!-- comment div -->
-
 
     </fieldset>
 
@@ -246,12 +245,12 @@
 
       <div class="form-group form-check form-check-inline">
         <label class="form-check-label" for="skills-interest-cb">
-          <input class="form-check-input" type="checkbox" name="roles" id="skills-interest-cb"
-                 value="yes"></label>
+          <input class="form-check-input" type="checkbox" name="experience[]" id="skills-interest-cb"
+                 value="special-skills-interests"></label>
       </div>
       <div id = "skills-interest-comment" class="form-row">
         <div class="form-group col-6">
-          <textarea class="form-control" id="skills-interest" placeholder="Please Explain" rows="3" cols="20"></textarea>
+          <textarea class="form-control" id="skills-interest" name="skillsInterest" placeholder="Please Explain" rows="3" cols="20"></textarea>
         </div>
       </div>
 
@@ -263,12 +262,12 @@
 
         <div class="form-group form-check form-check-inline">
           <label class="form-check-label" for="youth-exp-cb">
-            <input class="form-check-input" type="checkbox" name="roles" id="youth-exp-cb" value="yes"></label>
+            <input class="form-check-input" type="checkbox" name="experience[]" id="youth-exp-cb" value="youth-volunteer-exp"></label>
         </div>
       </div>
       <div id="youth-exp-comment" class="form-row">
         <div class="form-group col-6">
-          <textarea class="form-control" id="youth-exp" placeholder="Please Explain" rows="3" cols="20"></textarea>
+          <textarea class="form-control" id="youth-exp" name="youthExp" placeholder="Please Explain" rows="3" cols="20"></textarea>
         </div>
       </div>
       <!--                Non-Youth Experience-->
@@ -279,13 +278,13 @@
 
         <div class="form-group form-check form-check-inline">
           <label class="form-check-label" for="non-youth-exp-cb">
-            <input class="form-check-input" type="checkbox" name="roles" id="non-youth-exp-cb"
-                   value="yes"></label>
+            <input class="form-check-input" type="checkbox" name="experience[]" id="non-youth-exp-cb"
+                   value="non-youth-volunteer"></label>
         </div>
       </div>
       <div id = "non-youth-exp-comment" class="row">
         <div class="form-group col-6">
-          <textarea class="form-control" id="non-youth-exp" placeholder="Please Explain" rows="3" cols="20"></textarea>
+          <textarea class="form-control" id="non-youth-exp" name="nonYouthExp" placeholder="Please Explain" rows="3" cols="20"></textarea>
         </div>
       </div>
     </fieldset>
@@ -297,24 +296,24 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="ref1-name">Full Name *</label>
-            <input type="text" class="form-control" id="ref1-name" placeholder="">
+            <input type="text" class="form-control" id="ref1-name" name="ref1Name" placeholder="">
           </div>
           <!--            phone number-->
           <div class="form-group col-md-6">
             <label for="ref1-phone">Phone Number *</label>
-            <input type="tel" class="form-control" id="ref1-phone" placeholder="">
+            <input type="tel" class="form-control" id="ref1-phone" name="ref1Phone" placeholder="">
           </div>
         </div>
         <!--email-->
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="ref1-email">Email *</label>
-            <input type="email" class="form-control" id="ref1-email" placeholder="">
+            <input type="email" class="form-control" id="ref1-email" name="ref1Email" placeholder="">
           </div>
           <!--            relationship-->
           <div class="form-group col-md-6">
             <label for="ref1-relationship">Relationship *</label>
-            <input type="tel" class="form-control" id="ref1-relationship" placeholder="">
+            <input type="tel" class="form-control" id="ref1-relationship" name="ref1Relationship" placeholder="">
           </div>
         </div>
         <div class ="form-group">
@@ -326,24 +325,24 @@
         <div class="form-row">
         <div class="form-group col-md-6">
           <label for="ref2-name">Full Name *</label>
-          <input type="text" class="form-control" id="ref2-name" placeholder="">
+          <input type="text" class="form-control" id="ref2-name" name="ref2Name" placeholder="">
         </div>
         <!--            phone number-->
         <div class="form-group col-md-6">
           <label for="ref2-phone">Phone Number *</label>
-          <input type="tel" class="form-control" id="ref2-phone" placeholder="">
+          <input type="tel" class="form-control" id="ref2-phone" name="ref2Phone" placeholder="">
         </div>
       </div>
       <!--email-->
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="ref2-email">Email *</label>
-          <input type="email" class="form-control" id="ref2-email" placeholder="">
+          <input type="email" class="form-control" id="ref2-email" name="ref2Email" placeholder="">
         </div>
         <!--            relationship-->
         <div class="form-group col-md-6">
           <label for="ref2-relationship">Relationship *</label>
-          <input type="tel" class="form-control" id="ref2-relationship" placeholder="">
+          <input type="tel" class="form-control" id="ref2-relationship" name="ref2Relationship" placeholder="">
         </div>
       </div>
       <div class ="form-group">
@@ -355,24 +354,24 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="ref3-name">Full Name *</label>
-            <input type="text" class="form-control" id="ref3-name" placeholder="">
+            <input type="text" class="form-control" id="ref3-name" name="ref3Name" placeholder="">
           </div>
           <!--            phone number-->
           <div class="form-group col-md-6">
             <label for="ref3-phone">Phone Number *</label>
-            <input type="tel" class="form-control" id="ref3-phone" placeholder="">
+            <input type="tel" class="form-control" id="ref3-phone" name="ref3Phone" placeholder="">
           </div>
         </div>
         <!--email-->
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="ref3-email">Email *</label>
-            <input type="email" class="form-control" id="ref3-email" placeholder="">
+            <input type="email" class="form-control" id="ref3-email" name="ref3Email" placeholder="">
           </div>
           <!--            relationship-->
           <div class="form-group col-md-6">
             <label for="ref3-relationship">Relationship *</label>
-            <input type="tel" class="form-control" id="ref3-relationship" placeholder="">
+            <input type="tel" class="form-control" id="ref3-relationship" name="ref3Relationship" placeholder="">
           </div>
         </div>
         <div class ="form-group">
@@ -388,7 +387,7 @@
       <div class="form-row">
         <div class="form-group col-md-5">
           <label for="hear-about-us">How Did You Hear About Us?</label>
-          <select class="form-control" id="hear-about-us">
+          <select class="form-control" id="hear-about-us" name="hearAboutUs">
             <option value="none">Please Select</option>
             <option value="word">Word of Mouth/Friend/Colleague</option>
             <option value="wed">Web/Social Media</option>
@@ -399,7 +398,7 @@
           <div id ="other-hear-about-us" class="form-check-inline">
             <div class="form-group">
               <label for="other-hear-about-us-text"></label>
-              <textarea class="form-control" id="other-hear-about-us-text" placeholder="Other selected. Please explain" rows="3" cols="20"></textarea>
+              <textarea class="form-control" id="other-hear-about-us-text" name="otherHearAboutUs" placeholder="Other selected. Please explain" rows="3" cols="20"></textarea>
             </div>
           </div>
 
@@ -426,18 +425,18 @@
         <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
         <div class="form-group">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="policy" value="yes">
+            <input class="form-check-input" type="checkbox" id="policy" name="policy" value="yes">
             <label class="form-check-label" for="policy">I agree to the Policy and Agreement above</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="policy" id="bg-check-yes" value="yes">
+            <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-yes" value="yes">
             <label class="form-check-label" for="bg-check-yes">YES</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="policy" id="bg-check-no" value="no">
+            <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-no" value="no">
             <label class="form-check-label" for="bg-check-no">NO</label>
           </div>
           <p class="form-check-inline">I submit to a possible background check </p>
