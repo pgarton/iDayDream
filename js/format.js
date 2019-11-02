@@ -1,9 +1,21 @@
 
-$("#homePhone").on("keyup", formatPhone);
+$("#homePhone").on("keyup", function() {
+    formatPhone("#homePhone");
+});
 
-function formatPhone() {
+$("#ref1-phone").on("keyup", function(){
+    formatPhone("#ref1-phone");
+});
+$("#ref2-phone").on("keyup", function(){
+    formatPhone("#ref2-phone");
+});
+$("#ref3-phone").on("keyup", function(){
+    formatPhone("#ref3-phone");
+});
+
+function formatPhone(id) {
     // formats phone number
-    let str = $("#homePhone").val();
+    let str = $(id).val();
     str = str.replace(/\D/g, "");
 
     if (str.length < 4) {
@@ -14,6 +26,6 @@ function formatPhone() {
         str = "(" + str.substring(0, 3) + ") " + str.substring(3, 6) + "-" + str.substring(6, 10);
     }
 
-    $("#homePhone").val(str);
+    $(id).val(str);
 }
 
