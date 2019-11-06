@@ -181,7 +181,7 @@ function validatePhone(id){
     $numVal = $numVal.replace(/\(/g, "");
     $numVal = $numVal.replace(/\)/g,"");
     $numVal = $numVal.replace(/_/g, "");
-    //console.log($numVal); // for debugging
+    console.log($numVal); // for debugging
     if($numVal.length != 10){
         $num.addClass("invalid");
         isValid = false;
