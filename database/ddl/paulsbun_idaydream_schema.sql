@@ -5,14 +5,11 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema idaydream
+-- Schema mydb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS paulsbun_idaydream ;
-
 -- -----------------------------------------------------
 -- Schema idaydream
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS paulsbun_idaydream DEFAULT CHARACTER SET utf8 ;
 USE idaydream ;
 
 -- -----------------------------------------------------
@@ -35,7 +32,6 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.ethnicities (
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8;
-
 
 insert into ethnicities (code, ethnicity, sort_order) values ('cd-native','American Indian or Alaska Native', 1);
 insert into ethnicities (code, ethnicity, sort_order) values ('cd-asian','Asian or Asian American', 2);
@@ -168,42 +164,57 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.states (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-
--- -----------------------------------------------------
--- Table paulsbun_idaydream.volunteer_references
--- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.volunteer_references ;
-
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_references (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  active TINYINT(4) NULL DEFAULT '1',
-  full_name VARCHAR(60) NOT NULL,
-  phone_number VARCHAR(20) NOT NULL,
-  email VARCHAR(45) NOT NULL,
-  relationship VARCHAR(45) NOT NULL,
-  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table paulsbun_idaydream.volunteer_roles
--- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.volunteer_roles ;
-
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_roles (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  volunteer_id INT(11) NOT NULL,
-  active TINYINT(4) NOT NULL DEFAULT '1',
-  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  UNIQUE INDEX id_UNIQUE (id ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
+insert into states (code, name) values ('AL','Alabama');
+insert into states (code, name) values ('AK','Alaska');
+insert into states (code, name) values ('AZ','Arizona');
+insert into states (code, name) values ('AR','Arkansas');
+insert into states (code, name) values ('CA','California');
+insert into states (code, name) values ('CO','Colorado');
+insert into states (code, name) values ('CT','Connecticut');
+insert into states (code, name) values ('DE','Delaware');
+insert into states (code, name) values ('DC','District Of Columbia');
+insert into states (code, name) values ('FL','Florida');
+insert into states (code, name) values ('GA','Georgia');
+insert into states (code, name) values ('HI','Hawaii');
+insert into states (code, name) values ('ID','Idaho');
+insert into states (code, name) values ('IL','Illinois');
+insert into states (code, name) values ('IN','Indiana');
+insert into states (code, name) values ('IA','Iowa');
+insert into states (code, name) values ('KS','Kansas');
+insert into states (code, name) values ('KY','Kentucky');
+insert into states (code, name) values ('LA','Louisiana');
+insert into states (code, name) values ('ME','Maine');
+insert into states (code, name) values ('MD','Maryland');
+insert into states (code, name) values ('MA','Massachusetts');
+insert into states (code, name) values ('MI','Michigan');
+insert into states (code, name) values ('MN','Minnesota');
+insert into states (code, name) values ('MS','Mississippi');
+insert into states (code, name) values ('MO','Missouri');
+insert into states (code, name) values ('MT','Montana');
+insert into states (code, name) values ('NE','Nebraska');
+insert into states (code, name) values ('NV','Nevada');
+insert into states (code, name) values ('NH','New Hampshire');
+insert into states (code, name) values ('NJ','New Jersey');
+insert into states (code, name) values ('NM','New Mexico');
+insert into states (code, name) values ('NY','New York');
+insert into states (code, name) values ('NC','North Carolina');
+insert into states (code, name) values ('ND','North Dakota');
+insert into states (code, name) values ('OH','Ohio');
+insert into states (code, name) values ('OK','Oklahoma');
+insert into states (code, name) values ('OR','Oregon');
+insert into states (code, name) values ('PA','Pennsylvania');
+insert into states (code, name) values ('RI','Rhode Island');
+insert into states (code, name) values ('SC','South Carolina');
+insert into states (code, name) values ('SD','South Dakota');
+insert into states (code, name) values ('TN','Tennessee');
+insert into states (code, name) values ('TX','Texas');
+insert into states (code, name) values ('UT','Utah');
+insert into states (code, name) values ('VT','Vermont');
+insert into states (code, name) values ('VA','Virginia');
+insert into states (code, name) values ('WA','Washington');
+insert into states (code, name) values ('WV','West Virginia');
+insert into states (code, name) values ('WI','Wisconsin');
+insert into states (code, name) values ('WY','Wyoming');
 
 -- -----------------------------------------------------
 -- Table paulsbun_idaydream.volunteers
@@ -229,32 +240,16 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteers (
   background_check_agreement TINYINT(4) NULL DEFAULT NULL,
   created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  roles_id INT(11) NOT NULL,
-  volunteer_references_id INT(11) NOT NULL,
-  volunteer_roles_id INT(11) NOT NULL,
-  states_code CHAR(2) NOT NULL,
   shirt_sizes_id INT(11) NOT NULL,
+  states_code CHAR(2) NOT NULL,
   lead_sources_id INT(11) NOT NULL,
-  PRIMARY KEY (id, volunteer_references_id, states_code, shirt_sizes_id),
-  INDEX fk_volunteers_roles1_idx (roles_id ASC),
-  INDEX fk_volunteers_volunteer_references1_idx (volunteer_references_id ASC),
-  INDEX fk_volunteers_volunteer_roles1_idx (volunteer_roles_id ASC),
-  INDEX fk_volunteers_states1_idx (states_code ASC),
+  PRIMARY KEY (id),
   INDEX fk_volunteers_shirt_sizes1_idx (shirt_sizes_id ASC),
+  INDEX fk_volunteers_states1_idx (states_code ASC),
   INDEX fk_volunteers_lead_sources1_idx (lead_sources_id ASC),
-  CONSTRAINT fk_volunteers_roles1
-    FOREIGN KEY (roles_id)
-    REFERENCES paulsbun_idaydream.roles (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_volunteers_volunteer_references1
-    FOREIGN KEY (volunteer_references_id)
-    REFERENCES paulsbun_idaydream.volunteer_references (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_volunteers_volunteer_roles1
-    FOREIGN KEY (volunteer_roles_id)
-    REFERENCES paulsbun_idaydream.volunteer_roles (id)
+  CONSTRAINT fk_volunteers_shirt_sizes1
+    FOREIGN KEY (shirt_sizes_id)
+    REFERENCES paulsbun_idaydream.shirt_sizes (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT fk_volunteers_states1
@@ -262,14 +257,66 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteers (
     REFERENCES paulsbun_idaydream.states (code)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT fk_volunteers_shirt_sizes1
-    FOREIGN KEY (shirt_sizes_id)
-    REFERENCES paulsbun_idaydream.shirt_sizes (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT fk_volunteers_lead_sources1
     FOREIGN KEY (lead_sources_id)
     REFERENCES paulsbun_idaydream.lead_sources (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table paulsbun_idaydream.volunteer_references
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS paulsbun_idaydream.volunteer_references ;
+
+CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_references (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  active TINYINT(4) NULL DEFAULT '1',
+  full_name VARCHAR(60) NOT NULL,
+  phone_number VARCHAR(20) NOT NULL,
+  email VARCHAR(45) NOT NULL,
+  relationship VARCHAR(45) NOT NULL,
+  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  volunteers_id INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  INDEX fk_volunteer_references_volunteers1_idx (volunteers_id ASC),
+  CONSTRAINT fk_volunteer_references_volunteers1
+    FOREIGN KEY (volunteers_id)
+    REFERENCES paulsbun_idaydream.volunteers (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table paulsbun_idaydream.volunteer_roles
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS paulsbun_idaydream.volunteer_roles ;
+
+CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_roles (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  volunteer_id INT(11) NOT NULL,
+  active TINYINT(4) NOT NULL DEFAULT '1',
+  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  volunteers_id INT(11) NOT NULL,
+  roles_id INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE INDEX id_UNIQUE (id ASC),
+  INDEX fk_volunteer_roles_volunteers1_idx (volunteers_id ASC),
+  INDEX fk_volunteer_roles_roles1_idx (roles_id ASC),
+  CONSTRAINT fk_volunteer_roles_volunteers1
+    FOREIGN KEY (volunteers_id)
+    REFERENCES paulsbun_idaydream.volunteers (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_volunteer_roles_roles1
+    FOREIGN KEY (roles_id)
+    REFERENCES paulsbun_idaydream.roles (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -296,20 +343,20 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.youth (
   other_ethnicity_text VARCHAR(80) NULL DEFAULT NULL,
   created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  genders_id INT(11) NOT NULL,
   ethnicities_id INT(11) NOT NULL,
-  PRIMARY KEY (id, genders_id, ethnicities_id),
+  genders_id INT(11) NOT NULL,
+  PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE (id ASC),
-  INDEX fk_youth_genders_idx (genders_id ASC),
   INDEX fk_youth_ethnicities1_idx (ethnicities_id ASC),
-  CONSTRAINT fk_youth_genders
-    FOREIGN KEY (genders_id)
-    REFERENCES paulsbun_idaydream.genders (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX fk_youth_genders1_idx (genders_id ASC),
   CONSTRAINT fk_youth_ethnicities1
     FOREIGN KEY (ethnicities_id)
     REFERENCES paulsbun_idaydream.ethnicities (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_youth_genders1
+    FOREIGN KEY (genders_id)
+    REFERENCES paulsbun_idaydream.genders (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
