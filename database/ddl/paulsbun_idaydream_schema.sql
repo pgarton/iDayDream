@@ -9,15 +9,25 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- -----------------------------------------------------
 -- Schema idaydream
+-- drop schema idaydream;
+-- create schema idaydream;
 -- -----------------------------------------------------
-USE idaydream ;
+USE paulsbun_idaydream ;
+
+SET FOREIGN_KEY_CHECKS = 0; 
+truncate table volunteer_roles;
+truncate table volunteer_references;
+truncate table youth;
+truncate table genders;
+truncate table ethnicities;
+truncate table volunteers;
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.ethnicities
+-- Table ethnicities
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.ethnicities ;
+DROP TABLE IF EXISTS ethnicities ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.ethnicities (
+CREATE TABLE IF NOT EXISTS ethnicities (
   id INT(11) NOT NULL AUTO_INCREMENT,
   code VARCHAR(60) NOT NULL,
   ethnicity VARCHAR(45) NOT NULL,
@@ -45,11 +55,11 @@ insert into ethnicities (code, ethnicity, sort_order) values ('cd-multi','BI/Mul
 insert into ethnicities (code, ethnicity, sort_order) values ('cd-decline','Declined to State', 10);
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.genders
+-- Table genders
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.genders ;
+DROP TABLE IF EXISTS genders ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.genders (
+CREATE TABLE IF NOT EXISTS genders (
   id INT(11) NOT NULL AUTO_INCREMENT,
   code VARCHAR(60) NOT NULL,
   gender VARCHAR(45) NOT NULL,
@@ -70,11 +80,11 @@ insert into genders (code, gender, sort_order) values ('cd-other', 'Other', 3);
 insert into genders (code, gender, sort_order) values ('cd-noSay', 'Prefer not to Say', 4);
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.lead_sources
+-- Table lead_sources
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.lead_sources ;
+DROP TABLE IF EXISTS lead_sources ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.lead_sources (
+CREATE TABLE IF NOT EXISTS lead_sources (
   id INT(11) NOT NULL AUTO_INCREMENT,
   code VARCHAR(60) NOT NULL,
   lead VARCHAR(45) NOT NULL,
@@ -95,11 +105,11 @@ insert into lead_sources (lead, code) values ('Corporate Sponsor', 'cd-corporate
 insert into lead_sources (lead, code) values ('Other', 'cd-other');
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.roles
+-- Table roles
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.roles ;
+DROP TABLE IF EXISTS roles ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.roles (
+CREATE TABLE IF NOT EXISTS roles (
   id INT(11) NOT NULL AUTO_INCREMENT,
   code VARCHAR(60) NOT NULL,
   role VARCHAR(45) NOT NULL,
@@ -123,11 +133,11 @@ insert into roles (code, role, sort_order) values ('cd-mentoring', 'Mentoring', 
 insert into roles (code, role, sort_order) values ('cd-other', 'Other', 6);
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.shirt_sizes
+-- Table shirt_sizes
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.shirt_sizes ;
+DROP TABLE IF EXISTS shirt_sizes ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.shirt_sizes (
+CREATE TABLE IF NOT EXISTS shirt_sizes (
   id INT(11) NOT NULL AUTO_INCREMENT,
   code VARCHAR(60) NOT NULL,
   size VARCHAR(20) NOT NULL,
@@ -150,11 +160,11 @@ insert into shirt_sizes (size, code, sort_order) values ('Extra Large', 'cd-xl',
 insert into shirt_sizes (size, code, sort_order) values ('XXL', 'cd-xxl', 6);
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.states
+-- Table states
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.states ;
+DROP TABLE IF EXISTS states ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.states (
+CREATE TABLE IF NOT EXISTS states (
   code CHAR(2) NOT NULL,
   name VARCHAR(45) NOT NULL,
   created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -217,11 +227,11 @@ insert into states (code, name) values ('WI','Wisconsin');
 insert into states (code, name) values ('WY','Wyoming');
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.volunteers
+-- Table volunteers
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.volunteers ;
+DROP TABLE IF EXISTS volunteers ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteers (
+CREATE TABLE IF NOT EXISTS volunteers (
   id INT(11) NOT NULL AUTO_INCREMENT,
   active TINYINT(4) NOT NULL DEFAULT '1',
   first_name VARCHAR(45) NOT NULL,
@@ -244,22 +254,22 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteers (
   states_code CHAR(2) NOT NULL,
   lead_sources_id INT(11) NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_volunteers_shirt_sizes1_idx (shirt_sizes_id ASC),
-  INDEX fk_volunteers_states1_idx (states_code ASC),
-  INDEX fk_volunteers_lead_sources1_idx (lead_sources_id ASC),
-  CONSTRAINT fk_volunteers_shirt_sizes1
+  INDEX fk_volunteers_shirt_sizes_idx (shirt_sizes_id ASC),
+  INDEX fk_volunteers_states_idx (states_code ASC),
+  INDEX fk_volunteers_lead_sources_idx (lead_sources_id ASC),
+  CONSTRAINT fk_volunteers_shirt_sizes
     FOREIGN KEY (shirt_sizes_id)
-    REFERENCES paulsbun_idaydream.shirt_sizes (id)
+    REFERENCES shirt_sizes (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT fk_volunteers_states1
+  CONSTRAINT fk_volunteers_states
     FOREIGN KEY (states_code)
-    REFERENCES paulsbun_idaydream.states (code)
+    REFERENCES states (code)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT fk_volunteers_lead_sources1
+  CONSTRAINT fk_volunteers_lead_sources
     FOREIGN KEY (lead_sources_id)
-    REFERENCES paulsbun_idaydream.lead_sources (id)
+    REFERENCES lead_sources (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -267,11 +277,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.volunteer_references
+-- Table volunteer_references
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.volunteer_references ;
+DROP TABLE IF EXISTS volunteer_references ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_references (
+CREATE TABLE IF NOT EXISTS volunteer_references (
   id INT(11) NOT NULL AUTO_INCREMENT,
   active TINYINT(4) NULL DEFAULT '1',
   full_name VARCHAR(60) NOT NULL,
@@ -282,10 +292,10 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_references (
   last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   volunteers_id INT(11) NOT NULL,
   PRIMARY KEY (id),
-  INDEX fk_volunteer_references_volunteers1_idx (volunteers_id ASC),
-  CONSTRAINT fk_volunteer_references_volunteers1
+  INDEX fk_volunteer_references_volunteers_idx (volunteers_id ASC),
+  CONSTRAINT fk_volunteer_references_volunteers
     FOREIGN KEY (volunteers_id)
-    REFERENCES paulsbun_idaydream.volunteers (id)
+    REFERENCES volunteers (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -293,13 +303,12 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.volunteer_roles
+-- Table volunteer_roles
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.volunteer_roles ;
+DROP TABLE IF EXISTS volunteer_roles ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_roles (
+CREATE TABLE IF NOT EXISTS volunteer_roles (
   id INT(11) NOT NULL AUTO_INCREMENT,
-  volunteer_id INT(11) NOT NULL,
   active TINYINT(4) NOT NULL DEFAULT '1',
   created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -307,16 +316,16 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.volunteer_roles (
   roles_id INT(11) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE (id ASC),
-  INDEX fk_volunteer_roles_volunteers1_idx (volunteers_id ASC),
-  INDEX fk_volunteer_roles_roles1_idx (roles_id ASC),
-  CONSTRAINT fk_volunteer_roles_volunteers1
+  INDEX fk_volunteer_roles_volunteers_idx (volunteers_id ASC),
+  INDEX fk_volunteer_roles_roles_idx (roles_id ASC),
+  CONSTRAINT fk_volunteer_roles_volunteers
     FOREIGN KEY (volunteers_id)
-    REFERENCES paulsbun_idaydream.volunteers (id)
+    REFERENCES volunteers (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT fk_volunteer_roles_roles1
+  CONSTRAINT fk_volunteer_roles_roles
     FOREIGN KEY (roles_id)
-    REFERENCES paulsbun_idaydream.roles (id)
+    REFERENCES roles (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -324,11 +333,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table paulsbun_idaydream.youth
+-- Table youth
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS paulsbun_idaydream.youth ;
+DROP TABLE IF EXISTS youth ;
 
-CREATE TABLE IF NOT EXISTS paulsbun_idaydream.youth (
+CREATE TABLE IF NOT EXISTS youth (
   id INT(11) NOT NULL AUTO_INCREMENT,
   active TINYINT(4) NULL DEFAULT '1',
   first_name VARCHAR(45) NOT NULL,
@@ -347,21 +356,22 @@ CREATE TABLE IF NOT EXISTS paulsbun_idaydream.youth (
   genders_id INT(11) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE (id ASC),
-  INDEX fk_youth_ethnicities1_idx (ethnicities_id ASC),
-  INDEX fk_youth_genders1_idx (genders_id ASC),
-  CONSTRAINT fk_youth_ethnicities1
+  INDEX fk_youth_ethnicities_idx (ethnicities_id ASC),
+  INDEX fk_youth_genders_idx (genders_id ASC),
+  CONSTRAINT fk_youth_ethnicities
     FOREIGN KEY (ethnicities_id)
-    REFERENCES paulsbun_idaydream.ethnicities (id)
+    REFERENCES ethnicities (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT fk_youth_genders1
+  CONSTRAINT fk_youth_genders
     FOREIGN KEY (genders_id)
-    REFERENCES paulsbun_idaydream.genders (id)
+    REFERENCES genders (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+SET FOREIGN_KEY_CHECKS = 1;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
