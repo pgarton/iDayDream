@@ -1,4 +1,4 @@
-use pbunyan_idaydream;
+use paulsbun_idaydream;
 -- use idaydream;
 
 
@@ -39,18 +39,3 @@ values ('Joe', 'Williams', '222-222-3322', 'joe@gmail.com', 2020, 'UW', 'Cheetos
 	null, null, 2, 2),
 ('Manuel', 'Franklin', '552-222-3322', 'manuel@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', 
 	'', '', 3, 3);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
