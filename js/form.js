@@ -5,6 +5,8 @@ var $otherTextRoles = $("#other-text-roles");
 var $otherHearAboutUs = $("#other-hear-about-us");
 var $weekendAvailability = $("#weekend-text-div");
 
+
+
 $("#skills-interest-cb").change(function(){
     if($(this).is(":checked")) {
        $skillsInterestComment.css("display","block");

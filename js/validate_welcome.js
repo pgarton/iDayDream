@@ -28,6 +28,11 @@ $("#birthdate").on("keydown", validateBirthdate);
 $("#gender").on("click", validateGender);
 $("#ethnicity").on("click", validateEthnicity);*/
 
+// Formatting phone input
+
+$("#homePhone").on("keyup", function() {
+    formatPhone("#homePhone");
+});
 
 //validating the form on submission
 $("#welcomeForm").on("submit", validate);
@@ -36,14 +41,14 @@ let isValid;
 
 function validate() {
     isValid = true;
-    validateFirstName();
-    validateLastName();
-    validatePhone();
-    validateEmail();
-    validateGraduatingClass();
+    validateStandardInput("firstName");
+    validateStandardInput("lastName");
+    validatePhone("homePhone");
+    validateEmail("email");
+    validateDropdown("graduatingClass");
     validateBirthdate();
-    validateGender();
-    validateEthnicity();
+    validateDropdown("gender");
+    validateDropdown("ethnicity");
     if (isValid == false) {
         alert("Please correct fields in RED and re-submit");
     }
@@ -58,45 +63,38 @@ function validate() {
 
 //creating functions
 
-function validateFirstName() {
-    let $item = $("#firstName");
-    if (!$item.val()) {
-        $item.addClass("invalid");
-        isValid = false;
-    } else {
-        $item.removeClass("invalid");
-    }
-}
-
-function validateLastName(){
-    let $item = $("#lastName");
+function validateStandardInput(id){
+    let $item = $('#'+id);
     if( !$item.val()){
         $item.addClass("invalid");
         isValid = false;
     } else {
         $item.removeClass("invalid");
     }
+
 }
 
-function validatePhone(){
-    let $num = $("#homePhone");
+function validatePhone(id){
+    let $num = $('#'+id);
     let $numVal = $num.val();
     // remove basic phone characters
-    $numVal = $numVal.replace(/-/g, "")
-    $numVal = $numVal.replace(/\(/g, "")
+    $numVal = $numVal.replace(" ", "");
+    $numVal = $numVal.replace(/-/g, "");
+    $numVal = $numVal.replace(/\(/g, "");
     $numVal = $numVal.replace(/\)/g,"");
     $numVal = $numVal.replace(/_/g, "");
-    console.log($numVal.length);
+    console.log($numVal); // for debugging
     if($numVal.length != 10){
         $num.addClass("invalid");
         isValid = false;
     } else {
         $num.removeClass("invalid");
     }
+
 }
 
-function validateEmail() {
-    let $email = $("#email");
+function validateEmail(id) {
+    let $email = $('#'+id);
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.val())) {
         $email.removeClass("invalid");
     } else {
@@ -106,14 +104,15 @@ function validateEmail() {
     }
 }
 
-function validateGraduatingClass(){
-    let $class = $("#graduatingClass");
-    if ($class.val() == "none") {
-        $class.addClass("invalid");
+function validateDropdown(id){
+    let $size = $('#'+id);
+    if ($size.val() == "none") {
+        $size.addClass("invalid");
         isValid = false;
     } else {
-        $class.removeClass("invalid");
+        $size.removeClass("invalid");
     }
+
 }
 
 
@@ -136,26 +135,21 @@ function validateBirthdate(){
 }
 
 
-function validateGender(){
-    let $gender = $("#gender");
-    if ($gender.val() == "none") {
-        $gender.addClass("invalid");
-        isValid = false;
-    } else {
-        $gender.removeClass("invalid");
-    }
-}
+function formatPhone(id) { // auto-formats phone input
+    // formats phone number
+    let str = $(id).val();
+    str = str.replace(/\D/g, "");
 
-function validateEthnicity(){
-    let $ethnicity = $("#ethnicity");
-    if ($ethnicity.val() == "none") {
-        $ethnicity.addClass("invalid");
-        isValid = false;
+    if (str.length < 4) {
+        // do nothing
+    } else if (str.length < 7) {
+        str = "(" + str.substring(0, 3) + ") " + str.substring(3, 6);
     } else {
-        $ethnicity.removeClass("invalid");
+        str = "(" + str.substring(0, 3) + ") " + str.substring(3, 6) + "-" + str.substring(6, 10);
     }
-}
 
+    $(id).val(str);
+}
 
 
 
