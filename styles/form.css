@@ -18,11 +18,23 @@ h1 {
     text-transform: uppercase;
 }
 
+fieldset {
+    padding: 12px;
+    border: 2px solid darkcyan;
+    border-radius: 0px;
+}
+legend {
+    text-align: center;
+    width: auto;
+
+}
+
 #submit {
     background-color: black;
     border-color: black;
     border-radius: 0;
     text-transform: uppercase;
+    vertical-align: center;
 }
 
 #submit_welcome {
