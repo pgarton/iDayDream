@@ -31,6 +31,31 @@
 
 <div class="container align-items-center">
 
+  <!-- New Background check on top of form -->
+
+  <div class="text-center" id="background-check">
+    <p id = "background-default">As an organization working with youth, a background check is necessary for volunteering</p>
+
+    <p id = "background-denial">
+      Because of our values as on organization and out of the safety of the youth"
+      we serve it is a requirement that a background check must be submitted.You have chosen to decline.
+      Thank you for your consideration in volunteering with iD.A.Y.dream, at this time we are unable to move forward with your
+      submission.Please do visit us again!</p>
+
+    <div class="form-group">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-yes" value="yes">
+        <label class="form-check-label" for="bg-check-yes">YES</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-no" value="no">
+        <label class="form-check-label" for="bg-check-no">NO</label>
+      </div>
+      <p class="form-check-inline">I submit to a possible background check </p>
+      <!--        not sure if you want the yes/no before or after text??-->
+    </div>
+  </div>
+
   <form action="confirmation.php" method="post" id="volunteerForm">  <!--Elijah Edit: Added id to form -->
     <fieldset class="form-group">
       <!--General Information Section-->
@@ -465,32 +490,24 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
         <legend>Our Policy</legend>
         <p>It is the policy of this organization to provide equal opportunities without regard to race, color, religion, national origin, gender, sexual preference, age, or disability.</p>
     </fieldset>
-    <fieldset class ="form-group">
-        <legend>Agreement</legend>
-        <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="policy" name="policy" value="yes">
-            <label class="form-check-label" for="policy">I agree to the Policy and Agreement above</label>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-yes" value="yes">
-            <label class="form-check-label" for="bg-check-yes">YES</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-no" value="no">
-            <label class="form-check-label" for="bg-check-no">NO</label>
-          </div>
-          <p class="form-check-inline">I submit to a possible background check </p>
-          <!--        not sure if you want the yes/no before or after text??-->
+    <fieldset class ="form-group">
+      <legend>Agreement</legend>
+      <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="policy" name="policy" value="yes">
+          <label class="form-check-label" for="policy">I agree to the Policy and Agreement above</label>
         </div>
-      </fieldset>
-    <button id="submit" type="submit" class="btn btn-primary">
-      Submit
-    </button>
+      </div>
+    </fieldset>
+
+      <div class = "col text-center">
+        <button id="submit" type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </div>
+
 
 
   </form>

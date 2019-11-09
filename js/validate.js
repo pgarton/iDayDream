@@ -19,18 +19,17 @@ Mailing list sign up (yes or no) is required, and yes is checked by default
  */
 
 // background Check
-$("#submit").hide();
+$("#volunteerForm").hide();
+$("#background-denial").hide();
 $("#bg-check-no").on("click", function() {
-    alert("Background Check Decline notification:" +
-        " Because of our values as on organization and out of the safety of the youth" +
-        " we serve it is a requirement that a background check must be submitted.You have chosen to decline." +
-        " Thank you for your consideration in volunteering with iD.A.Y.dream, at this time we are unable to move forward with your" +
-        " submission.Please do visit us again!")
-    $("#submit").hide();
+    $("#background-default").hide();
+    $("#background-denial").show();
+    $("#volunteerForm").hide();
 });
 
 $("#bg-check-yes").on("click", function() {
-    $("#submit").show();
+    $("#volunteerForm").show();
+    $("#background-check").hide();
 });
 
 
@@ -64,7 +63,7 @@ $("#t-shirt-size").on("click", function(){
 });
 
 //Dallas Additions, validating References
-$("#ref1-name").on("keydown", function() {
+$("#ref1-name").on("keyup", function() {
     validateStandardInput("ref1-name");
 });
 $("#ref2-name").on("keyup", function() {
@@ -102,6 +101,10 @@ $("#ref2-relationship").on("keyup", function() {
 });
 $("#ref3-relationship").on("keyup", function() {
     validateStandardInput("ref3-relationship");
+});
+
+$("#policy").on("click", function() {
+    validateCheckbox("policy");
 });
 
 
@@ -145,6 +148,7 @@ function validate() {
     validateEmail("ref3-email");
     validateStandardInput("ref3-relationship");
 
+    validateCheckbox("policy");
 
 
 
@@ -213,7 +217,15 @@ function validateDropdown(id){
 
 }
 
-
+function validateCheckbox(id){
+    let $item = $('#'+id);
+    if(!$item.prop("checked")){
+        $item.parent().addClass("invalid-checkbox");
+        isValid = false;
+    } else {
+        $item.parent().removeClass("invalid-checkbox");
+    }
+}
 
 
 

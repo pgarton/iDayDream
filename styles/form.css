@@ -10,6 +10,10 @@ Filename:           form.css
 
 @font-face { font-family: Questrial; src: url('Questrial-Regular.ttf'); }
 
+#background-denial {
+    color: red;
+}
+
 body {
     font-family: Questrial;
 }
@@ -35,6 +39,8 @@ legend {
     border-radius: 0;
     text-transform: uppercase;
     vertical-align: center;
+    width: 50%;
+    margin-bottom: 20px;
 }
 
 #submit_welcome {
