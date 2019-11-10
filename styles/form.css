@@ -75,6 +75,12 @@ legend {
     display:none;
 }
 
+/* creating ethnicity textbox style for welcome page */
+
+#other-ethnicity-text{
+    display:none;
+}
+
 .jumbotron {
     /* Ask if she has picture for background */
     font: 14px Helvetica,Arial,sans-serif;
