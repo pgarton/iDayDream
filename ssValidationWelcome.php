@@ -76,7 +76,7 @@ function validateGraduatingClass($id){
 function validateBirthdate($id){
     global $isValidSSWelcome;
     //complete once Elijah makes his change
-    echo "<p>$id</p>";
+    //echo "<p>$id</p>"; //for de-bugging purposes
     $year = substr("$id",0,4);
     //echo "Year: ".$year." "; //for de-bugging purposes
     $day = substr($id,8,2);
