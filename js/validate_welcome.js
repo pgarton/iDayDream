@@ -34,10 +34,6 @@ $("#homePhone").on("keyup", function() {
     formatPhone("#homePhone");
 });
 
-// Formatting date input
-$("#birthdate").on("keyup", function() {
-    formatDate("#birthdate");
-});
 //validating the form on submission
 $("#welcomeForm").on("submit", validate);
 
@@ -87,7 +83,6 @@ function validatePhone(id){
     $numVal = $numVal.replace(/\(/g, "");
     $numVal = $numVal.replace(/\)/g,"");
     $numVal = $numVal.replace(/_/g, "");
-    console.log($numVal); // for debugging
     if($numVal.length != 10){
         $num.addClass("invalid");
         isValid = false;
@@ -122,9 +117,9 @@ function validateDropdown(id){
 
 function validateBirthdate(){
     let $dateOfBirth = $("#birthdate").val();
-    let validBirth = $dateOfBirth.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
 
-    if(validBirth){
+    console.log($dateOfBirth);
+
         let minDate = Date.parse("01/01/2000"); //Dreamers will be within this range
         let today = new Date();
         today = Date.parse(today);
@@ -139,10 +134,7 @@ function validateBirthdate(){
         } else {
             $("#birthdate").removeClass("invalid");
         }
-    } else {
-        $("#birthdate").addClass("invalid");
-        isValid = false;
-    }
+
 }
 
 
@@ -162,21 +154,7 @@ function formatPhone(id) { // auto-formats phone input
     $(id).val(str);
 }
 
-function formatDate(id) { // auto-formats date
-    // formats date
-    let str = $(id).val();
-    str = str.replace(/\D/g, "");
 
-    if (str.length < 2) {
-        // do nothing
-    } else if (str.length < 4) {
-        str = str.substring(0, 2) + "/" + str.substring(2, 4);
-    } else {
-        str = str.substring(0, 2) + "/" + str.substring(2, 4) + "/" + str.substring(4, 8);
-    }
-
-    $(id).val(str);
-}
 
 
 
