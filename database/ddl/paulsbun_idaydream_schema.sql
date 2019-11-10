@@ -52,7 +52,8 @@ insert into ethnicities (code, ethnicity, sort_order) values ('cd-islander','Nat
 insert into ethnicities (code, ethnicity, sort_order) values ('cd-seAsian','Southeast Asian', 7);
 insert into ethnicities (code, ethnicity, sort_order) values ('cd-white','White non-Hispanic', 8);
 insert into ethnicities (code, ethnicity, sort_order) values ('cd-multi','BI/Multiracial', 9);
-insert into ethnicities (code, ethnicity, sort_order) values ('cd-decline','Declined to State', 10);
+insert into ethnicities (code, ethnicity, sort_order) values ('cd-other','Other', 10);
+insert into ethnicities (code, ethnicity, sort_order) values ('cd-decline','Declined to State', 11);
 
 -- -----------------------------------------------------
 -- Table genders
