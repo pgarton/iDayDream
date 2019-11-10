@@ -34,6 +34,10 @@ $("#homePhone").on("keyup", function() {
     formatPhone("#homePhone");
 });
 
+// Formatting date input
+$("#birthdate").on("keyup", function() {
+    formatDate("#birthdate");
+});
 //validating the form on submission
 $("#welcomeForm").on("submit", validate);
 
@@ -93,7 +97,7 @@ function validatePhone(id){
 
 }
 
-function validateEmail(id) {
+function validateDate(id) {
     let $email = $('#'+id);
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.val())) {
         $email.removeClass("invalid");
@@ -146,6 +150,22 @@ function formatPhone(id) { // auto-formats phone input
         str = "(" + str.substring(0, 3) + ") " + str.substring(3, 6);
     } else {
         str = "(" + str.substring(0, 3) + ") " + str.substring(3, 6) + "-" + str.substring(6, 10);
+    }
+
+    $(id).val(str);
+}
+
+function formatDate(id) { // auto-formats date
+    // formats phone number
+    let str = $(id).val();
+    str = str.replace(/\D/g, "");
+
+    if (str.length < 5) {
+        // do nothing
+    } else if (str.length < 7) {
+        str = str.substring(0, 4) + "-" + str.substring(4, 6);
+    } else {
+        str = str.substring(0, 4) + "-" + str.substring(4, 6) + "-" + str.substring(6, 8);
     }
 
     $(id).val(str);
