@@ -14,20 +14,6 @@ error_reporting(E_ALL);
 // creating valid variable
 $isValidSSWelcome=true;
 
-//adding in variables from welcomeConfirmation.php
-/*$firstName = $_POST["firstName"];
-$lastName = $_POST["lastName"];
-$homePhone = $_POST["homePhone"];
-$email = $_POST["email"];
-$graduatingClass = $_POST["graduatingClass"];
-$college = $_POST["college"];
-$aspirations = $_POST["aspirations"];
-$snacks = $_POST["snacks"];
-$birthdate = $_POST["birthdate"];
-$gender = $_POST["gender"];
-$ethnicity = $_POST["ethnicity"];*/
-
-
 //creating function to validate standard textboxes
 
 function validateStandardInput($id, $field){
@@ -50,7 +36,7 @@ function validatePhone($id){
     $id = preg_replace('/\(/',"",$id);
     $id = preg_replace('/\)/',"",$id);
     $id = preg_replace('/_/',"",$id);
-    echo "<p>$id</p>";
+    //echo "<p>$id</p>"; for de-bugging purposes
     if (is_numeric($id) && strlen($id)===10){
         return;
     }
@@ -62,59 +48,75 @@ function validatePhone($id){
 
 // validating email
 function validateEmail($id){
+    global $isValidSSWelcome;
     if (!empty($id) && preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/',$id)){
         return;
     }
     else{
         echo "<p>Valid Email must be entered</p>";
+        $isValidSSWelcome = false;
+
     }
 }
 
 //validating graduating class was chosen
 function validateGraduatingClass($id){
+    global $isValidSSWelcome;
     if ($id != "none"){
         return;
     }
     else{
         echo "<p>Please select a Graduating Class</p>";
+        $isValidSSWelcome = false;
+
     }
 }
 
 //validating birthdate
 function validateBirthdate($id){
+    global $isValidSSWelcome;
     //complete once Elijah makes his change
-    $year = substr("$id",0,4);
-    echo "Year: ".$year;
-    $month = substr($id,5,2);
-    echo "Month: ". $month;
-    $day = substr($id,8);
-    echo "Day: ".$day;
+    $year = substr("$id",6,4);
+    //echo "Year: ".$year." "; for de-bugging purposes
+    $day = substr($id,3,2);
+    //echo "Day: ". $day." "; for de-bugging purposes
+    $month = substr($id,0,2);
+    //echo "Month: ".$month." "; for de-bugging purposes
 
     if (checkdate((int)$month, (int)$day, (int)$year)){
         return;
     }
     else{
-        echo "<p>Please enter Valid Year</p>";
+        echo "<p>Please enter Valid Birth Date</p>";
+        $isValidSSWelcome = false;
+
+
     }
 }
 
 //validating gender was chosen
 function validateGender($id){
-    if ($id != "none"){
+    global $isValidSSWelcome;
+    if (in_array($id, array(1,2,3,4))){
         return;
     }
     else{
         echo "<p>Please select a Gender</p>";
+        $isValidSSWelcome = false;
+
     }
 }
 
 //validating ethnicity was chosen
 function validateEthnicity($id){
-    if ($id != "none"){
+    global $isValidSSWelcome;
+    if (in_array($id, array(1,2,3,4,5,6,7,8,9,10,11))){
         return;
     }
     else{
         echo "<p>Please select an Ethnicity Option</p>";
+        $isValidSSWelcome = false;
+
     }
 }
 
