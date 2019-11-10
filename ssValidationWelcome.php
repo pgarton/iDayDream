@@ -76,12 +76,13 @@ function validateGraduatingClass($id){
 function validateBirthdate($id){
     global $isValidSSWelcome;
     //complete once Elijah makes his change
-    $year = substr("$id",6,4);
-    //echo "Year: ".$year." "; for de-bugging purposes
-    $day = substr($id,3,2);
-    //echo "Day: ". $day." "; for de-bugging purposes
-    $month = substr($id,0,2);
-    //echo "Month: ".$month." "; for de-bugging purposes
+    echo "<p>$id</p>";
+    $year = substr("$id",0,4);
+    //echo "Year: ".$year." "; //for de-bugging purposes
+    $day = substr($id,8,2);
+    //echo "Day: ". $day." "; //for de-bugging purposes
+    $month = substr($id,5,2);
+    //echo "Month: ".$month." "; //for de-bugging purposes
 
     if (checkdate((int)$month, (int)$day, (int)$year)){
         return;
