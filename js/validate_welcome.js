@@ -97,7 +97,7 @@ function validatePhone(id){
 
 }
 
-function validateDate(id) {
+function validateEmail(id) {
     let $email = $('#'+id);
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.val())) {
         $email.removeClass("invalid");
@@ -123,19 +123,26 @@ function validateDropdown(id){
 function validateBirthdate(){
     let $dateOfBirth = $("#birthdate").val();
     let validBirth = $dateOfBirth.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
+
     if(validBirth){
-        let minDate = Date.parse("01/01/1950");
+        let minDate = Date.parse("01/01/2000"); //Dreamers will be within this range
         let today = new Date();
+        today = Date.parse(today);
+
         let DOB = Date.parse($dateOfBirth);
-        if ((DOB >= today || DOB <= minDate)) {
+        console.log("Today: "+today);
+        console.log("minDate: "+minDate);
+        console.log("DOB: "+DOB);
+        if (DOB.isNaN||(DOB >= today || DOB <= minDate)) {
             $("#birthdate").addClass("invalid");
             isValid =  false;
+        } else {
+            $("#birthdate").removeClass("invalid");
         }
-        $("#birthdate").removeClass("invalid");
-        return;
+    } else {
+        $("#birthdate").addClass("invalid");
+        isValid = false;
     }
-    $("#birthdate").addClass("invalid");
-    isValid =  false;
 }
 
 
@@ -156,16 +163,16 @@ function formatPhone(id) { // auto-formats phone input
 }
 
 function formatDate(id) { // auto-formats date
-    // formats phone number
+    // formats date
     let str = $(id).val();
     str = str.replace(/\D/g, "");
 
-    if (str.length < 5) {
+    if (str.length < 2) {
         // do nothing
-    } else if (str.length < 7) {
-        str = str.substring(0, 4) + "-" + str.substring(4, 6);
+    } else if (str.length < 4) {
+        str = str.substring(0, 2) + "/" + str.substring(2, 4);
     } else {
-        str = str.substring(0, 4) + "-" + str.substring(4, 6) + "-" + str.substring(6, 8);
+        str = str.substring(0, 2) + "/" + str.substring(2, 4) + "/" + str.substring(4, 8);
     }
 
     $(id).val(str);
