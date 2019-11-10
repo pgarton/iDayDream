@@ -27,7 +27,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 */
 insert into youth (first_name, last_name, home_phone, email, graduating_class, college_of_interest, 
 	food_snacks, date_of_birth, other_gender_text, other_ethnicity_text, ethnicities_id, genders_id)
-values 	('Joe', 'Williams', '222-222-3322', 'joe@gmail.com', 2020, 'UW', 'Cheetos', '2002-02-02', 'other_gender_text', 'other_ethnicity_text', 1, 1),
+values 	('Joe', 'Williams', '222-222-3322', 'joe@gmail.com', 2020, 'UW', 'Cheetos', '2002-02-02','', 'other_ethnicity_text', 10, 1),
 		('Maria', 'Lopez', '442-222-3322', 'maria@gmail.com', 2021, 'UW', 'Hot Dogs', '2003-02-02', null, null, 2, 2),
 		('Manuel0', 'Franklin0', '552-222-3322', 'manuel0@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 3, 3),
         ('Manuel1', 'Franklin0', '552-222-3322', 'manuel1@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 4, 4),
