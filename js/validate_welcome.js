@@ -97,7 +97,7 @@ function validatePhone(id){
 
 }
 
-function validateDate(id) {
+function validateEmail(id) {
     let $email = $('#'+id);
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($email.val())) {
         $email.removeClass("invalid");
