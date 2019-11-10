@@ -85,6 +85,24 @@ legend {
 }
 
 
+#other-hear-about-us{
+    display:none;
+}
+
+/* creating ethnicity textbox style for welcome page */
+
+#other-ethnicity-text{
+    display:none;
+}
+
+.jumbotron {
+    /* Ask if she has picture for background */
+    font: 14px Helvetica,Arial,sans-serif;
+    color: white;
+    background-color: #3a9fb6;
+}
+
+
 #weekend-text-div{
     display: none;
 }
