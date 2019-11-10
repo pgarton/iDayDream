@@ -37,7 +37,7 @@ values 	('Joe', 'Williams', '222-222-3322', 'joe@gmail.com', 2020, 'UW', 'Cheeto
         ('Manuel5', 'Franklin0', '552-222-3322', 'manuel5@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 8, 1),
         ('Manuel6', 'Franklin0', '552-222-3322', 'manuel6@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 9, 2),
         ('Manuel7', 'Franklin0', '552-222-3322', 'manuel7@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 10, 3),
-        ('Manuel8', 'Franklin0', '552-222-3322', 'manuel8@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 9, 4),
+        ('Manuel8', 'Franklin0', '552-222-3322', 'manuel8@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 11, 4),
         ('Manuel9', 'Franklin0', '552-222-3322', 'manuel9@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 8, 3),
         ('Michael0', 'Wilson0', '552-222-3322', 'michael0@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 7, 2),
         ('Manuel1', 'Wilson1', '552-222-3322', 'michael1@gmail.com', 2020, 'UW', 'Ice Cream', '2002-07-02', '', '', 6, 1),
