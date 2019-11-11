@@ -394,7 +394,7 @@ select v.first_name as volunteer_first_name, v.last_name as volunteer_last_name,
 from volunteers v left outer join volunteer_roles vr on vr.volunteers_id = v.id
 left outer join roles r on r.id = vr.roles_id;
 
-create or replace view v_youth as select y.first_name, y.last_name, y.home_phone, y.email, y.graduating_class, y.college_of_interest,
+create or replace view v_youth as select y.id as youth_id, y.first_name, y.last_name, y.home_phone, y.email, y.graduating_class, y.college_of_interest,
   y.food_snacks, y.date_of_birth, y.genders_id, g.gender, y.other_gender_text, y.ethnicities_id, e.ethnicity, y.other_ethnicity_text
 from youth y
 left outer join genders g on g.id = y.genders_id
