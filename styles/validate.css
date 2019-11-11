@@ -12,3 +12,7 @@ Consider merging this with form.css
 .invalid {
     box-shadow: 0 0 10px red;
 }
+
+.invalid-checkbox {
+    border-bottom: 2px solid red;
+}

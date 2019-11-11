@@ -2,15 +2,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!--
-  Volunteer Form
-  Client:             iDayDream
-  Original Author:    Paul Garton Dallas Sloan Elijah Maret
-  Last Modified by:   Paul Garton
-  Creation Date:      10/10/2019
-  Last Modified Date: 10/30/2019
-  Filename:           form.html
--->
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,17 +19,42 @@
 
 <!-- simple header taken from IDayDream.org -->  <!-- Elijah Edit -->
 <header id="header">
-
+    <div class="jumbotron text-center">
+        <h1 class="display-4"> Register To Volunteer</h1>
+    </div>
 </header>
 <!--Jumbotron Header-->
-<div class="jumbotron text-center">
-  <h1 class="display-4"> Register To Volunteer</h1>
-</div>
+
 
 <!--Removing Placeholders DS-->
 
 
 <div class="container align-items-center">
+
+  <!-- New Background check on top of form -->
+
+  <div class="text-center" id="background-check">
+    <p id = "background-default">As an organization working with youth, a background check is necessary for volunteering</p>
+
+    <p id = "background-denial">
+      Because of our values as on organization and out of the safety of the youth"
+      we serve it is a requirement that a background check must be submitted.You have chosen to decline.
+      Thank you for your consideration in volunteering with iD.A.Y.dream, at this time we are unable to move forward with your
+      submission. <br>Please do visit us again!</p>
+
+    <div class="form-group">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-yes" value="yes">
+        <label class="form-check-label" for="bg-check-yes">YES</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-no" value="no">
+        <label class="form-check-label" for="bg-check-no">NO</label>
+      </div>
+      <p class="form-check-inline">I submit to a possible background check </p>
+      <!--        not sure if you want the yes/no before or after text??-->
+    </div>
+  </div>
 
   <form action="confirmation.php" method="post" id="volunteerForm">  <!--Elijah Edit: Added id to form -->
     <fieldset class="form-group">
@@ -63,7 +79,7 @@
         <div class="form-group col-md-6">
         <label for="homePhone">Home Phone *</label>
 
-        <input type="tel" class="form-control" id="homePhone" name="homePhone" placeholder="xxx-xxx-xxxx">
+        <input type="tel" class="form-control" id="homePhone" name="homePhone" placeholder="(xxx)xxx-xxxx">
 
       </div>
 
@@ -339,9 +355,10 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
       </div>
     </fieldset>
 
-      <!--Reference 1-->
-      <fieldset class = "form-group">
-        <legend class= "underline">Reference 1 of 3</legend>
+    <!--Reference 1-->
+    <fieldset class = "form-group">
+      <legend>References</legend>
+        <h5>1 of 3</h5>
         <!--        name-->
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -368,11 +385,8 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
         </div>
         <div class ="form-group">
         </div>
-    </fieldset>
 
-    <!--Reference 2-->
-    <fieldset class = "form-group">
-      <legend class = "underline">Reference 2 of 3</legend>
+      <h5>2 of 3</h5>
         <!--        name-->
         <div class="form-row">
         <div class="form-group col-md-6">
@@ -399,11 +413,8 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
       </div>
       <div class ="form-group">
       </div>
-      </fieldset>
-    <!--Reference 3-->
 
-      <fieldset class = "form-group">
-        <legend class="underline">Reference 3 of 3</legend>
+        <h5>3 of 3</h5>
         <!--        name-->
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -474,34 +485,25 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
         <legend>Our Policy</legend>
         <p>It is the policy of this organization to provide equal opportunities without regard to race, color, religion, national origin, gender, sexual preference, age, or disability.</p>
     </fieldset>
-    <fieldset class ="form-group">
-        <legend>Agreement</legend>
-        <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="policy" name="policy" value="yes">
-            <label class="form-check-label" for="policy">I agree to the Policy and Agreement above</label>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-yes" value="yes">
-            <label class="form-check-label" for="bg-check-yes">YES</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-no" value="no">
-            <label class="form-check-label" for="bg-check-no">NO</label>
-          </div>
-          <p class="form-check-inline">I submit to a possible background check </p>
-          <!--        not sure if you want the yes/no before or after text??-->
+    <fieldset class ="form-group">
+      <legend>Agreement</legend>
+      <p>By submitting this application, I affirm that the facts set forth in it are true and complete. I understand that if I am accepted as a volunteer, any false statements, omissions, or other misrepresentations made by me on this application may result in my immediate dismissal.</p>
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="policy" name="policy" value="yes">
+          <label class="form-check-label" for="policy">I agree to the Policy and Agreement above</label>
         </div>
-      </fieldset>
-    <div class = "pb-4">
-      <button id="submit" type="submit" class="btn btn-primary">
-       Submit
-      </button>
-    </div>
+      </div>
+    </fieldset>
+
+      <div class = "col text-center">
+        <button id="submit" type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </div>
+
+
 
   </form>
 
@@ -514,7 +516,9 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src ="js/form.js"></script>
+<script src ="js/format.js"></script>
 <script src ="js/validate.js"></script>
+
 
 
 </body>

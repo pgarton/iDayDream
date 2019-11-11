@@ -49,9 +49,6 @@ function validate() {
     validateBirthdate();
     validateDropdown("gender");
     validateDropdown("ethnicity");
-    if (isValid == false) {
-        alert("Please correct fields in RED and re-submit");
-    }
 
 
     //end
@@ -83,7 +80,6 @@ function validatePhone(id){
     $numVal = $numVal.replace(/\(/g, "");
     $numVal = $numVal.replace(/\)/g,"");
     $numVal = $numVal.replace(/_/g, "");
-    console.log($numVal); // for debugging
     if($numVal.length != 10){
         $num.addClass("invalid");
         isValid = false;
@@ -118,20 +114,24 @@ function validateDropdown(id){
 
 function validateBirthdate(){
     let $dateOfBirth = $("#birthdate").val();
-    let validBirth = $dateOfBirth.match(/^\d\d?\/\d\d?\/\d\d\d\d$/);
-    if(validBirth){
-        let minDate = Date.parse("01/01/1950");
+
+    console.log($dateOfBirth);
+
+        let minDate = Date.parse("01/01/2000"); //Dreamers will be within this range
         let today = new Date();
+        today = Date.parse(today);
+
         let DOB = Date.parse($dateOfBirth);
-        if ((DOB >= today || DOB <= minDate)) {
+        console.log("Today: "+today);
+        console.log("minDate: "+minDate);
+        console.log("DOB: "+DOB);
+        if (DOB.isNaN||(DOB >= today || DOB <= minDate)) {
             $("#birthdate").addClass("invalid");
             isValid =  false;
+        } else {
+            $("#birthdate").removeClass("invalid");
         }
-        $("#birthdate").removeClass("invalid");
-        return;
-    }
-    $("#birthdate").addClass("invalid");
-    isValid =  false;
+
 }
 
 
@@ -150,6 +150,8 @@ function formatPhone(id) { // auto-formats phone input
 
     $(id).val(str);
 }
+
+
 
 
 

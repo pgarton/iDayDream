@@ -52,7 +52,7 @@ $("#other-interest").change(function(){
        $otherTextRoles.css("display","none");
 });
 
-//adding checkbox to How did you hear about us, when "other" option is selected
+//adding textbox to How did you hear about us, when "other" option is selected
 $("#hear-about-us").change(function(){
    if ($(this).val() === "other"){
        $otherHearAboutUs.css("display","block");
