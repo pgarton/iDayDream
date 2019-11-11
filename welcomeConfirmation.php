@@ -29,6 +29,7 @@
   $birthdate = $_POST["birthdate"];
   $gender = $_POST["gender"];
   $ethnicity = $_POST["ethnicity"];
+  $ethnicityOther = $_POST["otherEthnicity"];
 
   include ("ssValidationWelcome.php");
   if ($isValidSSWelcome) {
@@ -47,6 +48,9 @@
       echo "<div>Birthdate: " . $birthdate . "</div>";
       echo "<div>Gender: " . $gender . "</div>";
       echo "<div>Ethnicity: " . $ethnicity . "</div>";
+      if ($ethnicity === "10"){
+          echo "<div>Other Ethnicity Details: $ethnicityOther</div>";
+      }
 
 //Send welcome information to iDayDream Contact
 //Note: spam avoidance measures may be required
@@ -63,6 +67,9 @@
       $email_body .= "Birthdate: " . $birthdate . "\r\n";
       $email_body .= "Gender: " . $gender . "\r\n";
       $email_body .= "Ethnicity: " . $ethnicity . "\r\n";
+      if ($ethnicity === "10") {
+          $email_body .= "Other Ethnicity Details: $ethnicityOther". "\r\n";
+      }
 
       $email_subject = "Welcome Page New Registrant";
       $to = $email;
