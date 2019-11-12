@@ -49,9 +49,7 @@ function validate() {
     validateBirthdate();
     validateDropdown("gender");
     validateDropdown("ethnicity");
-    if (isValid == false) {
-        alert("Please correct fields in RED and re-submit");
-    }
+
 
 
     //end
@@ -128,7 +126,7 @@ function validateBirthdate(){
         console.log("Today: "+today);
         console.log("minDate: "+minDate);
         console.log("DOB: "+DOB);
-        if (DOB.isNaN||(DOB >= today || DOB <= minDate)) {
+        if (isNaN(DOB)||(DOB >= today || DOB <= minDate)) {
             $("#birthdate").addClass("invalid");
             isValid =  false;
         } else {
