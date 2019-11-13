@@ -35,7 +35,7 @@ $("#homePhone").on("keyup", function() {
 });
 
 //validating the form on submission
-$("#welcomeForm").on("submit", validate);
+//$("#welcomeForm").on("submit", validate);
 
 let isValid;
 
