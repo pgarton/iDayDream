@@ -117,7 +117,7 @@ $("#policy").on("click", function() {
 
 
 // validating the form on submission
-$("#volunteerForm").on("submit", validate);
+//$("#volunteerForm").on("submit", validate);
 
 let isValid;
 
