@@ -15,7 +15,7 @@ var $otherEthnicity = $("#other-ethnicity-text");
 //creating function to show textbox when "other" option is chosen within Ethnicity dropdown
 
 $("#ethnicity").change(function(){
-   if($(this).val() === "other"){
+   if($(this).val() === "10"){
        $otherEthnicity.css("display", "block");
    }
    else{
