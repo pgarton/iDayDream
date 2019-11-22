@@ -374,7 +374,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 create or replace view v_volunteers as
 select v.id as volunteer_id, v.first_name, v.last_name, v.home_phone, v.email, v.add_to_mailing_list, v.address1, v.address2, v.policy_agreement, v.city, v.states_code, states.name as state, v.zip_code,
-v.weekend_availability, v.summer_camp_availability, v.other_role_text, v.background_check_agreement, v.shirt_sizes_id, shirt_sizes.size as shirt_size, v.lead_sources_id, lead_sources.lead
+v.weekend_availability, v.summer_camp_availability, v.other_role_text, v.background_check_agreement, v.shirt_sizes_id, shirt_sizes.size as shirt_size, v.lead_sources_id, lead_sources.lead, v.active
 from volunteers v
 left outer join states on states.code = v.states_code
 left outer join shirt_sizes on shirt_sizes.id = v.shirt_sizes_id
@@ -382,7 +382,7 @@ left outer join lead_sources on lead_sources.id = v.lead_sources_id;
 
 create or replace view v_volunteer_references as
 select v.id as volunteer_id, v.first_name as volunteer_first_name, v.last_name as volunteer_last_name, vr.full_name as reference,
-vr.phone_number as ref_phone, vr.email as ref_email, vr.relationship
+vr.phone_number as ref_phone, vr.email as ref_email, vr.relationship, v.active as volunteer_active
 from volunteers v left outer join volunteer_references vr on vr.volunteers_id = v.id;
 
 create or replace view v_volunteer_roles as
