@@ -34,27 +34,27 @@ $("#bg-check-yes").on("click", function() {
 
 
 // validating dynamically
-$("#firstName").on("keyup", function() {
+$("#firstName").on("blur", function() {
     validateStandardInput("firstName");
 });
 
-$("#lastName").on("keyup", function(){
+$("#lastName").on("blur", function(){
     validateStandardInput("lastName");
 });
 
-$("#motivation-text").on("keyup", function() {
+$("#motivation-text").on("blur", function() {
     validateStandardInput("motivation-text");
 });
 
-$("#homePhone").on("keyup", function(){
+$("#homePhone").on("blur", function(){
     validatePhone("homePhone");
 });
 
-$("#email").on("keyup", function() {
+$("#email").on("blur", function() {
     validateEmail("email");
 });
 
-$("#streetAddress").on("keyup", function() {
+$("#streetAddress").on("blur", function() {
     validateStandardInput("streetAddress");
 });
 
@@ -63,43 +63,43 @@ $("#t-shirt-size").on("click", function(){
 });
 
 //Dallas Additions, validating References
-$("#ref1-name").on("keyup", function() {
+$("#ref1-name").on("blur", function() {
     validateStandardInput("ref1-name");
 });
-$("#ref2-name").on("keyup", function() {
+$("#ref2-name").on("blur", function() {
     validateStandardInput("ref2-name");
 });
-$("#ref3-name").on("keyup", function() {
+$("#ref3-name").on("blur", function() {
     validateStandardInput("ref3-name");
 });
 
-$("#ref1-phone").on("keyup", function(){
+$("#ref1-phone").on("blur", function(){
     validatePhone("ref1-phone");
 });
-$("#ref2-phone").on("keyup", function(){
+$("#ref2-phone").on("blur", function(){
     validatePhone("ref2-phone");
 });
-$("#ref3-phone").on("keyup", function(){
+$("#ref3-phone").on("blur", function(){
     validatePhone("ref3-phone");
 });
 
-$("#ref1-email").on("keyup", function() {
+$("#ref1-email").on("blur", function() {
     validateEmail("ref1-email");
 });
-$("#ref2-email").on("keyup", function() {
+$("#ref2-email").on("blur", function() {
     validateEmail("ref2-email");
 });
-$("#ref3-email").on("keyup", function() {
+$("#ref3-email").on("blur", function() {
     validateEmail("ref3-email");
 });
 
-$("#ref1-relationship").on("keyup", function() {
+$("#ref1-relationship").on("blur", function() {
     validateStandardInput("ref1-relationship");
 });
-$("#ref2-relationship").on("keyup", function() {
+$("#ref2-relationship").on("blur", function() {
     validateStandardInput("ref2-relationship");
 });
-$("#ref3-relationship").on("keyup", function() {
+$("#ref3-relationship").on("blur", function() {
     validateStandardInput("ref3-relationship");
 });
 
