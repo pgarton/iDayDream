@@ -12,15 +12,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- drop schema idaydream;
 -- create schema idaydream;
 -- -----------------------------------------------------
-USE paulsbun_idaydream ;
+USE pgartong_idaydream ;
 
-SET FOREIGN_KEY_CHECKS = 0; 
-truncate table volunteer_roles;
-truncate table volunteer_references;
-truncate table youth;
-truncate table genders;
-truncate table ethnicities;
-truncate table volunteers;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- -----------------------------------------------------
 -- Table ethnicities
@@ -249,11 +243,11 @@ CREATE TABLE IF NOT EXISTS volunteers (
   summer_camp_availability TINYINT(4) NULL DEFAULT NULL,
   other_role_text VARCHAR(80) NULL DEFAULT NULL,
   background_check_agreement TINYINT(4) NULL DEFAULT NULL,
-  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  shirt_sizes_id INT(11) NOT NULL,
   states_code CHAR(2) NOT NULL,
   lead_sources_id INT(11) NOT NULL,
+  shirt_sizes_id INT(11) NOT NULL,
+  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   INDEX fk_volunteers_shirt_sizes_idx (shirt_sizes_id ASC),
   INDEX fk_volunteers_states_idx (states_code ASC),
@@ -284,6 +278,7 @@ DROP TABLE IF EXISTS volunteer_references ;
 
 CREATE TABLE IF NOT EXISTS volunteer_references (
   id INT(11) NOT NULL AUTO_INCREMENT,
+  volunteers_id INT(11) NOT NULL,
   active TINYINT(4) NULL DEFAULT '1',
   full_name VARCHAR(60) NOT NULL,
   phone_number VARCHAR(20) NOT NULL,
@@ -291,7 +286,6 @@ CREATE TABLE IF NOT EXISTS volunteer_references (
   relationship VARCHAR(45) NOT NULL,
   created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  volunteers_id INT(11) NOT NULL,
   PRIMARY KEY (id),
   INDEX fk_volunteer_references_volunteers_idx (volunteers_id ASC),
   CONSTRAINT fk_volunteer_references_volunteers
@@ -311,10 +305,10 @@ DROP TABLE IF EXISTS volunteer_roles ;
 CREATE TABLE IF NOT EXISTS volunteer_roles (
   id INT(11) NOT NULL AUTO_INCREMENT,
   active TINYINT(4) NOT NULL DEFAULT '1',
-  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   volunteers_id INT(11) NOT NULL,
   roles_id INT(11) NOT NULL,
+  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE INDEX id_UNIQUE (id ASC),
   INDEX fk_volunteer_roles_volunteers_idx (volunteers_id ASC),
@@ -347,10 +341,13 @@ CREATE TABLE IF NOT EXISTS youth (
   email VARCHAR(45) NOT NULL,
   graduating_class INT(11) NOT NULL,
   college_of_interest VARCHAR(45) NULL DEFAULT NULL,
+  career_aspirations varchar(80) NULL DEFAULT NULL,
   food_snacks VARCHAR(80) NULL DEFAULT NULL,
   date_of_birth DATE NOT NULL,
-  other_gender_text VARCHAR(80) NULL DEFAULT NULL,
   other_ethnicity_text VARCHAR(80) NULL DEFAULT NULL,
+  guardian_full_name VARCHAR(60) NOT NULL,
+  guardian_phone VARCHAR(20) NOT NULL,
+  guardian_email VARCHAR(45) NOT NULL,
   created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   ethnicities_id INT(11) NOT NULL,
@@ -373,29 +370,33 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
-                            
+
 -- create views
-                            
+
 create or replace view v_volunteers as
-select v.first_name, v.last_name, v.home_phone, v.email, v.add_to_mailing_list, v.address1, v.address2, v.policy_agreement, v.city, v.states_code, states.name as state, v.zip_code, 
+select v.id as volunteer_id, v.first_name, v.last_name, v.home_phone, v.email, v.add_to_mailing_list, v.address1, v.address2, v.policy_agreement, v.city, v.states_code, states.name as state, v.zip_code,
 v.weekend_availability, v.summer_camp_availability, v.other_role_text, v.background_check_agreement, v.shirt_sizes_id, shirt_sizes.size as shirt_size, v.lead_sources_id, lead_sources.lead
 from volunteers v
 left outer join states on states.code = v.states_code
 left outer join shirt_sizes on shirt_sizes.id = v.shirt_sizes_id
 left outer join lead_sources on lead_sources.id = v.lead_sources_id;
 
-create or replace view v_volunteer_references as 
-select v.first_name as volunteer_first_name, v.last_name as volunteer_last_name, vr.full_name as reference,
+create or replace view v_volunteer_references as
+select v.id as volunteer_id, v.first_name as volunteer_first_name, v.last_name as volunteer_last_name, vr.full_name as reference,
 vr.phone_number as ref_phone, vr.email as ref_email, vr.relationship
 from volunteers v left outer join volunteer_references vr on vr.volunteers_id = v.id;
 
 create or replace view v_volunteer_roles as
-select v.first_name as volunteer_first_name, v.last_name as volunteer_last_name, r.role, vr.active
+select v.id as volunteer_id, v.first_name as volunteer_first_name, v.last_name as volunteer_last_name, r.role, vr.active
 from volunteers v left outer join volunteer_roles vr on vr.volunteers_id = v.id
 left outer join roles r on r.id = vr.roles_id;
 
-create or replace view v_youth as select y.id as youth_id, y.first_name, y.last_name, y.home_phone, y.email, y.graduating_class, y.college_of_interest,
-  y.food_snacks, y.date_of_birth, y.genders_id, g.gender, y.other_gender_text, y.ethnicities_id, e.ethnicity, y.other_ethnicity_text
+create or replace view v_youth as
+select y.id as youth_id, y.first_name, y.last_name, y.home_phone, y.email, y.graduating_class, y.college_of_interest,
+  y.food_snacks, y.date_of_birth, y.genders_id, g.gender, y.ethnicities_id, e.ethnicity, y.career_aspirations,
+  case when length(COALESCE(y.other_ethnicity_text,'')) < 1 then e.ethnicity
+  else concat(e.ethnicity, " : ", y.other_ethnicity_text)
+  end as ethnicity_all, y.guardian_full_name, y.guardian_email, y.guardian_phone
 from youth y
 left outer join genders g on g.id = y.genders_id
 left outer join ethnicities e on e.id = y.ethnicities_id;
