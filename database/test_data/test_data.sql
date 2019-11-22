@@ -48,18 +48,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 delete from volunteers;
 SET FOREIGN_KEY_CHECKS = 1;
 
-insert into volunteers values (null, true, 'Alex', 'Anderson', '253-111-1111', 'alex@gmail.com', true, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Betty', 'Benjamin', '253-111-1111', 'betty@gmail.com', false, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 1, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Charlie', 'Cicarello', '253-111-1111', 'charlie@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Doris', 'Davis', '253-111-1111', 'doris@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Edward', 'Edwards', '253-111-1111', 'edward@gmail.com', true, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 0, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Fran', 'Francis', '253-111-1111', 'fran@gmail.com', false, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Grant', 'Griggs', '253-111-1111', 'grant@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Helen', 'Hopewell', '253-111-1111', 'helen@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 1, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Igor', 'Ignatowski', '253-111-1111', 'igor@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 0, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Janet', 'Jackson', '253-111-1111', 'janet@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Kyle', 'King', '253-111-1111', 'kyle@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, now(), now());
-insert into volunteers values (null, true, 'Lina', 'Lazurus', '253-111-1111', 'lina@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, now(), now());
+insert into volunteers values (null, true, 'Alex', 'Anderson', '253-111-1111', 'alex@gmail.com', true, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, 1, "Special Skills", 1, "Volunteer exp", 1, "non-Volunteer experience", now(), now());
+insert into volunteers values (null, true, 'Betty', 'Benjamin', '253-111-1111', 'betty@gmail.com', false, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 1, 'Other Role Text', true, 'WA', 1, 1, 1, "Special Skills", 1, "Volunteer exp", 1, "non-Volunteer experience", now(), now());
+insert into volunteers values (null, true, 'Charlie', 'Cicarello', '253-111-1111', 'charlie@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, 1, "Special Skills", 1, "Volunteer exp", 1, "non-Volunteer experience", now(), now());
+insert into volunteers values (null, true, 'Doris', 'Davis', '253-111-1111', 'doris@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Edward', 'Edwards', '253-111-1111', 'edward@gmail.com', true, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 0, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Fran', 'Francis', '253-111-1111', 'fran@gmail.com', false, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Grant', 'Griggs', '253-111-1111', 'grant@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Helen', 'Hopewell', '253-111-1111', 'helen@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 1, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Igor', 'Ignatowski', '253-111-1111', 'igor@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 0, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Janet', 'Jackson', '253-111-1111', 'janet@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Kyle', 'King', '253-111-1111', 'kyle@gmail.com', false, '111 Apple St', 'Apt. 1', true, 'Tacoma', 98188, 1, 1, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
+insert into volunteers values (null, true, 'Lina', 'Lazurus', '253-111-1111', 'lina@gmail.com', true, '111 Apple St', 'Apt. 1', false, 'Tacoma', 98188, 0, 0, 'Other Role Text', true, 'WA', 1, 1, 0, null, 0, null, 0, null, now(), now());
 
 truncate table volunteer_references;
 
@@ -85,4 +85,3 @@ insert into volunteer_roles values (null, true, 3, 2, now(), now());
 insert into volunteer_roles values (null, true, 3, 3, now(), now());
 insert into volunteer_roles values (null, true, 3, 4, now(), now());
 insert into volunteer_roles values (null, true, 3, 5, now(), now());
-
