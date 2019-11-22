@@ -400,7 +400,3 @@ select y.id as youth_id, y.first_name, y.last_name, y.home_phone, y.email, y.gra
 from youth y
 left outer join genders g on g.id = y.genders_id
 left outer join ethnicities e on e.id = y.ethnicities_id;
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
