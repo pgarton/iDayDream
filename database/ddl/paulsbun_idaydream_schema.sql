@@ -396,7 +396,7 @@ select y.id as youth_id, y.first_name, y.last_name, y.home_phone, y.email, y.gra
   y.food_snacks, y.date_of_birth, y.genders_id, g.gender, y.ethnicities_id, e.ethnicity, y.career_aspirations,
   case when length(COALESCE(y.other_ethnicity_text,'')) < 1 then e.ethnicity
   else concat(e.ethnicity, " : ", y.other_ethnicity_text)
-  end as ethnicity_all, y.guardian_full_name, y.guardian_email, y.guardian_phone
+  end as ethnicity_all, y.guardian_full_name, y.guardian_email, y.guardian_phone, y.active
 from youth y
 left outer join genders g on g.id = y.genders_id
 left outer join ethnicities e on e.id = y.ethnicities_id;
