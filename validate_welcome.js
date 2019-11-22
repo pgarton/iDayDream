@@ -21,12 +21,12 @@ let isValid;
 
 
 //commenting out dynamic validation found some issues
-$("#firstName").on("keyup", function(){validateStandardInput("firstName")});
-$("#lastName").on("keyup", function(){validateStandardInput("lastName")});
-$("#homePhone").on("keyup", function(){validatePhone("homePhone")});
-$("#email").on("keyup", function(){validateEmail("email")});
+$("#firstName").on("blur", function(){validateStandardInput("firstName")});
+$("#lastName").on("blur", function(){validateStandardInput("lastName")});
+$("#homePhone").on("blur", function(){validatePhone("homePhone")});
+$("#email").on("blur", function(){validateEmail("email")});
 $("#graduatingClass").on("click", function(){validateDropdown("graduatingClass")});
-$("#birthdate").on("keyup", function(){validateBirthdate()});
+$("#birthdate").on("blur", function(){validateBirthdate()});
 $("#gender").on("click", function(){validateDropdown("gender")});
 $("#ethnicity").on("click", function(){validateDropdown("ethnicity")});
 
