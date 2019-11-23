@@ -15,18 +15,20 @@ Welcome form online so that the organization can get to know me.
     -Given a youth member completing the signup form, when the required fields
     (marked with an asterisk) are not provided or are invalid, then they will see a friendly error message*/
 
+
+let isValid;
 //Dynamically Validating Form
 
 
 //commenting out dynamic validation found some issues
-/*$("#firstName").on("keydown", validateFirstName);
-$("#lastName").on("keydown", validateLastName);
-$("#homePhone").on("keydown", validatePhone);
-$("#email").on("keydown", validateEmail);
-$("#graduatingClass").on("click", validateGraduatingClass);
-$("#birthdate").on("keydown", validateBirthdate);
-$("#gender").on("click", validateGender);
-$("#ethnicity").on("click", validateEthnicity);*/
+$("#firstName").on("blur", function(){validateStandardInput("firstName")});
+$("#lastName").on("blur", function(){validateStandardInput("lastName")});
+$("#homePhone").on("blur", function(){validatePhone("homePhone")});
+$("#email").on("blur", function(){validateEmail("email")});
+$("#graduatingClass").on("click", function(){validateDropdown("graduatingClass")});
+$("#birthdate").on("blur", function(){validateBirthdate()});
+$("#gender").on("click", function(){validateDropdown("gender")});
+$("#ethnicity").on("click", function(){validateDropdown("ethnicity")});
 
 // Formatting phone input
 
@@ -35,9 +37,9 @@ $("#homePhone").on("keyup", function() {
 });
 
 //validating the form on submission
-//$("#welcomeForm").on("submit", validate);
+$("#welcomeForm").on("submit", validate);
 
-let isValid;
+
 
 function validate() {
     isValid = true;
