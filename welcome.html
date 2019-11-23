@@ -57,7 +57,7 @@
           <!-- Form Field: Home Phone -->
           <label for="homePhone">Home Phone *</label>
           <input type="tel" class="form-control" id="homePhone" name="homePhone" maxlength="30"
-                  placeholder="(XXX)XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
+                 placeholder="(XXX)XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
         </div>
         <!-- Form Field: Email -->
         <div class="form-group col-md-6">
@@ -144,6 +144,31 @@
               <textarea class="form-control" id="other-ethnicity-text" name="otherEthnicity" placeholder="Other selected. Please explain" rows="3" cols="20"></textarea>
             </div>
           </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <legend>Guardian Information</legend>
+      <!-- Form Field: Guardian Name -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="guardianName">Guardian Name *</label>
+          <input type="text" class="form-control" id="guardianName" name="guardianName">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <!-- Form Field: Guardian Phone -->
+          <label for="guardianPhone">Guardian Phone *</label>
+          <input type="tel" class="form-control" id="guardianPhone" name="guardianPhone" maxlength="30"
+                 placeholder="(XXX)XXX-XXXX"> <!--Elijah Edit: Added placeholder to homePhone --> <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
+        </div>
+        <!-- Form Field: Email -->
+        <div class="form-group col-md-6">
+          <label for="guardianEmail">Guardian Email *</label>
+          <input type="email" class="form-control" id="guardianEmail" name="guardianEmail" maxlength="40">
         </div>
       </div>
     </fieldset>
