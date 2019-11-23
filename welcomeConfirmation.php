@@ -18,8 +18,9 @@
 <body>
 <?php
 
- require ('/home/paulsbun/connect.php');
-// require ('/home2/pgartong/connect.php');
+  $user = posix_getpwuid(posix_getuid());
+  $userDir = $user['dir'];
+  require ("$userDir/connect.php");
 
 // assign variables to POST array values
 $firstName = $_POST["firstName"];
