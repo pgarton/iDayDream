@@ -387,7 +387,7 @@ lead_sources.lead AS lead,v.active AS active,v.special_skills AS special_skills,
 v.youth_volunteer_exp_text AS youth_volunteer_exp_text,v.non_youth_volunteer_exp AS non_youth_volunteer_exp,v.non_youth_volunteer_exp_text AS non_youth_volunteer_exp_text 
 from (((volunteers v left join states on((states.code = v.states_code))) left join shirt_sizes on((shirt_sizes.id = v.shirt_sizes_id))) left join lead_sources on((lead_sources.id = v.lead_sources_id))) ;
 
-create or replace view v_volunteer_references as
+create or replace view v_volunteer_references
 AS  select v.id AS volunteer_id,v.first_name AS volunteer_first_name,v.last_name AS volunteer_last_name,
 vr.full_name AS reference,vr.phone_number AS ref_phone,vr.email AS ref_email, vr.relationship AS relationship,v.active AS volunteer_active 
 from (volunteers v left join volunteer_references vr on((vr.volunteers_id = v.id))) ;
