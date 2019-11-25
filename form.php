@@ -1,4 +1,16 @@
+<?php
+//Turn on error reporting -- this is critical!
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
+$user = posix_getpwuid(posix_getuid());
+$userDir = $user['dir'];
+require ("$userDir/connect.php");
+
+// connect 2 was used to create changes locally
+//require('connect2.php');
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,11 +56,11 @@
 
     <div class="form-group">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-yes" value="yes">
+        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-yes" value="1">
         <label class="form-check-label" for="bg-check-yes">YES</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-no" value="no">
+        <input class="form-check-input" type="radio" name="bgCheck" id="bg-check-no" value="0">
         <label class="form-check-label" for="bg-check-no">NO</label>
       </div>
       <p class="form-check-inline">I submit to a possible background check </p>
@@ -112,6 +124,24 @@
         <div class="form-group col-md-4">
           <label for="state">State</label>
           <select id="state" name="state" class="form-control">  <!-- Elijah Edit: Fixed the state dropdown to have a value for Washington-->
+              <?php
+
+              $sql = "SELECT * FROM states";
+              $result = mysqli_query($cnxn, $sql);
+
+              //processing resuslt
+              while ($row = mysqli_fetch_assoc($result)){
+                  $id = $row["code"];
+                  $name = $row["name"];
+                  if ($id =='WA'){
+                      echo "<option value = '$id' selected>$name</option>";
+                      }
+                  else {
+                      echo "<option value = '$id'>$name</option>";
+                  }
+              }
+              ?>
+<!--      commenting out to try and pull from database
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -163,6 +193,7 @@
             <option value="WV">West Virginia</option>
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
+-->
           </select>
         </div>
         <div class="form-group col-md-2">
@@ -177,11 +208,26 @@
           <label for="t-shirt-size">T-Shirt Size (Adult Unisex) *</label>
           <select class="form-control" id="t-shirt-size" name="tShirtSize">
             <option value="none">Select a Size</option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-            <option value="extra-large">Extra Large</option>
-          </select>
+              <?php
+              $sql = "SELECT * FROM shirt_sizes";
+              $result = mysqli_query($cnxn, $sql);
+
+              //processing resuslt
+              while ($row = mysqli_fetch_assoc($result)){
+                  $id = $row["id"];
+                  $size = $row["size"];
+                  echo "<option value = '$id'>$size</option>";
+              }
+              ?>
+
+              //commenting out below to use database values instead
+<!--            <option value="1">Extra Small</option>
+            <option value="2">Small</option>
+            <option value="3">Medium</option>
+            <option value="4">Large</option>
+            <option value="5">Extra Large</option>
+            <option value="6">XXL</option>
+-->          </select>
         </div>
       </div>
     </fieldset>
@@ -256,37 +302,37 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
       <p class="form-group">Are there any specific roles you wish to fill?</p>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles[]" id="events" value="events">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="events" value="1">
         <label class="form-check-label" for="events">
           Events (College Tours, Community Service)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles[]" id="fundraising" value="fundraising">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="fundraising" value="2">
         <label class="form-check-label" for="fundraising">
           Fundraising
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles[]" id="newsletter" value="newsletter">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="newsletter" value="3">
         <label class="form-check-label" for="newsletter">
           Newsletter Production (Monthly)
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles[]" id="coordination" value="coordination">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="coordination" value="4">
         <label class="form-check-label" for="coordination">
           Volunteer Coordination
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="roles[]" id="mentoring" value="mentoring">
+        <input class="form-check-input" type="checkbox" name="roles[]" id="mentoring" value="5">
         <label class="form-check-label" for="mentoring">
           Mentoring
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input form-check-inline" type="checkbox" name="roles[]" id="other-interest" value="other-interest">
+        <input class="form-check-input form-check-inline" type="checkbox" name="roles[]" id="other-interest" value="6">
         <label class="form-check-label form-check-inline" for="other-interest">
           Other
         </label>
@@ -461,12 +507,25 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
           <label for="hear-about-us">How Did You Hear About Us?</label>
           <select class="form-control" id="hear-about-us" name="hearAboutUs">
             <option value="none">Please Select</option>
-            <option value="word">Word of Mouth/Friend/Colleague</option>
+              <?php
+              $sql = "SELECT * FROM lead_sources";
+              $result = mysqli_query($cnxn, $sql);
+
+              //processing resuslt
+              while ($row = mysqli_fetch_assoc($result)){
+                  $id = $row["id"];
+                  $lead = $row["lead"];
+                  echo "<option value = '$id'>$lead</option>";
+              }
+              ?>
+
+              <!--commenting out to use database -->
+<!--            <option value="word">Word of Mouth/Friend/Colleague</option>
             <option value="wed">Web/Social Media</option>
             <option value="print">Print (Flyer/Poster/Brochure</option>
             <option value="corporate">Corporate Sponsor</option>
             <option value="other">Other</option>
-          </select>
+-->          </select>
           <div id ="other-hear-about-us" class="form-check-inline">
             <div class="form-group">
               <label for="other-hear-about-us-text"></label>
@@ -479,11 +538,11 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
       <label>Add to mailing list?</label>
       <div class = "form-row" id="mail">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mailingList" id="mailing-list-yes" value="yes" checked>
+          <input class="form-check-input" type="radio" name="mailingList" id="mailing-list-yes" value="1" checked>
           <label class="form-check-label" for="mailing-list-yes">YES</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="mailingList" id="mailing-list-no" value="no">
+          <input class="form-check-input" type="radio" name="mailingList" id="mailing-list-no" value="0">
           <label class="form-check-label" for="mailing-list-no">NO</label>
         </div>
       </div>
@@ -499,7 +558,7 @@ Sunday:</textarea> <!--the weird spacing is needed to show these accurately with
       <p>By submitting this application, I certify that my statements in this application are true, complete and correct to the best of my knowledge. I further understand that as a part of the volunteer verification and matching process, additional personal information will be required of me. I hereby authorize iD.A.Y.dream to contact the references listed and to conduct a background check to determine if I will be a good fit as a volunteer for the organization. I understand that submitting this application does not guarantee my participation. I also hereby authorize iD.A.Y.dream without limitation, to copy, publish, exhibit or distribute photographs or video tapes of my volunteer activities for the purpose of promoting volunteerism and support. I release and hold harmless from liability any person or organization that provides information. I also agree to hold harmless iD.A.Y.dream and the officers and volunteers thereof.</p>
       <div class="form-group">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="policy" name="policy" value="yes">
+          <input class="form-check-input" type="checkbox" id="policy" name="policy" value="1">
           <label class="form-check-label" for="policy">I agree to the Policy and Agreement above</label>
         </div>
       </div>
