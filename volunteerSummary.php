@@ -199,6 +199,7 @@
   </table>
 
   <a id = "add" href="form.html">Add a new Volunteer</a>
+      <a id = "toMail" href="dreamail.php?source=volunteers">Mass Email to Volunteers</a>
 
 </div>
 

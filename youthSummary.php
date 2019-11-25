@@ -114,6 +114,7 @@ error_reporting(E_ALL);
   </table>
 
   <a id = "add" href="welcome.html">Add a new youth</a>
+      <a id = "toMail" href="dreamail.php?source=dreamers">Mass Email to Dreamers</a>
 
 </div>
 
