@@ -30,10 +30,19 @@ $("#birthdate").on("blur", function(){validateBirthdate()});
 $("#gender").on("click", function(){validateDropdown("gender")});
 $("#ethnicity").on("click", function(){validateDropdown("ethnicity")});
 
+$("#guardianEmail").on("blur", function(){validateEmail("guardianEmail")});
+$("#guardianName").on("blur", function(){validateStandardInput("guardianName")});
+$("#guardianPhone").on("blur", function(){validatePhone("guardianPhone")});
+
+
 // Formatting phone input
 
 $("#homePhone").on("keyup", function() {
     formatPhone("#homePhone");
+});
+
+$("#guardianPhone").on("keyup", function() {
+    formatPhone("#guardianPhone");
 });
 
 //validating the form on submission
@@ -51,6 +60,10 @@ function validate() {
     validateBirthdate();
     validateDropdown("gender");
     validateDropdown("ethnicity");
+
+    validateStandardInput("guardianName");
+    validateEmail("guardianEmail");
+    validatePhone("guardianPhone");
 
 
     //end
@@ -119,20 +132,20 @@ function validateBirthdate(){
 
     console.log($dateOfBirth);
 
-        let minDate = Date.parse("01/01/2000"); //Dreamers will be within this range
-        let today = new Date();
-        today = Date.parse(today);
+    let minDate = Date.parse("01/01/2000"); //Dreamers will be within this range
+    let today = new Date();
+    today = Date.parse(today);
 
-        let DOB = Date.parse($dateOfBirth);
-        console.log("Today: "+today);
-        console.log("minDate: "+minDate);
-        console.log("DOB: "+DOB);
-        if (isNaN(DOB)||(DOB >= today || DOB <= minDate)) {
-            $("#birthdate").addClass("invalid");
-            isValid =  false;
-        } else {
-            $("#birthdate").removeClass("invalid");
-        }
+    let DOB = Date.parse($dateOfBirth);
+    console.log("Today: "+today);
+    console.log("minDate: "+minDate);
+    console.log("DOB: "+DOB);
+    if (isNaN(DOB)||(DOB >= today || DOB <= minDate)) {
+        $("#birthdate").addClass("invalid");
+        isValid =  false;
+    } else {
+        $("#birthdate").removeClass("invalid");
+    }
 
 }
 
@@ -152,10 +165,6 @@ function formatPhone(id) { // auto-formats phone input
 
     $(id).val(str);
 }
-
-
-
-
 
 
 
