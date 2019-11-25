@@ -13,6 +13,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- create schema idaydream;
 -- -----------------------------------------------------
 
+
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- -----------------------------------------------------
@@ -245,12 +246,6 @@ CREATE TABLE IF NOT EXISTS volunteers (
   states_code CHAR(2) NOT NULL,
   lead_sources_id INT(11) NOT NULL,
   shirt_sizes_id INT(11) NOT NULL,
-  special_skills tinyint(4) not null default '0',
-  special_skills_text varchar(120) null,
-  youth_volunteer_exp tinyint(4) not null default '0',
-  youth_volunteer_exp_text varchar(120) null,
-  non_youth_volunteer_exp tinyint(4) not null default '0',
-  non_youth_volunteer_exp_text varchar(120) null,
   created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   last_updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
@@ -379,18 +374,17 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- create views
 
 create or replace view v_volunteers as
-select v.id AS volunteer_id,v.first_name AS first_name,v.last_name AS last_name,
-v.home_phone AS home_phone,v.email AS email,v.add_to_mailing_list AS add_to_mailing_list,v.address1 AS address1,v.address2 AS address2,v.policy_agreement AS policy_agreement,
-v.city AS city,v.states_code AS states_code,states.name AS state,v.zip_code AS zip_code,v.weekend_availability AS weekend_availability,v.summer_camp_availability AS summer_camp_availability,
-v.other_role_text AS other_role_text,v.background_check_agreement AS background_check_agreement,v.shirt_sizes_id AS shirt_sizes_id,shirt_sizes.size AS shirt_size,v.lead_sources_id AS lead_sources_id,
-lead_sources.lead AS lead,v.active AS active,v.special_skills AS special_skills,v.special_skills_text AS special_skills_text,v.youth_volunteer_exp AS youth_volunteer_exp,
-v.youth_volunteer_exp_text AS youth_volunteer_exp_text,v.non_youth_volunteer_exp AS non_youth_volunteer_exp,v.non_youth_volunteer_exp_text AS non_youth_volunteer_exp_text 
-from (((volunteers v left join states on((states.code = v.states_code))) left join shirt_sizes on((shirt_sizes.id = v.shirt_sizes_id))) left join lead_sources on((lead_sources.id = v.lead_sources_id))) ;
+select v.id as volunteer_id, v.first_name, v.last_name, v.home_phone, v.email, v.add_to_mailing_list, v.address1, v.address2, v.policy_agreement, v.city, v.states_code, states.name as state, v.zip_code,
+v.weekend_availability, v.summer_camp_availability, v.other_role_text, v.background_check_agreement, v.shirt_sizes_id, shirt_sizes.size as shirt_size, v.lead_sources_id, lead_sources.lead
+from volunteers v
+left outer join states on states.code = v.states_code
+left outer join shirt_sizes on shirt_sizes.id = v.shirt_sizes_id
+left outer join lead_sources on lead_sources.id = v.lead_sources_id;
 
-create or replace view v_volunteer_references
-AS  select v.id AS volunteer_id,v.first_name AS volunteer_first_name,v.last_name AS volunteer_last_name,
-vr.full_name AS reference,vr.phone_number AS ref_phone,vr.email AS ref_email, vr.relationship AS relationship,v.active AS volunteer_active 
-from (volunteers v left join volunteer_references vr on((vr.volunteers_id = v.id))) ;
+create or replace view v_volunteer_references as
+select v.id as volunteer_id, v.first_name as volunteer_first_name, v.last_name as volunteer_last_name, vr.full_name as reference,
+vr.phone_number as ref_phone, vr.email as ref_email, vr.relationship
+from volunteers v left outer join volunteer_references vr on vr.volunteers_id = v.id;
 
 create or replace view v_volunteer_roles as
 select v.id as volunteer_id, v.first_name as volunteer_first_name, v.last_name as volunteer_last_name, r.role, vr.active
@@ -402,7 +396,7 @@ select y.id as youth_id, y.first_name, y.last_name, y.home_phone, y.email, y.gra
   y.food_snacks, y.date_of_birth, y.genders_id, g.gender, y.ethnicities_id, e.ethnicity, y.career_aspirations,
   case when length(COALESCE(y.other_ethnicity_text,'')) < 1 then e.ethnicity
   else concat(e.ethnicity, " : ", y.other_ethnicity_text)
-  end as ethnicity_all, y.guardian_full_name, y.guardian_email, y.guardian_phone, y.active
+  end as ethnicity_all, y.guardian_full_name, y.guardian_email, y.guardian_phone
 from youth y
 left outer join genders g on g.id = y.genders_id
 left outer join ethnicities e on e.id = y.ethnicities_id;
