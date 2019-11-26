@@ -27,8 +27,9 @@ error_reporting(E_ALL);
 
 <?php
 
-require ('/home/paulsbun/connect.php');
-//require ('connect.php');
+$user = posix_getpwuid(posix_getuid());
+$userDir = $user['dir'];
+require ("$userDir/connect.php");
 
 
 $dreamers = $_POST['dreamerMode'];

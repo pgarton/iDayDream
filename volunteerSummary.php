@@ -53,7 +53,8 @@
             case when youth_volunteer_exp > 0 then "Yes" else "No" end as youth_volunteer_exp,
             case when non_youth_volunteer_exp > 0 then "Yes" else "No" end as non_youth_volunteer_exp,
             special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3
-          from v_volunteers;';
+          from v_volunteers
+          where active = 1;';
 
   //Send the query to the database
   $resultM = mysqli_query($cnxn, $sqlM);

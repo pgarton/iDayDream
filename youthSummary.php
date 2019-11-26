@@ -44,7 +44,8 @@ error_reporting(E_ALL);
   $sql = 'select youth_id, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
             career_aspirations, food_snacks, date_of_birth, gender, ethnicity_all, guardian_full_name,
             guardian_phone, guardian_email
-          from v_youth;';
+          from v_youth
+          where active = 1;';
   //Send the query to the database
   $result = mysqli_query($cnxn, $sql);
   //var_dump($result);
@@ -114,7 +115,7 @@ error_reporting(E_ALL);
   </table>
 
   <a id = "add" href="welcome.html">Add a new youth</a>
-
+    <a id = "toMail" href="dreamail.php?source=dreamers">Mass Email to Dreamers</a>
 </div>
 
 <script src="//code.jquery.com/jquery-3.3.1.js"></script>
