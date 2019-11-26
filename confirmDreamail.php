@@ -66,17 +66,21 @@ if ($mode == "DREAMERS" OR $mode == "ALL") {
     while ($row = mysqli_fetch_assoc($result)) {
         $dreamer = $row['email'];
         $guardian = $row['guardian_email'];
+        $dreamer = trim($dreamer);
+        $guardian = trim($guardian);
 
-        $to = "$dreamer".", "."$guardian";
+        $to = "$dreamer, $guardian";
+    
+        echo "<p> $to </p>";
 
-        $headers = "From: emaret2@mail.greenriver.edu\r\n";
-        $headers .= "Reply-To: emaret2@mail.greenriver.edu \r\n";
+        $headers = "From: Emaret2@mail.greenriver.edu\r\n";
+        $headers .= "Reply-To: Emaret2@mail.greenriver.edu \r\n";
 
 
         $success = mail($to, $subject, $body, $headers);
         if (!$success) {
             $finalSuccess = false;
-            echo "<p> Email failed to send to $email";
+            echo "<p> Email failed to send to $to";
         }
 
     }
@@ -86,14 +90,20 @@ if ($mode == "VOLUNTEERS" OR $mode == "ALL"){
     $sql = "SELECT email FROM `v_volunteers` WHERE active = 1;";
     $result = mysqli_query($cnxn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        $to = $row['email'];
-        $headers = "From: emaret2@mail.greenriver.edu\r\n";
-        $headers .= "Reply-To: emaret2@mail.greenriver.edu \r\n";
+        $volunteer = $row['email'];
+        $volunteer = trim($to);
+        
+        $to = "$volunteer";
+        
+        echo "<p> $to </p>";
+        
+        $headers = "From: Emaret2@mail.greenriver.edu\r\n";
+        $headers .= "Reply-To: Emaret2@mail.greenriver.edu \r\n";
 
         $success = mail($to, $subject, $body, $headers);
         if (!$success) {
             $finalSuccess = false;
-            echo "<p> Email failed to send to $email";
+            echo "<p> Email failed to send to $to";
         }
 
     }
