@@ -26,7 +26,7 @@
     //require("connect2.php");
 
 
-//var_dump($_POST);
+// var_dump($_POST);
 
 // assign variables to POST array values
     $firstName = $_POST["firstName"];
@@ -152,6 +152,8 @@ if ($isValidSSVolunteer) {
             values ('$firstName', '$lastName', '$homePhone', '$email', '$streetAddress', '$address2', '$city','$zipCode','$tShirtSize',
             '$state', '$hearAboutUs','$mailingList','$policyAccepted', '$weekend', '$summerCamp','$otherText','$bgCheck',
             '$specialSkillsInterestss', '$youthVolunteerExp', '$nonYouthExperience','$skillsInterest', '$youthExp', '$nonYouthExp');";
+
+    echo"$sql";
 
     $result = mysqli_query($cnxn, $sql);
     $lastID = mysqli_insert_id($cnxn); // getting the last inserted incremented ID for the second sql statement
