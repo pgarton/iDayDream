@@ -92,7 +92,7 @@ if ($mode == "VOLUNTEERS" OR $mode == "ALL"){
     $result = mysqli_query($cnxn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $volunteer = $row['email'];
-        $volunteer = trim($to);
+        $volunteer = trim($volunteer);
         
         $to = "$volunteer";
         
