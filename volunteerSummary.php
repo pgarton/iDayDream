@@ -57,6 +57,7 @@
 
   //Send the query to the database
   $resultM = mysqli_query($cnxn, $sqlM);
+  // var_dump($resultM);
 
   ?>
 

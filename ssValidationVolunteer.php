@@ -17,7 +17,7 @@ $isValidSSVolunteer = true;
 //creating function to validate standard textboxes with only alpha characters
 function validateStandardInputAlpha($id, $field){
     global $isValidSSVolunteer;
-    if (ctype_alpha($id) && !empty($id)){
+    if ( !empty($id)) {
         return;
     }
     else
@@ -116,7 +116,7 @@ validateStandardInputNumeric($zipCode, "Zip Code");
 validateDropdown($tShirtSize, "T-Shirt Size");
 validateStandardInputMixed($motivation, "Motivation Explanation");
 //validating reference 1
-validateStandardInputAlpha($ref1Name, "Name for Reference 1");
+validateStandardInputAlpha($ref1Name, "Name for Reference 1 : $ref1Name");
 validatePhone($ref1Phone, "for Reference 1");
 validateEmail($ref1Email, "for Reference 1");
 validateStandardInputAlpha($ref1Relationship,"Relationship to Reference 1");

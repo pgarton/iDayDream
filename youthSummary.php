@@ -3,14 +3,14 @@
     Original Author:    Paul Garton
     Last Modified by:   Paul Garton
     Creation Date:      11/10/2019
-    Last Modified Date: 11/21/2019
+    Last Modified Date: 11/25/2019
     Filename:           youthSummary.php
  */
 //Turn on error reporting -- this is critical!
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// print_r($_POST);
+print_r($_POST);
 
 ?>
 
@@ -114,7 +114,6 @@ error_reporting(E_ALL);
   </table>
 
   <a id = "add" href="welcome.html">Add a new youth</a>
-      <a id = "toMail" href="dreamail.php?source=dreamers">Mass Email to Dreamers</a>
 
 </div>
 
