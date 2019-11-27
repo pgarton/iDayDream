@@ -108,3 +108,27 @@ insert into volunteer_roles values (null, true, 3, 2, now(), now());
 insert into volunteer_roles values (null, true, 3, 3, now(), now());
 insert into volunteer_roles values (null, true, 3, 4, now(), now());
 insert into volunteer_roles values (null, true, 3, 5, now(), now());
+
+insert into volunteer_roles values (null, true, 4, 1, now(), now());
+insert into volunteer_roles values (null, true, 4, 3, now(), now());
+insert into volunteer_roles values (null, true, 4, 5, now(), now());
+insert into volunteer_roles values (null, true, 5, 2, now(), now());
+insert into volunteer_roles values (null, true, 5, 4, now(), now());
+insert into volunteer_roles values (null, true, 5, 6, now(), now());
+insert into volunteer_roles values (null, true, 6, 1, now(), now());
+insert into volunteer_roles values (null, true, 6, 2, now(), now());
+insert into volunteer_roles values (null, true, 6, 3, now(), now());
+insert into volunteer_roles values (null, true, 7, 4, now(), now());
+insert into volunteer_roles values (null, true, 7, 5, now(), now());
+
+insert into volunteer_roles values (null, true, 8, 1, now(), now());
+insert into volunteer_roles values (null, true, 8, 3, now(), now());
+insert into volunteer_roles values (null, true, 8, 5, now(), now());
+insert into volunteer_roles values (null, true, 8, 2, now(), now());
+insert into volunteer_roles values (null, true, 9, 4, now(), now());
+insert into volunteer_roles values (null, true, 9, 6, now(), now());
+insert into volunteer_roles values (null, true, 10, 1, now(), now());
+insert into volunteer_roles values (null, true, 10, 2, now(), now());
+insert into volunteer_roles values (null, true, 11, 3, now(), now());
+insert into volunteer_roles values (null, true, 12, 4, now(), now());
+insert into volunteer_roles values (null, true, 12, 5, now(), now());
