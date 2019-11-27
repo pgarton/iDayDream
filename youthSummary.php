@@ -18,7 +18,7 @@ error_reporting(E_ALL);
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>iDayDream Youth Summary</title>
+  <title>iDayDream Dreamer Summary</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5dabc823c0e45245a9c250cd/1571544129492-S9RDI79OWVWOWVJEJG7E/ke17ZwdGBToddI8pDm48kJycfsYb1urLU93EpFqOTQmoCXeSvxnTEQmG4uwOsdIceAoHiyRoc52GMN5_2H8Wp7zww8OjRrqjaM7_0x6HDLp42EP6IAa5vAmscK3sHI4MkNL5tmfZ3otlI9yi1IzH2Q/favicon.ico">
 
@@ -31,7 +31,7 @@ error_reporting(E_ALL);
 <body>
 
 <script>document.body.style.display = "none";</script>
-<h3>Youth Summary</h3>
+<h3>Dreamer Summary</h3>
 <div class="contain">
 
 
@@ -41,20 +41,20 @@ error_reporting(E_ALL);
   require ("$userDir/connect.php");
 
   //Define the query
-  $sql = 'select youth_id, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
+  $sql = 'select dreamer_id, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
             career_aspirations, food_snacks, date_of_birth, gender, ethnicity_all, guardian_full_name,
             guardian_phone, guardian_email
-          from v_youth
+          from v_dreamers
           where active = 1;';
   //Send the query to the database
   $result = mysqli_query($cnxn, $sql);
   //var_dump($result);
   ?>
 
-  <table id="youth-table" class="display">
+  <table id="dreamer-table" class="display">
     <thead>
     <tr>
-      <th>Youth ID</th>
+      <th>Dreamer ID</th>
       <th>Last Name</th>
       <th>First Name</th>
       <th>Home Phone</th>
@@ -76,7 +76,7 @@ error_reporting(E_ALL);
     <?php
     //Print the results
     while ($row = mysqli_fetch_assoc($result)) {
-      $youthID = $row['youth_id'];
+      $dreamerID = $row['dreamer_id'];
       $firstName = $row['first_name'];
       $lastName = $row['last_name'];
       $homePhone = $row['home_phone'];
@@ -92,7 +92,7 @@ error_reporting(E_ALL);
       $guardianPhone = $row['guardian_phone'];
       $guardianEmail = $row['guardian_email'];
       echo "<tr>
-                <td>$youthID</td>
+                <td>$dreamerID</td>
                 <td>$lastName</td>
                 <td>$firstName</td>
                 <td>$homePhone</td>
@@ -114,7 +114,7 @@ error_reporting(E_ALL);
     </tbody>
   </table>
 
-  <a id = "add" href="welcome.html">Add a new youth</a>
+  <a id = "add" href="welcome.html">Add a new Dreamer</a>
     <a id = "toMail" href="dreamail.php?source=dreamers">Mass Email to Dreamers</a>
 </div>
 
@@ -127,7 +127,7 @@ error_reporting(E_ALL);
 <script>
     $(document).ready(function() {
         document.body.style.display = "block";
-        var DTable = $('#youth-table');
+        var DTable = $('#dreamer-table');
         DTable.DataTable( {
             "order": [[ 0, 'desc' ]],
             responsive: {

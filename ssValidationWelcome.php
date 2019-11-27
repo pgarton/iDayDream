@@ -2,9 +2,9 @@
 /**
  * iDayDream Youth Welcome Form Confirmation
  * Original Author:    Dallas Sloan
- * Last Modified by:   Dallas Sloan
+ * Last Modified by:   Paul Garton
  * Creation Date:      11/09/2019
- * Last Modified Date: 11/09/2019
+ * Last Modified Date: 11/26/2019
  *  Filename:          ssValidationWelcome.php
  */
 //Turn on error reporting -- this is critical!
@@ -18,7 +18,7 @@ $isValidSSWelcome=true;
 
 function validateStandardInput($id, $field){
     global $isValidSSWelcome;
-    if (ctype_alpha($id) && !empty($id)){
+    if (ctype_alpha(str_replace(" ","",$id)) && !empty($id)){
         return;
     }
     else
@@ -133,6 +133,10 @@ validateGraduatingClass($graduatingClass);
 validateBirthdate($birthdate);
 validateGender($gender);
 validateEthnicity($ethnicity);
+validateStandardInput($guardianName, "Guardian Name");
+validatePhone($guardianPhone, "Guardian Phone");
+validateEmail($guardianEmail, "Guardian Email");
+
 if (!$isValidSSWelcome){
     Echo "<h3>Please Navigate Back to Welcome Form and Correct Any Errors Displayed Above</h3>";
 

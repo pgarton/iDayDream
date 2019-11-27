@@ -1,9 +1,9 @@
 /*
 iDayDream student form validation
 Original Author:    Dallas Sloan
-Last Modified by:   Elijah Maret
+Last Modified by:   Paul Garton
 Creation Date:      10/25/2019
-Last Modified Date: 10/30/2019
+Last Modified Date: 11/26/2019
 Filename:           validate_welcome.js
 */
 
@@ -152,6 +152,7 @@ function validateBirthdate(){
 
 function formatPhone(id) { // auto-formats phone input
     // formats phone number
+    console.log("formatting phone");
     let str = $(id).val();
     str = str.replace(/\D/g, "");
 
