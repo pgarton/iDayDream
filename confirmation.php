@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <!--
-    iDayDream Youth Welcome Form Confirmation
-    Original Author:    Paul Garton
-    Last Modified by:   Paul Garton
+    iDayDream Volunteer Welcome Form Confirmation
+    Original Author:    Dallas Sloan
+    Last Modified by:   Dallas Sloan
     Creation Date:      10/29/2019
     Last Modified Date: 10/29/2019
     Filename:           confirmation.php
@@ -67,6 +67,54 @@
     $youthVolunteerExp = mysqli_real_escape_string($cnxn,0);
     $nonYouthExperience = mysqli_real_escape_string($cnxn,0);
     $roles = $_POST["roles"];
+
+//changing some of the digit values to a value the client will understand
+switch ($tShirtSize) {
+    case "1": $tShirtSizeLabel = "Extra Small"; break;
+    case "2": $tShirtSizeLabel = "Small"; break;
+    case "3": $tShirtSizeLabel = "Medium"; break;
+    case "4": $tShirtSizeLabel = "Large"; break;
+    case "5": $tShirtSizeLabel = "Extra Large"; break;
+    case "6": $tShirtSizeLabel = "XXL"; break;
+}
+
+//function to swithc role value to name value
+function rolesSwitch($role){
+switch ($role) {
+    case "1":
+        $rolesLabel = "Events (College Tours, Community Service)";
+        return $rolesLabel;
+        break;
+    case "2":
+        $rolesLabel = "Fundraising";
+        return $rolesLabel;
+        break;
+    case "3":
+        $rolesLabel = "Newsletter Production (Monthly)";
+        return $rolesLabel;
+        break;
+    case "4":
+        $rolesLabel = "Volunteer Coordination";
+        return $rolesLabel;
+        break;
+    case "5":
+        $rolesLabel = "Mentoring";
+        return $rolesLabel;
+        break;
+    case "6":
+        $rolesLabel = "Other";
+        return $rolesLabel;
+        break;
+}
+}
+switch ($hearAboutUs) {
+    case "1": $hearAboutUsLabel = "Word of Mouth/Friend/Colleague"; break;
+    case "2": $hearAboutUsLabel = "Web/Social Media"; break;
+    case "3": $hearAboutUsLabel = "Print (Flyer/Poster/Brochure)"; break;
+    case "4": $hearAboutUsLabel = "Corporate Sponsor"; break;
+    case "5": $hearAboutUsLabel = "Other"; break;
+}
+
 
 
 
@@ -153,8 +201,6 @@ if ($isValidSSVolunteer) {
             '$state', '$hearAboutUs','$mailingList','$policyAccepted', '$weekend', '$summerCamp','$otherText','$bgCheck',
             '$specialSkillsInterestss', '$youthVolunteerExp', '$nonYouthExperience','$skillsInterest', '$youthExp', '$nonYouthExp');";
 
-    echo"$sql";
-
     $result = mysqli_query($cnxn, $sql);
     $lastID = mysqli_insert_id($cnxn); // getting the last inserted incremented ID for the second sql statement
 
@@ -192,18 +238,25 @@ if ($isValidSSVolunteer) {
     echo "<div>City: " . $city . "</div>";
     echo "<div>State: " . $state . "</div>";
     echo "<div>ZipCode: " . $zipCode . "</div>";
-    echo "<div>T-Shirt Size: " . $tShirtSize . "</div>";
+    echo "<div>T-Shirt Size: " . $tShirtSizeLabel . "</div>";
     echo "<div>Availability: ";
     foreach ($_POST['availability'] as $selected) {
-        echo "$selected" . " ";
+        if ($selected == "weekend") {
+            echo "Weekends" . ", ";
+        }
+        if ($selected == "weekend-8"){
+            echo "SummerCamp 1-Week" . ", ";
+        }
     }
     echo "</div>";
-    echo "<div>Weekend Hours: " . $weekendHours . "</div>";
-
+    if ($weekend ==1) {
+        echo "<div>Weekend Hours: " . $weekendHours . "</div>";
+    }
 
     echo "<div>Roles: ";
     foreach ($_POST['roles'] as $selected) {
-        echo "$selected" . " ";
+        $roleSelected = rolesSwitch($selected);
+        echo "$roleSelected" . ", ";
     }
     echo "</div>";
 
@@ -242,13 +295,29 @@ if ($isValidSSVolunteer) {
     echo "<div>Email: " . $ref3Email . "</div>";
     echo "<div>Relationship: " . $ref3Relationship . "</div>";
 
-    echo "<div><br>How did you Hear About Us: " . $hearAboutUs . "</div>";
+    echo "<div><br>How did you Hear About Us: " . $hearAboutUsLabel . "</div>";
     if (strlen($otherHearAboutUs)) {
         echo "<div>Hear About Us Details: " . $otherHearAboutUs . "</div>";
     }
-    echo "<div>Mailing List: " . $mailingList . "</div>";
-    echo "<div>Policy Accepted: " . $policyAccepted . "</div>";
-    echo "<div>Background Check Accepted: " . $bgCheck . "</div>";
+    if ($mailingList == 1) {
+        echo "<div>Mailing List: YES</div>";
+    }
+    else{
+        echo "<div>Mailing List: NO</div>";
+    }
+    if ($policyAccepted == 1) {
+        echo "<div>Policy Accepted: YES</div>";
+    }
+    else{
+        echo "<div>Policy Accepted: NO</div>";
+    }
+    if ($bgCheck == 1) {
+        echo "<div>Background Check Accepted: YES</div>";
+    }
+    else{
+        echo "<div>Background Check Accepted: NO</div>";
+
+    }
 
 
 //Send Volunteer information to iDayDream Contact
@@ -265,17 +334,28 @@ if ($isValidSSVolunteer) {
     $email_body .= "City: " . $city . "\r\n";
     $email_body .= "State: " . $state . "\r\n";
     $email_body .= "Zip Code: " . $zipCode . "\r\n";
-    $email_body .= "T-Shirt Size: " . $tShirtSize . "\r\n";
+    $email_body .= "T-Shirt Size: " . $tShirtSizeLabel . "\r\n";
     $email_body .= "Availability: ";
     foreach ($_POST['availability'] as $selected) {
-        $email_body .= $selected . " ";
+        if ($selected == "weekend") {
+            $email_body .= "Weekends" . ", ";
+        }
+        if ($selected == "weekend-8"){
+            $email_body .= "SummerCamp 1-Week" . ", ";
+        }
     }
+    $email_body .= "\r\n";
+
+    if ($weekend ==1) {
     $email_body .= "Weekend Hours: " . $weekendHours . "\r\n";
+}
     $email_body .= "\r\n";
     $email_body .= "Roles: ";
     foreach ($_POST['roles'] as $selected) {
-        $email_body .= $selected . " ";
+        $roleSelected = rolesSwitch($selected);
+        $email_body .= $roleSelected . ", ";
     }
+
     $email_body .= "\r\n";
 
     if (strlen($otherText) > 1) {
@@ -312,13 +392,30 @@ if ($isValidSSVolunteer) {
     $email_body .= "Email: " . $ref3Email . "\r\n";
     $email_body .= "Relationship: " . $ref3Relationship . "\r\n";
 
-    $email_body .= "\nHow did you Hear About Us: " . $hearAboutUs . "\r\n";
+    $email_body .= "\nHow did you Hear About Us: " . $hearAboutUsLabel . "\r\n";
     if (strlen($otherHearAboutUs)) {
         $email_body .= "Hear About Us Details: " . $otherHearAboutUs . "\r\n";
     }
-    $email_body .= "Mailing List: " . $mailingList . "\r\n";
-    $email_body .= "Policy Accepted: " . $policyAccepted . "\r\n";
-    $email_body .= "Background Check Accepted: " . $bgCheck . "\r\n";
+if ($mailingList == 1) {
+    $email_body .= "Mailing List: YES". "\r\n";
+}
+else{
+    $email_body .= "Mailing List: NO". "\r\n";
+
+}
+if ($policyAccepted == 1) {
+    $email_body .= "Policy Accepted: YES" . "\r\n";
+}
+else{
+    $email_body .= "Policy Accepted: NO" . "\r\n";
+}
+if ($bgCheck == 1) {
+    $email_body .= "Background Check Accepted: YES" . "\r\n";
+}
+else{
+    $email_body .= "Background Check Accepted: NO" . "\r\n";
+
+}
 
     $email_subject = "New Volunteer Registration";
     $to = $email;
