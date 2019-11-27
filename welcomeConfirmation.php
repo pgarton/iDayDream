@@ -6,13 +6,15 @@
     Original Author:    Paul Garton
     Last Modified by:   Paul Garton
     Creation Date:      10/28/2019
-    Last Modified Date: 11/11/2019
+    Last Modified Date: 11/26/2019
     Filename:           welcomeConfirmation.php
   -->
   <!-- Required meta tags -->
   <meta charset="UTF-8">
   <title>Thank You Student</title>
   <link rel="stylesheet" href="styles/confirmation.css">
+  <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5dabc823c0e45245a9c250cd/1571544129492-S9RDI79OWVWOWVJEJG7E/ke17ZwdGBToddI8pDm48kJycfsYb1urLU93EpFqOTQmoCXeSvxnTEQmG4uwOsdIceAoHiyRoc52GMN5_2H8Wp7zww8OjRrqjaM7_0x6HDLp42EP6IAa5vAmscK3sHI4MkNL5tmfZ3otlI9yi1IzH2Q/favicon.ico">
+
 
 </head>
 <body>
@@ -35,6 +37,9 @@ $birthdate = $_POST["birthdate"];
 $gender = $_POST["gender"];
 $ethnicity = $_POST["ethnicity"];
 $ethnicityOther = $_POST["otherEthnicity"];
+$guardianName = $_POST["guardianName"];
+$guardianPhone = $_POST["guardianPhone"];
+$guardianEmail = $_POST["guardianEmail"];
 
 switch ($ethnicity) {
   case "1": $ethnicityLabel = "American Indian or Alaska Native"; break;
@@ -71,14 +76,17 @@ if ($isValidSSWelcome) {
   $birthdate = mysqli_real_escape_string($cnxn, "$birthdate");
   $gender = mysqli_real_escape_string($cnxn, "$gender");
   $ethnicity = mysqli_real_escape_string($cnxn, "$ethnicity");
+  $guardianName = mysqli_real_escape_string($cnxn,"$guardianName");
+  $guardianPhone = mysqli_real_escape_string($cnxn,"$guardianPhone");
+  $guardianEmail = mysqli_real_escape_string($cnxn,"$guardianEmail");
 
-  $sql = "insert into youth (first_name, last_name, home_phone, email, graduating_class, college_of_interest,
-	  food_snacks, date_of_birth, other_ethnicity_text, ethnicities_id, genders_id)
-  values ('$firstName', '$lastName', '$homePhone', '$email', '$graduatingClass', '$college',
-	      '$snacks', '$birthdate', '$ethnicityOther', '$ethnicity', '$gender');";
-  // echo $sql; //copy/paste into phpMyAdmin to test
+  $sql = "insert into youth (first_name, last_name, home_phone, email, graduating_class, college_of_interest, career_aspirations,
+	  food_snacks, date_of_birth, other_ethnicity_text, ethnicities_id, genders_id, guardian_full_name, guardian_phone, guardian_email)
+  values ('$firstName', '$lastName', '$homePhone', '$email', '$graduatingClass', '$college', '$aspirations',
+	      '$snacks', '$birthdate', '$ethnicityOther', '$ethnicity', '$gender', '$guardianName', '$guardianPhone', '$guardianEmail');";
+
+ // echo "<p>$sql</p>";
   $result = mysqli_query($cnxn, $sql);
-//If successful, print summary
 
   if ($result) {
     echo "<h3>Thank you for completing this iDayDream welcome form.</h3>";
@@ -99,7 +107,9 @@ if ($isValidSSWelcome) {
     if ($ethnicity === "10") {
       echo "<div>Other Ethnicity Details: $ethnicityOther</div>";
     }
-
+    echo "<div>Guardian Name: " . $guardianName . "</div>";
+    echo "<div>Guardian Phone: " . $guardianPhone . "</div>";
+    echo "<div>Guardian Email: " . $guardianEmail . "</div>";
 //Send welcome information to iDayDream Contact
 //Note: spam avoidance measures may be required
     $email = "pgarton@mail.greenriver.edu";
@@ -118,6 +128,9 @@ if ($isValidSSWelcome) {
     if ($ethnicity === "10") {
       $email_body .= "Other Ethnicity Details: $ethnicityOther" . "\r\n";
     }
+    $email_body .= "Guardian Name: " . $guardianName . "\r\n";
+    $email_body .= "Guardian Phone: " . $guardianPhone . "\r\n";
+    $email_body .= "Guardian Email: " . $guardianEmail . "\r\n";
 
     $email_subject = "Welcome Page New Registrant";
     $to = $email;
@@ -130,6 +143,7 @@ if ($isValidSSWelcome) {
       : "We're sorry. There was a problem with your submission";
     echo "<p>$msg</p>";
   }
+  echo "<p><b><a href='https://www.idaydream.org/'>Return to iDayDream Home</a></b></p>";
 }
 ?>
 </body>
