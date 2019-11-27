@@ -1,7 +1,7 @@
 <?php
 //Turn on error reporting -- this is critical!
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
 $user = posix_getpwuid(posix_getuid());
 $userDir = $user['dir'];
