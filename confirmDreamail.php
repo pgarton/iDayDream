@@ -80,8 +80,8 @@ if ($mode == "DREAMERS" OR $mode == "ALL") {
         $to = "$dreamer, $guardian";
  //       echo "<p> $to </p>";
 
-        $headers = "From: Testmail@mail.com\r\n";
-        $headers .= "Reply-To: Testmail@mail.com \r\n";
+        $headers = "From: Testmail@gmail.com\r\n";
+        $headers .= "Reply-To: Testmail@gmail.com \r\n";
 
         $success = mail($to, $subject, $body, $headers);
         if (!$success) {
