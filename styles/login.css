@@ -16,14 +16,11 @@ div {
     font-size: 1.5em;
 }
 
-p {
-    text-align: center;
-}
-
 #login {
     background-color: #58b792;
     border-radius: 10px;
     width: 50%;
+    font-size: 1.5em;
     margin: auto;
 }
 
@@ -47,8 +44,6 @@ label {
     div {
         width: 80%;
         font-size: 1em;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     header {
