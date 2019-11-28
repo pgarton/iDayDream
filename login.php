@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
 
     } else {
         //Login credentials are incorrect
-        echo "<p> Invalid Login </p>";
+        $invalid = true;
     }
 }
 
@@ -89,16 +89,29 @@ if (isset($_POST['submit'])) {
 
 </head>
 <body>
+<header id="header">
+    <div class="jumbotron text-center">
+        <h1 class="display-4"> Login to </h1>
+    </div>
+</header>
+<?php
+if($invalid){
+    echo '<p> Invalid Login</p>';
+}
+?>
 <form method="post" action="#">
-    <label>Username:
-        <input type="text" name="username">
-    </label><br>
+    <div>
+        <label>Username:
+            <input type="text" name="username">
+        </label><br>
+    </div>
 
-    <label>Password:
-        <input type="password" name="password">
-    </label><br>
-
-    <input type="submit" name="submit" value="Submit">
+    <div>
+        <label>Password:
+            <input type="password" name="password">
+        </label><br>
+    </div>
+    <input id="login" type="submit" name="submit" value="Submit">
 </form>
 </body>
 </html>
