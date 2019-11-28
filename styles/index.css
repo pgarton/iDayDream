@@ -26,6 +26,11 @@ html {
     margin-bottom: 20px;
 }
 
+.login {
+    border: 2px solid #58b792;
+    height: 50px;
+}
+
 .sect > h2 {
     margin: auto;
 }

@@ -376,6 +376,8 @@ DEFAULT CHARACTER SET = utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+
+
 -- create views
 
 create or replace view v_volunteers as
