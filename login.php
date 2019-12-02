@@ -91,14 +91,21 @@ if (isset($_POST['submit'])) {
 <body>
 <header id="header">
     <div class="jumbotron text-center">
-        <h1 class="display-4"> Login to </h1>
+        <h1 class="display-4">
+            <?php
+            if($invalid){
+                echo 'Invalid Login';
+            }
+            else {
+                echo 'Login to iDayDreamAdmin';
+            }
+            ?>
+        </h1>
+
     </div>
+
 </header>
-<?php
-if($invalid){
-    echo '<p> Invalid Login</p>';
-}
-?>
+
 <form method="post" action="#">
     <div>
         <label>Username:
