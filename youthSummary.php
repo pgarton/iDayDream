@@ -40,21 +40,30 @@ error_reporting(E_ALL);
   $userDir = $user['dir'];
   require ("$userDir/connect.php");
 
+  //connect2 was used to initially build out the sql statements on local computer
+  //require("connect2.php");
+
+
   //Define the query
-  $sql = 'select dreamer_id, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
+  $sql = 'select dreamer_id, active, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
             career_aspirations, food_snacks, date_of_birth, gender, ethnicity_all, guardian_full_name,
             guardian_phone, guardian_email
-          from v_dreamers
-          where active = 1;';
+          from v_dreamers;';
+
+  //removed active clause from SQL statement
+  //where active = 1
+
   //Send the query to the database
   $result = mysqli_query($cnxn, $sql);
   //var_dump($result);
   ?>
 
+    <!-- Creating a filter dropdown for Active, Inactive, and Pending -->
   <table id="dreamer-table" class="display">
     <thead>
     <tr>
       <th>Dreamer ID</th>
+        <th>Status</th>
       <th>Last Name</th>
       <th>First Name</th>
       <th>Home Phone</th>
@@ -77,6 +86,7 @@ error_reporting(E_ALL);
     //Print the results
     while ($row = mysqli_fetch_assoc($result)) {
       $dreamerID = $row['dreamer_id'];
+      $status = $row['active'];
       $firstName = $row['first_name'];
       $lastName = $row['last_name'];
       $homePhone = $row['home_phone'];
@@ -93,6 +103,28 @@ error_reporting(E_ALL);
       $guardianEmail = $row['guardian_email'];
       echo "<tr>
                 <td>$dreamerID</td>
+                <td><select class='activeStatus' id='status' name='status' data-did = '$dreamerID'>";
+                //selecting the correct option from the database
+                if ($status == 0){
+                    echo"
+                    <option value = '0' selected>Inactive</option>
+                    <option value = '1'>Active</option>
+                    <option value = '2'>Pending</option>";
+                }
+                if ($status == 1){
+                    echo"
+                    <option value = '0'>Inactive</option>
+                    <option value = '1' selected>Active</option>
+                    <option value = '2'>Pending</option>";
+                }
+                if ($status == 2){
+                    echo"
+                    <option value = '0'>Inactive</option>
+                    <option value = '1'>Active</option>
+                    <option value = '2' selected>Pending</option>";
+                 }
+                echo"
+                </td>
                 <td>$lastName</td>
                 <td>$firstName</td>
                 <td>$homePhone</td>
@@ -143,6 +175,15 @@ error_reporting(E_ALL);
             }
         } );
     } );
+
+    $('.activeStatus').on('change', function(){
+        var status =$(this).val();
+        var dID = $(this).attr('data-did');
+        alert("Status Changed To: "+ status + " On DID: "+ dID);
+
+        $.post("updateStatusDream.php", {status:status, dID:dID});
+    });
+
 </script>
 
 </body>

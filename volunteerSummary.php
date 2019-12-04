@@ -40,8 +40,11 @@
   $user = posix_getpwuid(posix_getuid());
   $userDir = $user['dir'];
   require ("$userDir/connect.php");
+  //connect2 was used to initially build out the sql statements on local computer
+  //require("connect2.php");
+
   //Define the query
-  $sqlM = 'select volunteer_id, first_name, last_name, home_phone, email,
+  $sqlM = 'select volunteer_id, active, first_name, last_name, home_phone, email,
             concat(address1, " ", address2) as "address", city, zip_code, states_code,
             case when add_to_mailing_list > 0 then "Yes" else "No" end as add_to_mailing_list,
             case when policy_agreement > 0 then "Yes" else "No" end as policy_agreement,
@@ -53,8 +56,10 @@
             case when youth_volunteer_exp > 0 then "Yes" else "No" end as youth_volunteer_exp,
             case when non_youth_volunteer_exp > 0 then "Yes" else "No" end as non_youth_volunteer_exp,
             special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3
-          from v_volunteers
-          where active = 1;';
+          from v_volunteers';
+
+  //removed active clause from SQL statement
+  //where active = 1;
 
   //Send the query to the database
   $resultM = mysqli_query($cnxn, $sqlM);
@@ -66,6 +71,7 @@
     <thead>
     <tr>
       <th>Volunteer ID</th>
+        <th>Status</th>
       <th>Last Name</th>
       <th>First Name</th>
       <th>Home Phone</th>
@@ -100,6 +106,7 @@
     //Print the results
     while ($rowM = mysqli_fetch_assoc($resultM)) {
       $volunteerID = $rowM['volunteer_id'];
+      $status = $rowM['active'];
       $firstName = $rowM['first_name'];
       $lastName = $rowM['last_name'];
       $homePhone = $rowM['home_phone'];
@@ -131,6 +138,28 @@
 
       echo "<tr>
       <td>$volunteerID</td>
+      <td><select class='activeStatus' id='status' name='status' data-vid = '$volunteerID'>";
+      //selecting the correct option from the database
+      if ($status == 0){
+          echo"
+      <option value = '0' selected>Inactive</option>
+      <option value = '1'>Active</option>
+      <option value = '2'>Pending</option>";
+      }
+        if ($status == 1){
+                echo"
+      <option value = '0'>Inactive</option>
+      <option value = '1' selected>Active</option>
+      <option value = '2'>Pending</option>";
+        }
+        if ($status == 2){
+                echo"
+      <option value = '0'>Inactive</option>
+      <option value = '1'>Active</option>
+      <option value = '2' selected>Pending</option>";
+        }
+        echo"
+      </td>
       <td>$lastName</td>
       <td>$firstName</td>
       <td>$homePhone</td>
@@ -230,6 +259,14 @@
             }
         } );
     } );
+
+    $('.activeStatus').on('change', function(){
+        var status =$(this).val();
+        var vID = $(this).attr('data-vid');
+        alert("Status Changed To: "+ status + " On VID: "+ vID);
+
+        $.post("updateStatusVol.php", {status:status, vID:vID});
+    });
 </script>
 
 </body>
