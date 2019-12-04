@@ -167,7 +167,7 @@ error_reporting(E_ALL);
                     display: $.fn.dataTable.Responsive.display.modal( {
                         header: function ( row ) {
                             var data = row.data();
-                            return 'Details for Name: '+data[2] + ' ' +data[1];
+                            return 'Details for Name: '+data[3] + ' ' +data[2];
                         }
                     } ),
                     renderer: $.fn.dataTable.Responsive.renderer.tableAll()
