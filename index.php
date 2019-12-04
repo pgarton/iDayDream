@@ -24,22 +24,22 @@ if (!isset($_SESSION['username'])){
     <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-<h1 class="jumbotron">Paul's Bunyans' iD.A.Y.Dream index</h1>
+<h1 class="jumbotron">Paul's Bunyans' iD.A.Y.Dream Admin Page</h1>
 
 <?php
-    if($mode == 'logged_off') {
-        echo '<div class="sect col login">
+if($mode == 'logged_off') {
+    echo '<div class="sect col login">
         <h2>
         <a href="login.php">Login to access summary pages</a>
         </h2>
         </div>';
-    } else {
-        echo '<div class="sect col login">
+} else {
+    echo '<div class="sect col login">
         <h2>
         <a href="logout.php">Logout</a>
         </h2>
         </div>';
-    }
+}
 
 ?>
 
@@ -64,6 +64,14 @@ if (!isset($_SESSION['username'])){
 
 </div>
 
+<div class="sect col login">
+
+    <h2>
+        <a href="dreamail.php"   <?php if ($mode == 'logged_off') {    echo 'class = \'disabled\'';  }   ?>   >Mass Email</a>
+    </h2>
+
+
+</div>
 
 
 
