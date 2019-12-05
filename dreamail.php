@@ -1,14 +1,24 @@
 <?php
+
+
 /*  iDayDream Mass Email
     Original Author:    Elijah Maret
     Last Modified by:   Elijah Maret
     Creation Date:      11/18/2019
-    Last Modified Date: 11/22/2019
+    Last Modified Date: 11/27/2019
     Filename:           dreamail.php
 */
 //Turn on error reporting -- this is critical!
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
+
+session_start();
+//
+if (!isset($_SESSION['username'])){
+    header('location: login.php?source=dreamail.php');
+}
+
+
 ?>
 
 <!DOCTYPE html>

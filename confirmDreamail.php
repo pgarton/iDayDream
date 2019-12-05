@@ -77,11 +77,12 @@ if ($mode == "DREAMERS" OR $mode == "ALL") {
         $dreamer = trim($dreamer);
         $guardian = trim($guardian);
 
-        $to = "$dreamer, $guardian";
+        $to = "$dreamer";
  //       echo "<p> $to </p>";
 
         $headers = "From: Testmail@gmail.com\r\n";
         $headers .= "Reply-To: Testmail@gmail.com \r\n";
+        $headers  .= "Cc: $guardian";
 
         $success = mail($to, $subject, $body, $headers);
         if (!$success) {
@@ -102,8 +103,8 @@ if ($mode == "VOLUNTEERS" OR $mode == "ALL"){
 
         $to = "$volunteer";
 
-        $headers = "From: Emaret2@mail.greenriver.edu\r\n";
-        $headers .= "Reply-To: Emaret2@mail.greenriver.edu \r\n";
+        $headers = "From: Testmail@gmail.com\r\n";
+        $headers .= "Reply-To: Testmail@gmail.com \r\n";
 
         $success = mail($to, $subject, $body, $headers);
         if (!$success) {
@@ -118,7 +119,7 @@ if ($mode == "VOLUNTEERS" OR $mode == "ALL"){
 if($finalSuccess){
     echo "<p>All emails have been sent</p>";
     echo "<br><br>";
-    echo "<p><b><a href='index.html'>Return to Index</a></b></p>";
+    echo "<p><b><a href='index.php'>Return to Index</a></b></p>";
 }
 ?>
 
