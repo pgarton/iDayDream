@@ -10,6 +10,8 @@ password varchar(255) NOT NULL,
 );
 
 insert into login values (null, TRUE, 'admin', MD5('@dm1n'), now(), now());
+insert into login values (null, TRUE, 'Admin', MD5('Master123'), now(), now());
+insert into login values (null, TRUE, 'Brandi', MD5('Day'), now(), now());
 
 /*
 // https://stackoverflow.com/questions/8710982/md5-password-retrieving

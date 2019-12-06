@@ -3,18 +3,21 @@
     Original Author:    Elijah Maret
     Last Modified by:   Elijah Maret
     Creation Date:      11/27/2019
-    Last Modified Date: 11/28/2019
+    Last Modified Date: 12/05/2019
     Filename:           login.php
 */
 //Turn on error reporting -- this is critical!
-// ini_set('display_errors', 1);
-// error_reporting(E_ALL);
+ ini_set('display_errors', 1);
+ error_reporting(E_ALL);
 
 // print_r($_POST);
 
 session_start();
 
-
+// connect to database
+$user = posix_getpwuid(posix_getuid());
+$userDir = $user['dir'];
+require ("$userDir/connect.php");
 
 
 // Return to the page it came from
@@ -36,37 +39,39 @@ if (isset($_SESSION['username'])){
 //If the login form has been submitted
 if (isset($_POST['submit'])) {
 
-    // REPLACE LATER
-    $login = array("Admin"=>"Master123", "Brandi"=>"Day");
-    //
 
-
-    //Include creds.php (eventually, passwords should be moved to a secure location
-    //or stored in a database)
 
 
     //Get the username and password from the POST array
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    //If the username and password are correct
-    if (array_key_exists($username, $login) && $login["$username"] == $password){
-        $_SESSION['username'] = $username;
+    // Check if username is set
+
+    if($username != null) {
+
+        // check that username is in database
 
 
+        $sql = "SELECT username, password from login where username = '$username' and admin_status > 0 ; ";
+        //Send the query to the database
+        $result = mysqli_query($cnxn, $sql);
+        while ($fin = mysqli_fetch_assoc($result)) {
+            if ($fin['password'] == md5($password)){
+                $_SESSION['username'] = $username;
 
-        //Store login name in a session variable
+                //Store login name in a session variable
 
+                header("location: $source");
 
-        header("location: $source");
+                //Redirect to page 1
+            }
+        }
 
-        //Redirect to page 1
-
-
-    } else {
-        //Login credentials are incorrect
-        $invalid = true;
     }
+    // if code gets to this point, login is invalid  gets here its invalid
+    $invalid = true;
+
 }
 
 ?>
@@ -93,10 +98,13 @@ if (isset($_POST['submit'])) {
     <div class="jumbotron text-center">
         <h1 class="display-4">
             <?php
-            if($invalid){
-                echo 'Invalid Login';
-            }
-            else {
+            if(isset($invalid)) {
+                if ($invalid) {
+                    echo 'Invalid Login';
+                } else {
+                    echo 'Login to iDayDreamAdmin';
+                }
+            } else {
                 echo 'Login to iDayDreamAdmin';
             }
             ?>
@@ -105,6 +113,7 @@ if (isset($_POST['submit'])) {
     </div>
 
 </header>
+
 
 <form method="post" action="#">
     <div>
