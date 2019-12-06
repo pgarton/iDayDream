@@ -46,33 +46,35 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Check if username is set
+    // Check if username and password are set
 
     if($username != null) {
 
         // check that username is in database
 
+        $password = md5($password);
 
-        $sql = "SELECT username, password from login where username = '$username' and admin_status > 0 ; ";
+        $sql = "SELECT username, password from login where username = '$username' and password = '$password' and admin_status > 0 ; ";
         //Send the query to the database
         $result = mysqli_query($cnxn, $sql);
-        while ($fin = mysqli_fetch_assoc($result)) {
-            if ($fin['password'] == md5($password)){
+        $result2 = mysqli_fetch_assoc($result);
+        // will be null if no match is found in database
+            if ($result2){
                 $_SESSION['username'] = $username;
 
                 //Store login name in a session variable
 
                 header("location: $source");
-
                 //Redirect to page 1
             }
         }
 
-    }
-    // if code gets to this point, login is invalid  gets here its invalid
-    $invalid = true;
 
-}
+    }
+
+$invalid = true;
+
+    //If the username and password are correct
 
 ?>
 <!doctype html>
