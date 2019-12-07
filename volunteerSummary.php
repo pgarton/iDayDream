@@ -50,7 +50,7 @@ if (!isset($_SESSION['username'])){
   //require("connect2.php");
 
   //checking to see if there is a post array
-  echo var_dump($_POST);
+//  echo var_dump($_POST);
   if (!isset($_POST['filterStatus'])){
       //initialing the filter variable
       $filter = null;
@@ -308,7 +308,8 @@ if (!isset($_SESSION['username'])){
   </table>
 
   <a id = "add" href="form.html">Add a new Volunteer</a>
-      <a id = "toMail" href="dreamail.php?source=volunteers">Mass Email to Volunteers</a>
+  <a id = "toMail" href="dreamail.php?source=volunteers">Mass Email to Volunteers</a>
+  <a id = "toIndex" href="index.php">Return to Index Page</a>
 
 </div>
 
