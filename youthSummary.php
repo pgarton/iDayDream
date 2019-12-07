@@ -1,32 +1,37 @@
 <?php
 /*  iDayDream Youth Summary
     Original Author:    Paul Garton
-    Last Modified by:   Paul Garton
+    Last Modified by:   Elijah Maret
     Creation Date:      11/10/2019
-    Last Modified Date: 11/25/2019
+    Last Modified Date: 11/27/2019
     Filename:           youthSummary.php
  */
 //Turn on error reporting -- this is critical!
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 // print_r($_POST);
+
+session_start();
+
+if (!isset($_SESSION['username'])){
+    header('location: login.php?source=youthSummary.php');
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>iDayDream Dreamer Summary</title>
+    <meta charset="UTF-8">
+    <title>iDayDream Dreamer Summary</title>
 
-  <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5dabc823c0e45245a9c250cd/1571544129492-S9RDI79OWVWOWVJEJG7E/ke17ZwdGBToddI8pDm48kJycfsYb1urLU93EpFqOTQmoCXeSvxnTEQmG4uwOsdIceAoHiyRoc52GMN5_2H8Wp7zww8OjRrqjaM7_0x6HDLp42EP6IAa5vAmscK3sHI4MkNL5tmfZ3otlI9yi1IzH2Q/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5dabc823c0e45245a9c250cd/1571544129492-S9RDI79OWVWOWVJEJG7E/ke17ZwdGBToddI8pDm48kJycfsYb1urLU93EpFqOTQmoCXeSvxnTEQmG4uwOsdIceAoHiyRoc52GMN5_2H8Wp7zww8OjRrqjaM7_0x6HDLp42EP6IAa5vAmscK3sHI4MkNL5tmfZ3otlI9yi1IzH2Q/favicon.ico">
 
 
-  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="styles/summary.css">
-  <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="styles/summary.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 </head>
 <body>
 
@@ -203,13 +208,13 @@ error_reporting(E_ALL);
                 <td>$guardianPhone</td>
                 <td>$guardianEmail</td>
               </tr>";
-    }
-    ?>
+        }
+        ?>
 
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 
-  <a id = "add" href="welcome.html">Add a new Dreamer</a>
+    <a id = "add" href="welcome.html">Add a new Dreamer</a>
     <a id = "toMail" href="dreamail.php?source=dreamers">Mass Email to Dreamers</a>
 </div>
 

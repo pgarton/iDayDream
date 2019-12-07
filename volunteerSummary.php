@@ -12,6 +12,12 @@
 
 // print_r($_POST);
 
+session_start();
+
+if (!isset($_SESSION['username'])){
+    header('location: login.php?source=volunteerSummary.php');
+}
+
 ?>
 
 <!DOCTYPE html>
