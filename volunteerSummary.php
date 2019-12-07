@@ -46,8 +46,22 @@ if (!isset($_SESSION['username'])){
   $user = posix_getpwuid(posix_getuid());
   $userDir = $user['dir'];
   require ("$userDir/connect.php");
-  //Define the query
-  $sqlM = 'select volunteer_id, first_name, last_name, home_phone, email,
+  //connect2 was used to initially build out the sql statements on local computer
+  //require("connect2.php");
+
+  //checking to see if there is a post array
+  echo var_dump($_POST);
+  if (!isset($_POST['filterStatus'])){
+      //initialing the filter variable
+      $filter = null;
+  }
+  else{
+      $filter=$_POST['filterStatus'];
+  }
+
+  //Define the query Now have two queries depending on $filter status
+  if ($filter == 4 || $filter == null) {
+      $sqlM = 'select volunteer_id, active, first_name, last_name, home_phone, email,
             concat(address1, " ", address2) as "address", city, zip_code, states_code,
             case when add_to_mailing_list > 0 then "Yes" else "No" end as add_to_mailing_list,
             case when policy_agreement > 0 then "Yes" else "No" end as policy_agreement,
@@ -59,8 +73,27 @@ if (!isset($_SESSION['username'])){
             case when youth_volunteer_exp > 0 then "Yes" else "No" end as youth_volunteer_exp,
             case when non_youth_volunteer_exp > 0 then "Yes" else "No" end as non_youth_volunteer_exp,
             special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3
+          from v_volunteers';
+  }
+  else{
+      $sqlM = "select volunteer_id, active, first_name, last_name, home_phone, email,
+            concat(address1, \" \", address2) as \"address\", city, zip_code, states_code,
+            case when add_to_mailing_list > 0 then \"Yes\" else \"No\" end as add_to_mailing_list,
+            case when policy_agreement > 0 then \"Yes\" else \"No\" end as policy_agreement,
+            case when weekend_availability > 0 then \"Yes\" else \"No\" end as weekend_availability, 
+            case when summer_camp_availability > 0 then \"Yes\" else \"No\" end as summer_camp_availability,
+            case when background_check_agreement > 0 then \"Yes\" else \"No\" end as background_check_agreement,
+            null as roles, other_role_text, shirt_size, lead, 
+            case when special_skills > 0 then \"Yes\" else \"No\" end as special_skills, 
+            case when youth_volunteer_exp > 0 then \"Yes\" else \"No\" end as youth_volunteer_exp,
+            case when non_youth_volunteer_exp > 0 then \"Yes\" else \"No\" end as non_youth_volunteer_exp,
+            special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3
           from v_volunteers
-          where active = 1;';
+          where active = '$filter';";
+  }
+
+  //removed active clause from SQL statement
+  //where active = 1;
 
   //Send the query to the database
   $resultM = mysqli_query($cnxn, $sqlM);
@@ -68,10 +101,55 @@ if (!isset($_SESSION['username'])){
 
   ?>
 
-  <table id="volunteer-table" class="display">
+    <!-- Creating a filter dropdown for Active, Inactive, and Pending -->
+    <!-- look into a bootstrap class to add the button to the select -->
+
+    <br>
+    <form class = "filterForm" method="post" action = "volunteerSummary.php">
+        <label for = "filterStatus">Status Filter</label>
+        <select class = "dropdown-menu-right" id = "filterStatus" name = "filterStatus">
+            <!-- Having the correct Value selected after a Filter has been completed -->
+            <?php
+            echo "<br>'$filter''";
+            if ($filter == 1){
+                echo "<option value = '4'>Show All</option>
+                  <option value = '1' selected>Show Active</option>
+                  <option value = '2'>Show Pending</option>
+                  <option value = '0'>Show Inactive</option>";
+            }
+            elseif($filter == 2){
+                echo "<option value = '4'>Show All</option>
+                  <option value = '1'>Show Active</option>
+                  <option value = '2' selected>Show Pending</option>
+                  <option value = '0'>Show Inactive</option>";
+            }
+            elseif ($filter === '0'){
+                echo "<option value = '4'>Show All</option>
+                  <option value = '1' >Show Active</option>
+                  <option value = '2'>Show Pending</option>
+                  <option value = '0' selected>Show Inactive</option>";
+            }
+            else {
+                echo "<option value = '4' selected>Show All</option>
+                  <option value = '1' >Show Active</option>
+                  <option value = '2'>Show Pending</option>
+                  <option value = '0'>Show Inactive</option>";
+            }
+            ?>
+        </select>
+        <div class ="d-inline">
+            <button id="submit" type="submit" class="btn btn-primary">
+                Filter
+            </button>
+        </div>
+    </form>
+
+
+    <table id="volunteer-table" class="display">
     <thead>
     <tr>
       <th>Volunteer ID</th>
+        <th>Status</th>
       <th>Last Name</th>
       <th>First Name</th>
       <th>Home Phone</th>
@@ -106,6 +184,7 @@ if (!isset($_SESSION['username'])){
     //Print the results
     while ($rowM = mysqli_fetch_assoc($resultM)) {
       $volunteerID = $rowM['volunteer_id'];
+      $status = $rowM['active'];
       $firstName = $rowM['first_name'];
       $lastName = $rowM['last_name'];
       $homePhone = $rowM['home_phone'];
@@ -137,6 +216,28 @@ if (!isset($_SESSION['username'])){
 
       echo "<tr>
       <td>$volunteerID</td>
+      <td><select class='activeStatus' id='status' name='status' data-vid = '$volunteerID'>";
+      //selecting the correct option from the database
+      if ($status == 0){
+          echo"
+      <option value = '0' selected>Inactive</option>
+      <option value = '1'>Active</option>
+      <option value = '2'>Pending</option>";
+      }
+        if ($status == 1){
+                echo"
+      <option value = '0'>Inactive</option>
+      <option value = '1' selected>Active</option>
+      <option value = '2'>Pending</option>";
+        }
+        if ($status == 2){
+                echo"
+      <option value = '0'>Inactive</option>
+      <option value = '1'>Active</option>
+      <option value = '2' selected>Pending</option>";
+        }
+        echo"
+      </td>
       <td>$lastName</td>
       <td>$firstName</td>
       <td>$homePhone</td>
@@ -236,6 +337,14 @@ if (!isset($_SESSION['username'])){
             }
         } );
     } );
+
+    $('.activeStatus').on('change', function(){
+        var status =$(this).val();
+        var vID = $(this).attr('data-vid');
+        alert("Status Changed To: "+ status + " On VID: "+ vID);
+
+        $.post("updateStatusVol.php", {status:status, vID:vID});
+    });
 </script>
 
 </body>
