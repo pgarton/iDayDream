@@ -43,12 +43,33 @@ error_reporting(E_ALL);
   //connect2 was used to initially build out the sql statements on local computer
   //require("connect2.php");
 
+  //checking to see if there is a post array
+  echo var_dump($_POST);
+  if (!isset($_POST['filterStatus'])){
+      //initialing the filter variable
+      $filter = null;
+  }
+  else{
+      $filter=$_POST['filterStatus'];
+  }
 
-  //Define the query
-  $sql = 'select dreamer_id, active, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
+
+
+  //Define the query Now have two queries depending on $filter status
+  if ($filter == 4 || $filter == null) {
+      $sql = 'select dreamer_id, active, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
             career_aspirations, food_snacks, date_of_birth, gender, ethnicity_all, guardian_full_name,
             guardian_phone, guardian_email
           from v_dreamers;';
+  }
+  else{
+      $sql = "select dreamer_id, active, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
+            career_aspirations, food_snacks, date_of_birth, gender, ethnicity_all, guardian_full_name,
+            guardian_phone, guardian_email
+          from v_dreamers
+          where active = '$filter';";
+
+  }
 
   //removed active clause from SQL statement
   //where active = 1
@@ -59,6 +80,48 @@ error_reporting(E_ALL);
   ?>
 
     <!-- Creating a filter dropdown for Active, Inactive, and Pending -->
+    <!-- look into a bootstrap class to add the button to the select -->
+
+    <br>
+    <form class = "filterForm" method="post" action = "youthSummary.php">
+    <label for = "filterStatus">Status Filter</label>
+    <select class = "dropdown-menu-right" id = "filterStatus" name = "filterStatus">
+        <!-- Having the correct Value selected after a Filter has been completed -->
+        <?php
+        echo "<br>'$filter''";
+        if ($filter == 1){
+            echo "<option value = '4'>Show All</option>
+                  <option value = '1' selected>Show Active</option>
+                  <option value = '2'>Show Pending</option>
+                  <option value = '0'>Show Inactive</option>";
+        }
+        elseif($filter == 2){
+            echo "<option value = '4'>Show All</option>
+                  <option value = '1'>Show Active</option>
+                  <option value = '2' selected>Show Pending</option>
+                  <option value = '0'>Show Inactive</option>";
+        }
+        elseif ($filter === '0'){
+            echo "<option value = '4'>Show All</option>
+                  <option value = '1' >Show Active</option>
+                  <option value = '2'>Show Pending</option>
+                  <option value = '0' selected>Show Inactive</option>";
+        }
+        else {
+            echo "<option value = '4' selected>Show All</option>
+                  <option value = '1' >Show Active</option>
+                  <option value = '2'>Show Pending</option>
+                  <option value = '0'>Show Inactive</option>";
+        }
+        ?>
+    </select>
+        <div class ="d-inline">
+            <button id="submit" type="submit" class="btn btn-primary">
+                Filter
+            </button>
+        </div>
+    </form>
+
   <table id="dreamer-table" class="display">
     <thead>
     <tr>
@@ -182,6 +245,12 @@ error_reporting(E_ALL);
         alert("Status Changed To: "+ status + " On DID: "+ dID);
 
         $.post("updateStatusDream.php", {status:status, dID:dID});
+    });
+
+    $('#filterStatus').on('change,', function(){
+        var filter = $(this).val();
+        $.post("updateFilterDream.php", {filter:filter});
+
     });
 
 </script>

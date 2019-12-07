@@ -13,12 +13,12 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-/*$user = posix_getpwuid(posix_getuid());
+$user = posix_getpwuid(posix_getuid());
 $userDir = $user['dir'];
-require ("$userDir/connect.php");*/
+require ("$userDir/connect.php");
 
 // connect 2 was used to create changes locally
-require('connect2.php');
+//require('connect2.php');
 
 var_dump($_POST);
 
