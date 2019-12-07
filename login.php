@@ -69,10 +69,10 @@ if (isset($_POST['submit'])) {
             }
         }
 
-
+    $invalid = true;
     }
 
-$invalid = true;
+
 
     //If the username and password are correct
 
