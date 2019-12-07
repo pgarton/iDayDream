@@ -48,6 +48,7 @@ $body = $_POST['emailBody'];
 $isValid = true;
 $finalSuccess = true;
 $mode = '';
+$sentEmails = 0;
 
 //echo "<p>Dreamers: $dreamers</p>";
 //echo "<p>Volunteers: $volunteers</p>";
@@ -87,9 +88,10 @@ if ($mode == "DREAMERS" OR $mode == "ALL") {
         $success = mail($to, $subject, $body, $headers);
         if (!$success) {
             $finalSuccess = false;
-            echo "<p> Email failed to send to $to";
+            echo "<p> Email failed to send to $to and $guardian";
         } else {
-          echo "<p> Email successfully sent to: $to";
+            $sentEmails ++;
+          //echo "<p> Email successfully sent to: $to";
         }
     }
 }
@@ -111,13 +113,14 @@ if ($mode == "VOLUNTEERS" OR $mode == "ALL"){
           $finalSuccess = false;
           echo "<p> Email failed to send to $to";
         } else {
-          echo "<p> Email successfully sent to: $to";
+            $sentEmails ++;
+          //echo "<p> Email successfully sent to: $to";
         }
     }
 }
 
 if($finalSuccess){
-    echo "<p>All emails have been sent</p>";
+    echo "<p>All $sentEmails emails have been sent</p>";
     echo "<br><br>";
     echo "<p><b><a href='index.php'>Return to Index</a></b></p>";
 }
