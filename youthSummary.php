@@ -1,9 +1,9 @@
 <?php
 /*  iDayDream Youth Summary
     Original Author:    Paul Garton
-    Last Modified by:   Elijah Maret
+    Last Modified by:   Dallas Sloan
     Creation Date:      11/10/2019
-    Last Modified Date: 11/27/2019
+    Last Modified Date: 11/30/2019
     Filename:           youthSummary.php
  */
 //Turn on error reporting -- this is critical!
