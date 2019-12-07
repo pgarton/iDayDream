@@ -1,9 +1,9 @@
 /*
 iDayDream form styles
 Original Author:    Elijah Maret
-Last Modified by:   Elijah Maret
+Last Modified by:   Paul Garton
 Creation Date:      11/10/2019
-Last Modified Date: 11/10/2019
+Last Modified Date: 12/07/2019
 Filename:           summary.css
 */
 
@@ -41,6 +41,13 @@ h3 {
      padding: 5px;
      border-radius: 5px;
  }
+
+#toIndex{
+  color: white;
+  background-color: darkcyan;
+  padding: 5px;
+  border-radius: 5px;
+}
 
 #youth-table {
     width: 100%;

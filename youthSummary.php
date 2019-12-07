@@ -49,7 +49,7 @@ if (!isset($_SESSION['username'])){
   //require("connect2.php");
 
   //checking to see if there is a post array
-  echo var_dump($_POST);
+ // echo var_dump($_POST);
   if (!isset($_POST['filterStatus'])){
       //initialing the filter variable
       $filter = null;
@@ -57,8 +57,6 @@ if (!isset($_SESSION['username'])){
   else{
       $filter=$_POST['filterStatus'];
   }
-
-
 
   //Define the query Now have two queries depending on $filter status
   if ($filter == 4 || $filter == null) {
@@ -216,6 +214,7 @@ if (!isset($_SESSION['username'])){
 
     <a id = "add" href="welcome.html">Add a new Dreamer</a>
     <a id = "toMail" href="dreamail.php?source=dreamers">Mass Email to Dreamers</a>
+    <a id = "toIndex" href="index.php">Return to Index Page</a>
 </div>
 
 <script src="//code.jquery.com/jquery-3.3.1.js"></script>
