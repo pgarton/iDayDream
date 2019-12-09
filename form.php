@@ -14,6 +14,14 @@ require ("$userDir/connect.php");
 <!doctype html>
 <html lang="en">
 <head>
+  <!--
+  iDayDream Volunteer Registration Form
+  Original Author:    Dallas Sloan
+  Last Modified by:   Paul Garton
+  Creation Date:
+  Last Modified Date: 12/09/2019
+  Filename:           form.php
+-->
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -167,14 +175,7 @@ require ("$userDir/connect.php");
               }
               ?>
 
-              //commenting out below to use database values instead
-<!--            <option value="1">Extra Small</option>
-            <option value="2">Small</option>
-            <option value="3">Medium</option>
-            <option value="4">Large</option>
-            <option value="5">Extra Large</option>
-            <option value="6">XXL</option>
--->          </select>
+          </select>
         </div>
       </div>
     </fieldset>
