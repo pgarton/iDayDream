@@ -4,9 +4,9 @@
   <!--
     iDayDream Volunteer Welcome Form Confirmation
     Original Author:    Dallas Sloan
-    Last Modified by:   Dallas Sloan
+    Last Modified by:   Paul Garton
     Creation Date:      10/29/2019
-    Last Modified Date: 10/29/2019
+    Last Modified Date: 12/09/2019
     Filename:           confirmation.php
   -->
   <!-- Required meta tags -->
@@ -26,7 +26,7 @@
     //require("connect2.php");
 
 
-// var_dump($_POST);
+ //var_dump($_POST);
 
 // assign variables to POST array values
     $firstName = $_POST["firstName"];
@@ -62,10 +62,11 @@
     $policyAccepted = $_POST["policy"];
     $bgCheck = $_POST["bgCheck"];
     $weekendHours = $_POST["weekendHours"];
+    $weekendAvailabilityText = $_POST["weekendText"];
     $availability = $_POST["availability"];
-    $specialSkillsInterestss = mysqli_real_escape_string($cnxn,0);
-    $youthVolunteerExp = mysqli_real_escape_string($cnxn,0);
-    $nonYouthExperience = mysqli_real_escape_string($cnxn,0);
+    $specialSkillsInterests = $_POST["skillsInterest"];
+    $youthVolunteerExp = $_POST["youthExp"];
+    $nonYouthExperience = $_POST["nonYouthExp"];
     $roles = $_POST["roles"];
 
 //changing some of the digit values to a value the client will understand
@@ -78,7 +79,7 @@ switch ($tShirtSize) {
     case "6": $tShirtSizeLabel = "XXL"; break;
 }
 
-//function to swithc role value to name value
+//function to switch role value to name value
 function rolesSwitch($role){
 switch ($role) {
     case "1":
@@ -115,10 +116,6 @@ switch ($hearAboutUs) {
     case "5": $hearAboutUsLabel = "Other"; break;
 }
 
-
-
-
-
 include("ssValidationVolunteer.php");
 if ($isValidSSVolunteer) {
     //insert into database
@@ -137,43 +134,40 @@ if ($isValidSSVolunteer) {
     $policyAccepted = mysqli_real_escape_string($cnxn, "$policyAccepted");
 
     // setting the $weekend and $summerCamp variable to the correct variable depending on what is sent through
-    if ($availability[0] == "weekend") {
-        $weekend = 1;
-        }
-    else{
-        $weekend = 0;
+    $weekend = 0;
+    $summerCamp = 0;
+    $availLen = sizeof($availability);
+    if ($availLen > 0) {
+      foreach ($availability as $selected) {
+        if ($selected == "weekend")
+          $weekend = 1;
 
+        if ($selected == "summerCamp")
+          $summerCamp = 1;
+      }
     }
-    if ($availability[0] == "weekend-8"){
-        $summerCamp = mysqli_real_escape_string($cnxn, 1);
-    }
-    else{
-        $summerCamp = mysqli_real_escape_string($cnxn, 0);
 
-    }
-    if ($availability[1]=="weekend-8"){
-        $summerCamp = mysqli_real_escape_string($cnxn, 1);
-    }
-    else{
-        $summerCamp = mysqli_real_escape_string($cnxn, 1);
-    }
     $otherText = mysqli_real_escape_string($cnxn, "$otherText");
 
     //always setting bgCheck to 1 since you cannot proceed with the form unless you agree to a background check
     $bgCheck = mysqli_real_escape_string($cnxn,1);
 
     //applying the correct values depending on what is found within the experience array.
-    foreach ($_POST['experience'] as $selected) {
+
+    if (isset($_POST['experience'])) {
+      foreach ($_POST['experience'] as $selected) {
         if ($selected == "special-skills-interests") {
-            $specialSkillsInterestss = mysqli_real_escape_string($cnxn,1);
+          $specialSkillsInterests = mysqli_real_escape_string($cnxn, 1);
         }
         if ($selected == "youth-volunteer-exp") {
-            $youthVolunteerExp = mysqli_real_escape_string($cnxn,1);
+          $youthVolunteerExp = mysqli_real_escape_string($cnxn, 1);
         }
         if ($selected == "non-youth-volunteer") {
-            $nonYouthExperience = mysqli_real_escape_string($cnxn,1);
+          $nonYouthExperience = mysqli_real_escape_string($cnxn, 1);
         }
+      }
     }
+
     $skillsInterest = mysqli_real_escape_string($cnxn,"$skillsInterest");
     $youthExp = mysqli_real_escape_string($cnxn, "$youthExp");
     $nonYouthExp = mysqli_real_escape_string($cnxn, "$nonYouthExp");
@@ -190,27 +184,30 @@ if ($isValidSSVolunteer) {
     $ref3Phone = mysqli_real_escape_string($cnxn, "$ref3Phone");
     $ref3Email = mysqli_real_escape_string($cnxn, "$ref3Email");
     $ref3Relationship = mysqli_real_escape_string($cnxn, "$ref3Relationship");
+    $weekendAvailabilityText = mysqli_real_escape_string($cnxn, "$weekendAvailabilityText");
 
     //sql statement for volunteers table
     $sql = "insert into volunteers (first_name, last_name, home_phone, email, address1, address2, city, zip_code, shirt_sizes_id,
             states_code, lead_sources_id, add_to_mailing_list, policy_agreement, weekend_availability, summer_camp_availability,
             other_role_text, background_check_agreement, special_skills, youth_volunteer_exp, non_youth_volunteer_exp, special_skills_text,
-            youth_volunteer_exp_text, non_youth_volunteer_exp_text)
-            
+            youth_volunteer_exp_text, non_youth_volunteer_exp_text, weekend_availability_text)
             values ('$firstName', '$lastName', '$homePhone', '$email', '$streetAddress', '$address2', '$city','$zipCode','$tShirtSize',
             '$state', '$hearAboutUs','$mailingList','$policyAccepted', '$weekend', '$summerCamp','$otherText','$bgCheck',
-            '$specialSkillsInterestss', '$youthVolunteerExp', '$nonYouthExperience','$skillsInterest', '$youthExp', '$nonYouthExp');";
+            '$specialSkillsInterests', '$youthVolunteerExp', '$nonYouthExperience','$skillsInterest', '$youthExp', '$nonYouthExp',
+            '$weekendAvailabilityText');";
+//   echo $sql;
 
     $result = mysqli_query($cnxn, $sql);
     $lastID = mysqli_insert_id($cnxn); // getting the last inserted incremented ID for the second sql statement
 
     //sql statement for volunteer_roles table. Needed a foreach loop to assign multiple rows
-    foreach ($_POST['roles'] as $selected) {
+
+    if (isset($_POST['roles'])) {
+      foreach ($_POST['roles'] as $selected) {
         $sqlRoles = "INSERT INTO volunteer_roles (volunteers_id, roles_id)
-
-                VALUES ('$lastID', '$selected');";
+                    VALUES ('$lastID', '$selected');";
         $resultRoles = mysqli_query($cnxn, $sqlRoles);
-
+      }
     }
 
     // sql statement for volunteer_references table
@@ -225,7 +222,7 @@ if ($isValidSSVolunteer) {
     //echo "Last inserted ID: ".$lastID;
 
     // print summary if data was stored in database successfully
-    if ($result && $resultRoles && $resultRef) {
+    if ($result && $resultRef) {
         echo "<h3>Thank you for completing this application form and for your interest in volunteering with us.</h3>";
     }
 
@@ -240,13 +237,16 @@ if ($isValidSSVolunteer) {
     echo "<div>ZipCode: " . $zipCode . "</div>";
     echo "<div>T-Shirt Size: " . $tShirtSizeLabel . "</div>";
     echo "<div>Availability: ";
-    foreach ($_POST['availability'] as $selected) {
+
+    if (isset($_POST['availability'])) {
+      foreach ($_POST['availability'] as $selected) {
         if ($selected == "weekend") {
-            echo "Weekends" . ", ";
+          echo "Weekends" . ", ";
         }
-        if ($selected == "weekend-8"){
-            echo "SummerCamp 1-Week" . ", ";
+        if ($selected == "weekend-8") {
+          echo "SummerCamp 1-Week" . ", ";
         }
+      }
     }
     echo "</div>";
     if ($weekend ==1) {
@@ -254,9 +254,11 @@ if ($isValidSSVolunteer) {
     }
 
     echo "<div>Roles: ";
-    foreach ($_POST['roles'] as $selected) {
+    if (isset($_POST['roles'])) {
+      foreach ($_POST['roles'] as $selected) {
         $roleSelected = rolesSwitch($selected);
         echo "$roleSelected" . ", ";
+      }
     }
     echo "</div>";
 
@@ -265,16 +267,18 @@ if ($isValidSSVolunteer) {
     }
     echo "<div>Motivation: " . $motivation . "</div>";
 
-    foreach ($_POST['experience'] as $selected) {
+    if (isset($_POST['experience'])) {
+      foreach ($_POST['experience'] as $selected) {
         if ($selected == "special-skills-interests") {
-            echo "<div>Special Skills or Interests: " . $skillsInterest . "</div>";
+          echo "<div>Special Skills or Interests: " . $skillsInterest . "</div>";
         }
         if ($selected == "youth-volunteer-exp") {
-            echo "<div>Youth Volunteer Experience: " . $youthExp . "</div>";
+          echo "<div>Youth Volunteer Experience: " . $youthExp . "</div>";
         }
         if ($selected == "non-youth-volunteer") {
-            echo "<div>non-Youth Volunteer Experience: " . $nonYouthExp . "</div>";
+          echo "<div>non-Youth Volunteer Experience: " . $nonYouthExp . "</div>";
         }
+      }
     }
 
     echo "<br><div>Reference 1</div>";
@@ -336,13 +340,15 @@ if ($isValidSSVolunteer) {
     $email_body .= "Zip Code: " . $zipCode . "\r\n";
     $email_body .= "T-Shirt Size: " . $tShirtSizeLabel . "\r\n";
     $email_body .= "Availability: ";
-    foreach ($_POST['availability'] as $selected) {
+    if (isset($_POST['availability'])) {
+      foreach ($_POST['availability'] as $selected) {
         if ($selected == "weekend") {
-            $email_body .= "Weekends" . ", ";
+          $email_body .= "Weekends" . ", ";
         }
-        if ($selected == "weekend-8"){
-            $email_body .= "SummerCamp 1-Week" . ", ";
+        if ($selected == "weekend-8") {
+          $email_body .= "SummerCamp 1-Week" . ", ";
         }
+      }
     }
     $email_body .= "\r\n";
 
@@ -351,9 +357,11 @@ if ($isValidSSVolunteer) {
 }
     $email_body .= "\r\n";
     $email_body .= "Roles: ";
-    foreach ($_POST['roles'] as $selected) {
+    if (isset($_POST['roles'])) {
+      foreach ($_POST['roles'] as $selected) {
         $roleSelected = rolesSwitch($selected);
         $email_body .= $roleSelected . ", ";
+      }
     }
 
     $email_body .= "\r\n";
@@ -362,16 +370,18 @@ if ($isValidSSVolunteer) {
         $email_body .= "Interest Other: " . $otherText . "\r\n";
     }
     $email_body .= "Motivation: " . $motivation . "\r\n";
-    foreach ($_POST['experience'] as $selected) {
+    if (isset($_POST['roles'])) {
+      foreach ($_POST['experience'] as $selected) {
         if ($selected == "special-skills-interests") {
-            $email_body .= "Special Skills or Interests: " . $skillsInterest . "\r\n";
+          $email_body .= "Special Skills or Interests: " . $skillsInterest . "\r\n";
         }
         if ($selected == "youth-volunteer-exp") {
-            $email_body .= "Youth Volunteer Experience: " . $youthExp . "\r\n";
+          $email_body .= "Youth Volunteer Experience: " . $youthExp . "\r\n";
         }
         if ($selected == "non-youth-volunteer") {
-            $email_body .= "non-Youth Volunteer Experience: " . $nonYouthExp . "\r\n";
+          $email_body .= "non-Youth Volunteer Experience: " . $nonYouthExp . "\r\n";
         }
+      }
     }
 
     $email_body .= "\nReference 1" . "\r\n";

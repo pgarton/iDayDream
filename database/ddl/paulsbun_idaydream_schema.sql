@@ -239,6 +239,7 @@ CREATE TABLE IF NOT EXISTS volunteers (
   city VARCHAR(45) NOT NULL,
   zip_code VARCHAR(20) NOT NULL,
   weekend_availability TINYINT(4) NULL DEFAULT NULL,
+  weekend_availability_text VARCHAR(255) NULL DEFAULT NULL,
   summer_camp_availability TINYINT(4) NULL DEFAULT NULL,
   other_role_text VARCHAR(80) NULL DEFAULT NULL,
   background_check_agreement TINYINT(4) NULL DEFAULT NULL,
@@ -381,10 +382,12 @@ SET FOREIGN_KEY_CHECKS = 1;
 create or replace view v_volunteers as
 select v.id AS volunteer_id,v.first_name AS first_name,v.last_name AS last_name,
 v.home_phone AS home_phone,v.email AS email,v.add_to_mailing_list AS add_to_mailing_list,v.address1 AS address1,v.address2 AS address2,v.policy_agreement AS policy_agreement,
-v.city AS city,v.states_code AS states_code,states.name AS state,v.zip_code AS zip_code,v.weekend_availability AS weekend_availability,v.summer_camp_availability AS summer_camp_availability,
+v.city AS city,v.states_code AS states_code,states.name AS state,v.zip_code AS zip_code,v.weekend_availability AS weekend_availability,
+v.summer_camp_availability AS summer_camp_availability, v.weekend_availability_text AS weekend_availability_text,
 v.other_role_text AS other_role_text,v.background_check_agreement AS background_check_agreement,v.shirt_sizes_id AS shirt_sizes_id,shirt_sizes.size AS shirt_size,v.lead_sources_id AS lead_sources_id,
 lead_sources.lead AS lead,v.active AS active,v.special_skills AS special_skills,v.special_skills_text AS special_skills_text,v.youth_volunteer_exp AS youth_volunteer_exp,
-v.youth_volunteer_exp_text AS youth_volunteer_exp_text,v.non_youth_volunteer_exp AS non_youth_volunteer_exp,v.non_youth_volunteer_exp_text AS non_youth_volunteer_exp_text
+v.youth_volunteer_exp_text AS youth_volunteer_exp_text,v.non_youth_volunteer_exp AS non_youth_volunteer_exp,v.non_youth_volunteer_exp_text AS non_youth_volunteer_exp_text,
+v.created as created, v.last_updated as last_updated
 from (((volunteers v left join states on((states.code = v.states_code))) left join shirt_sizes on((shirt_sizes.id = v.shirt_sizes_id))) left join lead_sources on((lead_sources.id = v.lead_sources_id))) ;
 
 create or replace view v_volunteer_references
@@ -412,7 +415,8 @@ select y.id as dreamer_id, y.first_name, y.last_name, y.home_phone, y.email, y.g
   y.food_snacks, y.date_of_birth, y.genders_id, g.gender, y.ethnicities_id, e.ethnicity, y.career_aspirations,
   case when length(COALESCE(y.other_ethnicity_text,'')) < 1 then e.ethnicity
   else concat(e.ethnicity, " : ", y.other_ethnicity_text)
-  end as ethnicity_all, y.guardian_full_name, y.guardian_email, y.guardian_phone, y.active
+  end as ethnicity_all, y.guardian_full_name, y.guardian_email, y.guardian_phone, y.active,
+  y.created as created, y.last_updated as last_updated
 from youth y
 left outer join genders g on g.id = y.genders_id
 left outer join ethnicities e on e.id = y.ethnicities_id;

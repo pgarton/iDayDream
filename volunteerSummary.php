@@ -3,7 +3,7 @@
     Original Author:    Paul Garton
     Last Modified by:   Dallas Sloan
     Creation Date:      11/10/2019
-    Last Modified Date: 12/08/2019
+    Last Modified Date: 12/09/2019
     Filename:           volunteerSummary.php
 */
 //Turn on error reporting -- this is critical!
@@ -66,13 +66,15 @@ if (!isset($_SESSION['username'])){
             case when add_to_mailing_list > 0 then "Yes" else "No" end as add_to_mailing_list,
             case when policy_agreement > 0 then "Yes" else "No" end as policy_agreement,
             case when weekend_availability > 0 then "Yes" else "No" end as weekend_availability, 
+            weekend_availability_text as weekend_availability_text,
             case when summer_camp_availability > 0 then "Yes" else "No" end as summer_camp_availability,
             case when background_check_agreement > 0 then "Yes" else "No" end as background_check_agreement,
             null as roles, other_role_text, shirt_size, lead, 
             case when special_skills > 0 then "Yes" else "No" end as special_skills, 
             case when youth_volunteer_exp > 0 then "Yes" else "No" end as youth_volunteer_exp,
             case when non_youth_volunteer_exp > 0 then "Yes" else "No" end as non_youth_volunteer_exp,
-            special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3
+            special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3,
+            created, last_updated
           from v_volunteers';
   }
   else{
@@ -81,13 +83,15 @@ if (!isset($_SESSION['username'])){
             case when add_to_mailing_list > 0 then \"Yes\" else \"No\" end as add_to_mailing_list,
             case when policy_agreement > 0 then \"Yes\" else \"No\" end as policy_agreement,
             case when weekend_availability > 0 then \"Yes\" else \"No\" end as weekend_availability, 
+            weekend_availability_text as weekend_availability_text,
             case when summer_camp_availability > 0 then \"Yes\" else \"No\" end as summer_camp_availability,
             case when background_check_agreement > 0 then \"Yes\" else \"No\" end as background_check_agreement,
             null as roles, other_role_text, shirt_size, lead, 
             case when special_skills > 0 then \"Yes\" else \"No\" end as special_skills, 
             case when youth_volunteer_exp > 0 then \"Yes\" else \"No\" end as youth_volunteer_exp,
             case when non_youth_volunteer_exp > 0 then \"Yes\" else \"No\" end as non_youth_volunteer_exp,
-            special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3
+            special_skills_text, youth_volunteer_exp_text, non_youth_volunteer_exp_text, null as ref1, null as ref2, null as ref3,
+            created, last_updated
           from v_volunteers
           where active = '$filter';";
   }
@@ -167,6 +171,7 @@ if (!isset($_SESSION['username'])){
       <th>Mailing List</th>
       <th>Policy Agreement</th>
       <th>Weekend Availability</th>
+      <th>Weekend Availability Text</th>
       <th>Summer Camp Availability</th>
       <th>Background Check Agreement</th>
       <th>Shirt Size</th>
@@ -176,6 +181,8 @@ if (!isset($_SESSION['username'])){
       <th>Reference 1</th>
       <th>Reference 2</th>
       <th>Reference 3</th>
+      <th>Created</th>
+      <th>Last Updated</th>
     </tr>
     </thead>
     <tbody>
@@ -202,6 +209,7 @@ if (!isset($_SESSION['username'])){
       $mailing = $rowM['add_to_mailing_list'];
       $policy = $rowM['policy_agreement'];
       $weekend = $rowM['weekend_availability'];
+      $weekend_text = $rowM['weekend_availability_text'];
       $summer = $rowM['summer_camp_availability'];
       $background = $rowM['background_check_agreement'];
       $shirtSize = $rowM['shirt_size'];
@@ -211,8 +219,8 @@ if (!isset($_SESSION['username'])){
       $ref1 = $rowM['ref1'];
       $ref2 = $rowM['ref2'];
       $ref3 = $rowM['ref3'];
-
-
+      $created = $rowM['created'];
+      $lastUpdated = $rowM['last_updated'];
 
       echo "<tr>
       <td>$volunteerID</td>
@@ -255,6 +263,7 @@ if (!isset($_SESSION['username'])){
       <td>$mailing</td>
       <td>$policy</td>
       <td>$weekend</td>
+      <td>$weekend_text</td>
       <td>$summer</td>
       <td>$background</td>
       <td>$shirtSize</td>
@@ -301,6 +310,8 @@ if (!isset($_SESSION['username'])){
       echo "<td>$ref1</td>";
       echo "<td>$ref2</td>";
       echo "<td>$ref3</td>";
+      echo "<td>$created</td>";
+      echo "<td>$lastUpdated</td>";
       echo "</tr>";
     }
     ?>
