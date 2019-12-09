@@ -3,7 +3,7 @@
     Original Author:    Paul Garton
     Last Modified by:   Dallas Sloan
     Creation Date:      11/10/2019
-    Last Modified Date: 11/30/2019
+    Last Modified Date: 12/08/2019
     Filename:           youthSummary.php
  */
 //Turn on error reporting -- this is critical!
@@ -244,12 +244,24 @@ if (!isset($_SESSION['username'])){
     } );
 
     $('.activeStatus').on('change', function(){
-        var status =$(this).val();
-        var dID = $(this).attr('data-did');
-        alert("Status Changed To: "+ status + " On DID: "+ dID);
+        let status =$(this).val();
+        let dID = $(this).attr('data-did');
+        alert("Status has been updated");
 
         $.post("updateStatusDream.php", {status:status, dID:dID});
     });
+
+    //function to update database within modal
+    $(document).on( 'click', 'div.dtr-modal select', function () {
+        $('.activeStatus').on('change', function(){
+            console.log($(this));
+            let status = $(this).val();
+            let dID =  $(this).attr('data-did');
+            alert("Status has been updated, please refresh page for change to appear.");
+
+            $.post("updateStatusDream.php", {status:status, dID:dID});
+        });
+    } );
 
     $('#filterStatus').on('change,', function(){
         var filter = $(this).val();

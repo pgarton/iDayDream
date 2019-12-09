@@ -1,10 +1,10 @@
 <?php
 /*  iDayDream Youth Summary
     Original Author:    Paul Garton
-    Last Modified by:   Paul Garton
+    Last Modified by:   Dallas Sloan
     Creation Date:      11/10/2019
-    Last Modified Date: 11/25/2019
-    Filename:           youthSummary.php
+    Last Modified Date: 12/08/2019
+    Filename:           volunteerSummary.php
 */
 //Turn on error reporting -- this is critical!
 // ini_set('display_errors', 1);
@@ -330,7 +330,7 @@ if (!isset($_SESSION['username'])){
                     display: $.fn.dataTable.Responsive.display.modal( {
                         header: function ( row ) {
                             var data = row.data();
-                            return 'Details for: ' +data[2] + ' ' +data[1];
+                            return 'Details for: ' +data[3] + ' ' +data[2];
                         }
                     } ),
                     renderer: $.fn.dataTable.Responsive.renderer.tableAll()
@@ -339,13 +339,27 @@ if (!isset($_SESSION['username'])){
         } );
     } );
 
+    //function to updte status within database
     $('.activeStatus').on('change', function(){
         var status =$(this).val();
         var vID = $(this).attr('data-vid');
-        alert("Status Changed To: "+ status + " On VID: "+ vID);
+        alert("Status has been updated");
 
         $.post("updateStatusVol.php", {status:status, vID:vID});
     });
+
+    //function to update status within  database within modal
+    $(document).on( 'click', 'div.dtr-modal select', function () {
+        $('.activeStatus').on('change', function(){
+            console.log($(this));
+            let status = $(this).val();
+            let vID =  $(this).attr('data-vid');
+            alert("Status has been updated, please refresh page for change to appear.");
+
+            $.post("updateStatusVol.php", {status:status, vID:vID});
+        });
+    } );
+
 </script>
 
 </body>
