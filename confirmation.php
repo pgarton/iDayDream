@@ -13,6 +13,7 @@
   <meta charset="UTF-8">
   <title>Thank You Volunteer</title>
   <link rel="stylesheet" href="styles/confirmation.css">
+  <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5dabc823c0e45245a9c250cd/1571544129492-S9RDI79OWVWOWVJEJG7E/ke17ZwdGBToddI8pDm48kJycfsYb1urLU93EpFqOTQmoCXeSvxnTEQmG4uwOsdIceAoHiyRoc52GMN5_2H8Wp7zww8OjRrqjaM7_0x6HDLp42EP6IAa5vAmscK3sHI4MkNL5tmfZ3otlI9yi1IzH2Q/favicon.ico">
 
 </head>
 <body>
@@ -437,6 +438,7 @@ else{
     $msg = $success ? "Your information was successfully submitted"
         : "We're sorry. There was a problem with your submission";
     echo "<p>$msg</p>";
+    echo "<p><b><a href='https://www.idaydream.org/'>Return to iDayDream Home</a></b></p>";
 }
 ?>
 </body>
