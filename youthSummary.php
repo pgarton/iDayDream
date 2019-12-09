@@ -62,13 +62,13 @@ if (!isset($_SESSION['username'])){
   if ($filter == 4 || $filter == null) {
       $sql = 'select dreamer_id, active, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
             career_aspirations, food_snacks, date_of_birth, gender, ethnicity_all, guardian_full_name,
-            guardian_phone, guardian_email
+            guardian_phone, guardian_email, created, last_updated
           from v_dreamers;';
   }
   else{
       $sql = "select dreamer_id, active, first_name, last_name, home_phone, email, graduating_class, college_of_interest,
             career_aspirations, food_snacks, date_of_birth, gender, ethnicity_all, guardian_full_name,
-            guardian_phone, guardian_email
+            guardian_phone, guardian_email, created, last_updated
           from v_dreamers
           where active = '$filter';";
 
@@ -129,7 +129,7 @@ if (!isset($_SESSION['username'])){
     <thead>
     <tr>
       <th>Dreamer ID</th>
-        <th>Status</th>
+      <th>Status</th>
       <th>Last Name</th>
       <th>First Name</th>
       <th>Home Phone</th>
@@ -144,6 +144,8 @@ if (!isset($_SESSION['username'])){
       <th>Guardian</th>
       <th>Guardian Phone</th>
       <th>Guardian Email</th>
+      <th>Created</th>
+      <th>Last Updated</th>
     </tr>
     </thead>
     <tbody>
@@ -167,6 +169,8 @@ if (!isset($_SESSION['username'])){
       $guardianFullName = $row['guardian_full_name'];
       $guardianPhone = $row['guardian_phone'];
       $guardianEmail = $row['guardian_email'];
+      $created = $row['created'];
+      $lastUpdated = $row['last_updated'];
       echo "<tr>
                 <td>$dreamerID</td>
                 <td><select class='activeStatus' id='status' name='status' data-did = '$dreamerID'>";
@@ -205,6 +209,8 @@ if (!isset($_SESSION['username'])){
                 <td>$guardianFullName</td>
                 <td>$guardianPhone</td>
                 <td>$guardianEmail</td>
+                <td>$created</td>
+                <td>$lastUpdated</td>
               </tr>";
         }
         ?>
