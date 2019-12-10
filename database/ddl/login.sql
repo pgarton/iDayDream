@@ -9,5 +9,5 @@ password varchar(255) NOT NULL,
  last_updated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-insert into login values (null, TRUE, 'admin', MD5('@dm1n'), now(), now());
-insert into login values (null, TRUE, 'Brandi', MD5('Day'), now(), now());
+insert into login values (null, TRUE, 'admin', MD5('iD@yDr3@m'), now(), now());
+
